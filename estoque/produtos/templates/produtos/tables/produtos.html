@@ -1,0 +1,109 @@
+<div id="tabelaprodutos">
+    <table id="tb_registros" class="table table-bordered table-hover" width="100%">
+        <thead>
+        <tr style="white-space: nowrap;">
+            <th data-class="expand">ID</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Estoque</th>
+            <th data-hide="phone,tablet">Desconto maximo</th>
+            <th data-hide="phone,tablet">Atacado</th>
+            <th data-hide="phone,tablet">Desc. atac</th>
+            <th data-hide="phone,tablet">Anunciar</th>
+            <th data-hide="phone,tablet">Státus</th>
+            <th data-hide="phone,tablet">Código barras</th>
+            <th data-hide="phone,tablet">Empresa</th>
+        </tr>
+        </thead>
+        <tbody class=" animated fadeInDown" style="white-space: nowrap;">
+        {% for registro in produtos %}
+        <tr>
+            <td class="{{registro.classe}}">{{registro.id}}</td>
+            <td class="{{registro.classe}}">
+                <div class="col-xs-6 col-sm-6 text-left">
+                    <div class="txt-color-white inline-block">
+                        <div class="btn-group">
+                            <a style="cursor:pointer;" class="dropdown-toggle" data-toggle="dropdown">{{registro.descricao_simplificada}}</a>
+                            <ul class="dropdown-menu pull-left text-left" style="background-color:black;">
+                                <li id="status-1-li-registro-{{registro.id}}" class="text-center"><span style="margin-left:10px;margin-right:10px;font-size:20px;color:orange;">{{registro.descricao_simplificada}}</span></li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a style="cursor:pointer;color:white;" id="buscar-produto-{{registro.id}}">EDITAR REGISTRO</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a style="cursor:pointer;color:white;" id="anunciar-1-produto-{{registro.id}}"><span>{{registro.anunciar_produto}}</span></a>
+                                </li>
+                                <li class="divider"></li>
+                                <li id="li-1-ativar-{{registro.id}}">
+                                    <a style="cursor:pointer;color:white;" id="ativar-1-registro-{{registro.id}}">ATIVAR PRODUTO</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li id="li-1-desativar-{{registro.id}}">
+                                    <a style="cursor:pointer;color:white;" id="desativar-1-registro-{{registro.id}}">DESATIVAR PRODUTO</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li id="li-1-fora-{{registro.id}}">
+                                    <a style="cursor:pointer;color:white;" id="fora-1-registro-{{registro.id}}">POR FORA DE LINHA</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li id="li-1-excluir-{{registro.id}}">
+                                    <a style="cursor:pointer;color:white;" id="excluir-1-registro-{{registro.id}}">EXCLUIR PRODUTO</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a style="cursor:pointer;color:white;" id="buscar-tabela-preco-produto-{{registro.id}}">TABELA DE PREÇOS</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td class="{{registro.classe}}">{{registro.preco_venda}}</td>
+            <td class="{{registro.classe}}">{{registro.estoque_atual}}</td>
+            <td class="{{registro.classe}}">{{registro.desconto_maximo}}</td>
+            <td class="{{registro.classe}}">{{registro.atacado_apartir}}</td>
+            <td class="{{registro.classe}}">{{registro.atacado_desconto}}</td>
+            <td class="{{registro.classe}}">
+                <div id="registro-{{registro.id}}">
+                    <a style="cursor:pointer;" id="anunciar-produto-{{registro.id}}">
+                        <span>{{registro.anunciar_produto}}</span>
+                    </a>
+                </div>
+            </td>
+            <td class="{{registro.classe}}" style="white-space: nowrap;">
+                <div class="col-xs-12 col-sm-12 text-left">
+                    <div class="txt-color-white inline-block">
+                        <div class="btn-group">
+                            <a id="status-registro-{{registro.id}}" style="cursor:pointer;margin-left:-12px;" class="dropdown-toggle" data-toggle="dropdown">{{registro.status}}</a>
+                            <ul class="dropdown-menu pull-left text-left" style="background-color:black;">
+                                <li id="status-li-{{registro.id}}" class="text-center" style="font-size:20px;color:orange;">{{registro.status}}</li>
+                                <li class="divider"></li>
+                                <li id="li-ativar-{{registro.id}}">
+                                    <a style="cursor:pointer;color:white;" id="ativar-registro-{{registro.id}}">ATIVAR PRODUTO</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li id="li-desativar-{{registro.id}}">
+                                    <a style="cursor:pointer;color:white;" id="desativar-registro-{{registro.id}}">DESATIVAR PRODUTO</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li id="li-fora-{{registro.id}}">
+                                    <a style="cursor:pointer;color:white;" id="fora-registro-{{registro.id}}">POR FORA DE LINHA</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li id="li-excluir-{{registro.id}}">
+                                    <a style="cursor:pointer;color:white;" id="excluir-registro-{{registro.id}}">EXCLUIR PRODUTO</a>
+                                </li>
+                                <li class="divider"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td class="{{registro.classe}}">{{registro.codigo_barras}}</td>
+            <td class="{{registro.classe}}">{{registro.empresa}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

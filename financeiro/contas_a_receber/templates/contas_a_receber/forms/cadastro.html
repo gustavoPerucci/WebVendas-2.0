@@ -1,0 +1,79 @@
+    <div>
+<form enctype="multipart/form-data" method="post" role="form"  id="form_contas_a_receber">{% csrf_token %}
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                <div id="div_id_conta" class="form-group col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                    <label for="id_conta">ID</label>
+                    <input id="id_conta" name="id_conta" type="number" value="0" class="form-control" disabled>
+                </div>
+
+                <div id="div_agente_pagador" class="form-group col-lg-6 col-md-6 col-sm-8 col-xs-8" >
+                    <label for="id_agente_pagador">Conta (Cliente)</label>
+                    {{form_contas_a_receber.agente_pagador}}
+                </div>
+                <div id="div_forma_de_pagamento"  class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                    <label for="id_forma_de_pagamento">Forma pagamento</label>
+                    <select id="id_forma_de_pagamento" name="forma_de_pagamento" class="form-control" data-max="20" disabled>
+                        <option value=""></option>
+                        <option value="A VISTA">A VISTA</option>
+                        <option value="A PRAZO">A PRAZO</option>
+                    </select>
+                </div>
+                <div id="div_meio_de_pagamento"  class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                    <label for="id_meio_de_pagamento">Meio pagamento</label>
+                    <select id="id_meio_de_pagamento" name="meio_de_pagamento" class="form-control" data-max="20" disabled>
+                        <option value=""></option>
+                        <option value="DINHEIRO">DINHEIRO</option>
+                        <option value="CARTAO DEBITO">CARTAO DE DÉBITO</option>
+                        <option value="CARTAO CREDITO">CARTAO DE CRÉDITO</option>
+                        <option value="CHEQUE">CHEQUE</option>
+                        <option value="OUTROS">OUTROS</option>
+                    </select>
+                </div>
+                <div id="div_primeiro_vencimento" class="form-group col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                    <label for="id_primeiro_vencimento">1° vencimento</label>
+                    <input id="id_primeiro_vencimento" name="primeiro_vencimento" type="date" class="form-control" disabled>
+                </div>
+                <div id="div_quantidade_parcelas" class="form-group col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                    <label for="id_quantidade_parcelas">Parcelas</label>
+                    <input id="id_quantidade_parcelas" name="quantidade_parcelas" type="number" step="1" value="0" min="0" class="form-control" disabled>
+                </div>
+                <div id="div_valor_entrada" class="form-group col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                    <label for="id_valor_entrada">Entrada</label>
+                    <input id="id_valor_entrada" name="valor_entrada" type="number" class="form-control" step = "any" min="0" value="0.00"  disabled>
+                </div>
+                <div id="div_valor_parcela" class="form-group col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                    <label for="id_valor_parcela">Valor parcela</label>
+                    <input id="id_valor_parcela" name="valor_parcela" type="number" class="form-control" step = "any" min="0" value="0.00"  disabled>
+                </div>
+                <div id="div_valor_conta" class="form-group col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                    <label for="id_valor_conta">Saldo total</label>
+                    <input id="id_valor_conta" name="valor_conta" type="number" class="form-control" step = "any" min="0" value="0.00"  disabled>
+                </div>
+                <div id="div_valor_juros" class="form-group col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                    <label for="id_valor_juros">Juros total</label>
+                    <input id="id_valor_juros" name="valor_juros" type="number" class="form-control" step = "any" min="0" value="0.00"  disabled>
+                </div>
+                <div id="div_observacoes_conta" class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label for="id_observacoes_conta">Observações</label>
+                    <textarea id="id_observacoes_conta" name="observacoes_conta" class="form-control" disabled></textarea>
+                </div>
+                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <button id="btn_registrar_conta" class=" btn btn-success text-left" type="submit" disabled>Registrar</button>
+                    <button id="btn_alterar_conta" type="button" class="btn btn-warning" disabled>Alterar</button>
+                    <button id="btn_cancelar_conta" type="button" class="btn btn-danger" disabled>Cancelar</button>
+                    <button id="btn_sair_conta" type="button" class="btn btn-danger" disabled>Sair</button>
+                </div>
+            </div>
+        </div>
+    </form>
+        <br>
+         <br>
+         <br>
+         <br>
+         <br>
+        <br>
+        <br>
+         </div>
+

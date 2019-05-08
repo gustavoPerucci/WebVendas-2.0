@@ -1,0 +1,931 @@
+<form method='post' id='formPesquisaPermissoes' style="margin-left:12px;">
+    <div class="row">
+        <div class=" form-group col-sm-2" >
+            <label for="id_permissao">Busca por ID</label>
+            <input id='id_permissao' type='number' class='form-control' name='id_permissao' placeholder='ID permissão' step="1" min="1" required>
+        </div>
+        <div class=" form-group col-sm-1">
+            <label for="buscarPermissoes">Buscar</label>
+            <input id='buscarPermissoes' class='btn btn-info text-left form-control' type='submit' value='Buscar' style='width:100px'>
+        </div>
+    </div>
+</form>
+<hr>
+<form enctype="multipart/form-data" method="post" role="form"  id="formPermissoes">{% csrf_token %}
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div id="div_id" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <label for="id_id_permissao">ID</label>
+                <input id="id_id_permissao" name="id_id_permissao" type="number" value="0" class="form-control" disabled>
+            </div>
+
+            <div id="div_descricao" class="form-group col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                <label for="id_descricao">Descrição</label>
+                <input id="id_descricao" name="descricao" type="text" class="form-control" autofocus = "autofocus">
+            </div>
+            {% if usuario.permissoes.administrador_super %}
+            <div id="div_administrador_super" class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                 <label for="id_administrador_super"> Conceder permissão máxima</label>
+                 <select id="id_administrador_super" name="administrador_super" class="form-control">
+                     <option value="0">Não</option>
+                     <option value="1">Sim</option>
+                 </select>
+             </div>
+            {% endif %}
+            {% if usuario.permissoes.administrador_super or usuario.permissoes.administrador %}
+             <div id="div_administrador" class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                 <label for="id_administrador"> Conceder todas as permissões</label>
+                 <select id="id_administrador" name="administrador" class="form-control">
+                     <option value="0">Não</option>
+                     <option value="1">Sim</option>
+                 </select>
+             </div>
+            {% endif %}
+            <div class="panel-group col-lg-12 col-md-12 col-sm-12 col-xs-12" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading ">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#cadastro-de-usuarios">Cadastro de usuarios</a>
+                        </h4>
+                    </div>
+                    <div id="cadastro-de-usuarios" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div id="div_cadastra_usuario" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_cadastra_usuario"> Cadastra novo</label>
+                                <select id="id_cadastra_usuario" name="cadastra_usuario" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_edita_usuario" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_edita_usuario"> Edita cadastro</label>
+                                <select id="id_edita_usuario" name="edita_usuario" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_muda_status_usuario" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_muda_status_usuario"> Muda státus</label>
+                                <select id="id_muda_status_usuario" name="muda_status_usuario" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_acessa_cadastro_usuarios" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_acessa_cadastro_usuarios"> Acessa cadastro</label>
+                                <select id="id_acessa_cadastro_usuarios" name="acessa_cadastro_usuarios" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading ">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#cadastro-de-colaboradores">Cadastro de colaboradores</a>
+                        </h4>
+                    </div>
+                    <div id="cadastro-de-colaboradores" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div id="div_cadastra_colaborador" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_cadastra_colaborador"> Cadastra novo</label>
+                                <select id="id_cadastra_colaborador" name="cadastra_colaborador" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_edita_colaborador" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_edita_colaborador"> Edita cadastro</label>
+                                <select id="id_edita_colaborador" name="edita_colaborador" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_muda_status_colaborador" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_muda_status_colaborador"> Muda státus</label>
+                                <select id="id_muda_status_colaborador" name="muda_status_colaborador" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_acessa_cadastro_colaboradores" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_acessa_cadastro_colaboradores"> Acessa cadastro</label>
+                                <select id="id_acessa_cadastro_colaboradores" name="acessa_cadastro_colaboradores" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading ">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#permissoes-de-usuarios"> Permissões de usuarios</a>
+                        </h4>
+                    </div>
+                    <div id="permissoes-de-usuarios" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div id="div_cadastra_permissoes_usuario" class="form-group col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                                <label for="id_cadastra_permissoes_usuario"> Criar nova</label>
+                                <select id="id_cadastra_permissoes_usuario" name="cadastra_permissoes_usuario" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_edita_permissoes_usuario" class="form-group col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                                <label for="id_edita_permissoes_usuario"> Edita permissão</label>
+                                <select id="id_edita_permissoes_usuario" name="edita_permissoes_usuario" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_muda_status_permissoes_usuario" class="form-group col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                                <label for="id_muda_status_permissoes_usuario"> Muda státus</label>
+                                <select id="id_muda_status_permissoes_usuario" name="muda_status_permissoes_usuario" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_acessa_permissoes_usuario" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_acessa_permissoes_usuario"> Acessa permissões</label>
+                                <select id="id_acessa_permissoes_usuario" name="acessa_permissoes_usuario" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_exclui_permissoes_usuario" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_exclui_permissoes_usuario"> Exclui permissão</label>
+                                <select id="id_exclui_permissoes_usuario" name="exclui_permissoes_usuario" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#cadastro-de-clientes">Cadastro de clientes</a>
+                        </h4>
+                    </div>
+                    <div id="cadastro-de-clientes" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div id="din_cadastra_cliente" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_cadastra_cliente"> Cadastra novo</label>
+                                <select id="id_cadastra_cliente" name="cadastra_cliente" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_edita_cliente" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_edita_cliente"> Edita cadastro</label>
+                                <select id="id_edita_cliente" name="edita_cliente" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_muda_status_cliente" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_muda_status_cliente"> Muda státus</label>
+                                <select id="id_muda_status_cliente" name="muda_status_cliente" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_acessa_cadastro_cliente" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_acessa_cadastro_cliente"> Acessa cadastro</label>
+                                <select id="id_acessa_cadastro_cliente" name="acessa_cadastro_cliente" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#cadastro-de-fornecedores">Cadastro de fornecedores</a>
+                        </h4>
+                    </div>
+                    <div id="cadastro-de-fornecedores" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div id="div_cadastra_fornecedor" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                    <label for="id_cadastra_fornecedor"> Cadastra novo</label>
+                                    <select id="id_cadastra_fornecedor" name="cadastra_fornecedor" class="form-control">
+                                        <option value="0">Não</option>
+                                        <option value="1">Sim</option>
+                                    </select>
+                            </div>
+
+                            <div id="div_edita_fornecedor" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_edita_fornecedor"> Edita cadastro</label>
+                                <select id="id_edita_fornecedor" name="edita_fornecedor" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_muda_status_fornecedor" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_muda_status_fornecedor"> Muda státus</label>
+                                <select id="id_muda_status_fornecedor" name="muda_status_fornecedor" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_acessa_cadastro_fornecedor" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_acessa_cadastro_fornecedor"> Acessa cadastro</label>
+                                <select id="id_acessa_cadastro_fornecedor" name="acessa_cadastro_fornecedor" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#cadastro-de-produtos">Cadastro de produtos</a>
+                        </h4>
+                    </div>
+                    <div id="cadastro-de-produtos" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div id="div_cadastra_produto" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_cadastra_produto"> Cadastra novo</label>
+                                <select id="id_cadastra_produto" name="cadastra_produto" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_edita_produto" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_edita_produto"> Edita cadastro</label>
+                                <select id="id_edita_produto" name="edita_produto" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_muda_status_produto" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_muda_status_produto"> Muda státus</label>
+                                <select id="id_muda_status_produto" name="muda_status_produto" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_altera_preco_produto" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_altera_preco_produto"> Altrea preço</label>
+                                <select id="id_altera_preco_produto" name="altera_preco_produto" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_acessa_cadastro_produto" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_acessa_cadastro_produto"> Acessa cadastro</label>
+                                <select id="id_acessa_cadastro_produto" name="acessa_cadastro_produto" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_anuncia_produto" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_anuncia_produto"> Anuncia</label>
+                                <select id="id_anuncia_produto" name="anuncia_produto" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#tabela-de-precos"> Tabela de preços</a>
+                        </h4>
+                    </div>
+                    <div id="tabela-de-precos" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div id="div_tabela_preco" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_tabela_preco"> Tabela preço</label>
+                                <select id="id_tabela_preco" name="tabela_preco" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_edita_tabela_de_precos" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_edita_tabela_de_precos"> Edita preço</label>
+                                <select id="id_edita_tabela_de_precos" name="edita_tabela_de_precos" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_acessa_tabela_de_precos" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_acessa_tabela_de_precos"> Acessa preços</label>
+                                <select id="id_acessa_tabela_de_precos" name="acessa_tabela_de_precos" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_exclui_preco_tabelado" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_exclui_preco_tabelado"> Exclui preço</label>
+                                <select id="id_exclui_preco_tabelado" name="exclui_preco_tabelado" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#registro-de-vendas"> Registro de vendas</a>
+                        </h4>
+                    </div>
+                    <div id="registro-de-vendas" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div id="div_registra_venda" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_registra_venda"> Inicia venda</label>
+                                <select id="id_registra_venda" name="registra_venda" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_edita_venda" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_edita_venda"> Edita venda</label>
+                                <select id="id_edita_venda" name="edita_venda" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_muda_status_venda" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_muda_status_venda"> Muda státus</label>
+                                <select id="id_muda_status_venda" name="muda_status_venda" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_cancela_venda" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_cancela_venda"> Cancela venda</label>
+                                <select id="id_cancela_venda" name="cancela_venda" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_acessa_registro_venda" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_acessa_registro_venda"> Acessa vendas</label>
+                                <select id="id_acessa_registro_venda" name="acessa_registro_venda" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_fecha_venda" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_fecha_venda"> Fecha venda</label>
+                                <select id="id_fecha_venda" name="fecha_venda" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_imprime_cupom_venda" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_imprime_cupom_venda"> Imprime cupom</label>
+                                <select id="id_imprime_cupom_venda" name="imprime_cupom_venda" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#registro-de-compras"> Registro de compras</a>
+                        </h4>
+                    </div>
+                    <div id="registro-de-compras" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div id="div_registra_compra" class="form-group col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                                <label for="id_registra_compra"> Registrar</label>
+                                <select id="id_registra_compra" name="registra_compra" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_edita_compra" class="form-group col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                                <label for="id_edita_compra"> Edita</label>
+                                <select id="id_edita_compra" name="edita_compra" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_muda_status_compra" class="form-group col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                                <label for="id_muda_status_compra"> Muda státus</label>
+                                <select id="id_muda_status_compra" name="muda_status_compra" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_cancela_compra" class="form-group col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                                <label for="id_cancela_compra"> Cancela compra</label>
+                                <select id="id_cancela_compra" name="cancela_compra" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_acessa_registro_compra" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_acessa_registro_compra"> Acessa</label>
+                                <select id="id_acessa_registro_compra" name="acessa_registro_compra" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_finaliza_compra" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_finaliza_compra"> Finaliza</label>
+                                <select id="id_finaliza_compra" name="finaliza_compra" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#saida-de-produtos"> Saída de produtos</a>
+                        </h4>
+                    </div>
+                    <div id="saida-de-produtos" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div id="div_registra_saida_produto" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_registra_saida_produto"> Registra</label>
+                                <select id="id_registra_saida_produto" name="registra_saida_produto" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_edita_saida_produto" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_edita_saida_produto"> Edita</label>
+                                <select id="id_edita_saida_produto" name="edita_saida_produto" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_acessa_saida_produto" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_acessa_saida_produto"> Acessa</label>
+                                <select id="id_acessa_saida_produto" name="acessa_saida_produto" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_muda_status_saida_produto" class="form-group col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                                <label for="id_muda_status_saida_produto"> Muda státus</label>
+                                <select id="id_muda_status_saida_produto" name="muda_status_saida_produto" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_cancela_saida_produto" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_cancela_saida_produto"> Exclui</label>
+                                <select id="id_cancela_saida_produto" name="cancela_saida_produto" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#entrada-de-produtos"> Entrada de produtos</a>
+                        </h4>
+                    </div>
+                    <div id="entrada-de-produtos" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div id="div_registra_entrada_produto" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_registra_entrada_produto"> Registra</label>
+                                <select id="id_registra_entrada_produto" name="registra_entrada_produto" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_edita_entrada_produto" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_edita_entrada_produto"> Edita</label>
+                                <select id="id_edita_entrada_produto" name="edita_entrada_produto" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_acessa_entrada_produto" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_acessa_entrada_produto"> Acessa</label>
+                                <select id="id_acessa_entrada_produto" name="acessa_entrada_produto" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_muda_status_entrada_produto" class="form-group col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                                <label for="id_muda_status_entrada_produto"> Muda státus</label>
+                                <select id="id_muda_status_entrada_produto" name="muda_status_entrada_produto" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_cancela_entrada_produto" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_cancela_entrada_produto"> Exclui</label>
+                                <select id="id_cancela_entrada_produto" name="cancela_entrada_produto" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#contas-a-pagar"> Contas a pagar</a>
+                        </h4>
+                    </div>
+                    <div id="contas-a-pagar" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div id="div_edita_contas_pagar" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_edita_contas_pagar"> Edita</label>
+                                <select id="id_edita_contas_pagar" name="edita_contas_pagar" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_acessa_contas_pagar" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_acessa_contas_pagar"> Acessa</label>
+                                <select id="id_acessa_contas_pagar" name="acessa_contas_pagar" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_quita_contas_pagar" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_quita_contas_pagar"> Quita</label>
+                                <select id="id_quita_contas_pagar" name="quita_contas_pagar" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_exclui_contas_pagar" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_exclui_contas_pagar"> Exclui</label>
+                                <select id="id_exclui_contas_pagar" name="exclui_contas_pagar" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#contas-a-receber"> Contas a receber</a>
+                        </h4>
+                    </div>
+                    <div id="contas-a-receber" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div id="div_edita_contas_receber" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_edita_contas_receber"> Edita</label>
+                                <select id="id_edita_contas_receber" name="edita_contas_receber" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_acessa_contas_receber" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_acessa_contas_receber"> Acessa</label>
+                                <select id="id_acessa_contas_receber" name="acessa_contas_receber" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_quita_contas_receber" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_quita_contas_receber"> Quita</label>
+                                <select id="id_quita_contas_receber" name="quita_contas_receber" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_exclui_contas_receber" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_exclui_contas_receber"> Exclui</label>
+                                <select id="id_exclui_contas_receber" name="exclui_contas_receber" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#pagamentos"> Pagamentos</a>
+                        </h4>
+                    </div>
+                    <div id="pagamentos" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div id="div_registra_pagamento" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_registra_pagamento"> Registra</label>
+                                <select id="id_registra_pagamento" name="registra_pagamento" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_edita_pagamento" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_edita_pagamento"> Edita</label>
+                                <select id="id_edita_pagamento" name="edita_pagamento" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_acessa_pagamento" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_acessa_pagamento"> Acessa</label>
+                                <select id="id_acessa_pagamento" name="acessa_pagamento" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_muda_status_pagamento" class="form-group col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                                <label for="id_muda_status_pagamento"> Muda státus</label>
+                                <select id="id_muda_status_pagamento" name="muda_status_pagamento" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_exclui_pagamento" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_exclui_pagamento"> Exclui</label>
+                                <select id="id_exclui_pagamento" name="exclui_pagamento" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#recebimentos"> Recebimentos</a>
+                        </h4>
+                    </div>
+                    <div id="recebimentos" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div id="div_registra_recebimento" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_registra_recebimento"> Registra</label>
+                                <select id="id_registra_recebimento" name="registra_recebimento" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_edita_recebimento" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_edita_recebimento"> Edita</label>
+                                <select id="id_edita_recebimento" name="edita_recebimento" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_acessa_recebimento" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_acessa_recebimento"> Acessa</label>
+                                <select id="id_acessa_recebimento" name="acessa_recebimento" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_muda_status_recebimento" class="form-group col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                                <label for="id_muda_status_recebimento"> Muda státus</label>
+                                <select id="id_muda_status_recebimento" name="muda_status_recebimento" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_exclui_recebimento" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_exclui_recebimento"> Exclui</label>
+                                <select id="id_exclui_recebimento" name="exclui_recebimento" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#publica-conteudo"> Conteúdo do site</a>
+                        </h4>
+                    </div>
+                    <div id="publica-conteudo" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div id="div_publica_conteudo_site" class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <label for="id_publica_conteudo_site"> Publica</label>
+                                <select id="id_publica_conteudo_site" name="publica_conteudo_site" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_edita_conteudo_site" class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <label for="id_edita_conteudo_site"> Edita</label>
+                                <select id="id_edita_conteudo_site" name="edita_conteudo_site" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_muda_status_conteudo_site" class="form-group col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                                <label for="id_muda_status_conteudo_site"> Muda státus</label>
+                                <select id="id_muda_status_conteudo_site" name="muda_status_conteudo_site" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_acessa_conteudo_site" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_acessa_conteudo_site"> Acessa</label>
+                                <select id="id_acessa_conteudo_site" name="acessa_conteudo_site" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_exclui_conteudo_site" class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <label for="id_exclui_conteudo_site"> Exclui</label>
+                                <select id="id_exclui_conteudo_site" name="exclui_conteudo_site" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#publica-mensagem"> Menságens do site</a>
+                        </h4>
+                    </div>
+                    <div id="publica-mensagem" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div id="div_publica_mensagem_site" class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <label for="id_publica_mensagem_site"> Publica</label>
+                                <select id="id_publica_mensagem_site" name="publica_mensagem_site" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_edita_mensagem_site" class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <label for="id_edita_mensagem_site"> Edita</label>
+                                <select id="id_edita_mensagem_site" name="edita_mensagem_site" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_muda_status_mensagem_site" class="form-group col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                                <label for="id_muda_status_mensagem_site"> Muda státus</label>
+                                <select id="id_muda_status_mensagem_site" name="muda_status_mensagem_site" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_acessa_mensagem_site" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <label for="id_acessa_mensagem_site"> Acessa</label>
+                                <select id="id_acessa_mensagem_site" name="acessa_mensagem_site" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                            <div id="div_exclui_mensagem_site" class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <label for="id_exclui_mensagem_site"> Exclui</label>
+                                <select id="id_exclui_mensagem_site" name="exclui_mensagem_site" class="form-control">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="div_observacoes" class="form-group col-lg-12 col-md-12">
+        <label for="id_observacoes">Observações</label>
+        <textarea id="id_observacoes" name="observacoes" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group col-lg-12 col-md-12">
+        <button id="btn_salvar_permissao" class=" btn btn-success text-left" type="submit"> Salvar permissão</button>
+        <button id="btn_nova_permissao" type="button" class="btn btn-info"> Nova permissão </button>
+        <button id="btn_alterar_permissao" type="button" class="btn btn-warning" disabled> Alterar permissão </button>
+        <button id="btn_cancelar_operacao_permissao" type="button" class="btn btn-danger" disabled>Cancelar operação </button>
+        <button id="btn_sair_permissao" type="button" class="btn btn-danger"> Sair </button>
+    </div>
+</form>

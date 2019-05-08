@@ -1,0 +1,410 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% block titulo %} Produtos {% endblock %}
+
+{% block header %}
+    <ul id="cadastro-produtos" class="nav nav-tabs pull-left">
+        {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.acessa_cadastro_produto %}
+        <li id="li-tb-produtos" class="active">
+            <a data-toggle="tab" href="#tb-produtos"> <i class="fa fa-lg fa-cog"></i> <span class="hidden-mobile hidden-tablet">Produtos</span> </a>
+        </li>
+        {% endif %}
+        {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.acessa_tabela_de_precos %}
+        <li id="li-tb-precos">
+            <a data-toggle="tab" href="#tb-precos"> <i class="fa fa-lg fa-table"></i> <span class="hidden-mobile hidden-tablet">Tabela de preços</span></a>
+        </li>
+        {% endif %}
+        {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.tabela_preco %}
+        <li id="li-form-tabela-precos">
+            <a data-toggle="tab" href="#form-tabela-precos"> <i class="fa fa-lg fa-usd"></i> <span class="hidden-mobile hidden-tablet">tabelar preço</span></a>
+        </li>
+        {% endif %}
+        {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.tabela_preco %}
+        <li id="li-form-precos-promocao">
+            <a data-toggle="tab" href="#form-precos-promocao"> <i class="fa fa-lg fa-gift"></i> <span class="hidden-mobile hidden-tablet">Novas promoçõs</span></a>
+        </li>
+        {% endif %}
+        {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.acessa_tabela_de_precos %}
+        <li id="li-tb-precos-promocao">
+            <a data-toggle="tab" href="#tb-precos-promocao"> <i class="fa fa-lg fa-list"></i> <span class="hidden-mobile hidden-tablet">Promoções</span></a>
+        </li>
+        {% endif %}
+    </ul>
+{% endblock header %}
+
+{% block conteudo%}
+<div class="tab-content padding-10">
+    {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.acessa_cadastro_produto %}
+    <div class="tab-pane fade in active animated fadeInDown " id="tb-produtos">
+        {% include 'produtos/tables/produtos.html' %}
+        <div id="modal-cadastro-produtos">{% include 'produtos/modals/cadastro.html' %}</div>
+    </div>
+    {% endif %}
+   {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.acessa_tabela_de_precos %}
+    <div class="tab-pane fade animated fadeInDown" id="tb-precos">
+        {% include 'produtos/tables/tabela_precos.html' %}
+    </div>
+     {% endif %}
+    {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.tabela_preco %}
+    <div class="tab-pane fade animated fadeInDown" id="form-tabela-precos">
+        {% include 'produtos/forms/tabela_precos.html' %}
+    </div>
+    {% endif %}
+    {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.tabela_preco %}
+    <div class="tab-pane fade animated fadeInDown" id="form-precos-promocao">
+        {% include 'produtos/forms/precos_promocionais.html' %}
+    </div>
+    {% endif %}
+    {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.acessa_tabela_de_precos %}
+    <div class="tab-pane fade animated fadeInDown" id="tb-precos-promocao">
+        {% include 'produtos/tables/precos_promocionais.html' %}
+    </div>
+     {% endif %}
+</div>
+{% endblock conteudo%}
+
+{% block menu_produtos %}
+<li id="produtos" class="active">
+    <a href="#"><i class="fa fa-lg fa-fw fa-cog"></i> <span class="menu-item-parent">Produtos</span></a>
+	<ul>
+	{% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.acessa_cadastro_produto %}
+        <li id="produtos_ativos" title="ATIVO" class="active">
+        <a  href="#">Produtos ativos</a>
+    </li>
+        <li  id="produtos_inativos" title="INATIVO">
+            <a href="#">Produtos inativos</a>
+        </li>
+        <li  id="produtos_fora_de_linha" title="FORA DE LINHA">
+            <a href="#">Produtos fora de linha</a>
+        </li>
+        <li  id="produtos_excluidos"  title="EXCLUIDO">
+            <a href="#">Produtos excluídos</a>
+        </li>
+        {% endif %}
+        {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.cadastrar_produto %}
+        <li  id="produtos_novo"  title="NOVO">
+            <a href="#">Cadastrar novo</a>
+        </li>
+         <li  id="categorias"  title="CATEGORIAS">
+            <a href="#" data-toggle="modal" data-target="#modal-categorias">Categorias Produtos</a>
+        </li>
+         <li  id="marcas"  title="MARCAS">
+            <a href="#" data-toggle="modal" data-target="#modal-marcas">Marcas Produtos</a>
+        </li>
+        {% endif %}
+        <li id="li_tabela_de_precos">
+            <a href="#"><i class="fa fa-lg fa-fw fa-table"></i> <span class="menu-item-parent">Tabela de preços</span></a>
+            <ul>
+                {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.acessa_tabela_de_precos %}
+                <li id="precos_tabelados">
+                    <a href="#">Buscar tudo</a>
+                </li>
+                <li id="precos_tabelados_pdf">
+                    <a href="#">Buscar tudo em pdf</a>
+                </li>
+                <li><a><input id='busca-preco-cliente' required class="form-control chat-user-filter" type="number" step = "1" min="1" placeholder="ID cliente"></a></li>
+                <li><a><input id='busca-preco-produto' required class="form-control chat-user-filter" type="number" step = "1" min="1" placeholder="ID produto"></a></li>
+                <li><a><input id='busca-preco-barras' required class="form-control chat-user-filter" type="text"  placeholder="codigo barras"></a></li>
+                {% endif %}
+                {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.tabela_preco %}
+                <li  id="precos_novo"><a href="#">Tabelar preço</a></li>
+                {% endif %}
+            </ul>
+        </li>
+        <li id="li_precos_promocao">
+            <a href="#"><i class="fa fa-lg fa-fw fa-gift"></i> <span class="menu-item-parent">Promoções</span></a>
+            <ul>
+                {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.acessa_tabela_de_precos %}
+                <li id="produtos_em_promocao">
+                    <a href="#">Buscar tudo</a>
+                </li>
+                <li id="produtos_em_promocao_pdf">
+                    <a href="#">Buscar tudo em pdf</a>
+                </li>
+                <li><a><input id='busca-produto-promocao' required class="form-control chat-user-filter" type="number" step = "1" min="1" placeholder="ID produto"></a></li>
+                <li><a><input id='busca-produto-promocao-barras' required class="form-control chat-user-filter" type="text"  placeholder="codigo barras"></a></li>
+                {% endif %}
+                {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.tabela_preco %}
+                <li  id="promocao_nova"><a href="#">Nova promoção</a></li>
+                {% endif %}
+            </ul>
+        </li>
+    </ul>
+</li>
+{% endblock menu_produtos %}
+
+
+{% block pesquisa %}
+{% include 'produtos/forms/pesquisas.html' %}
+{% endblock pesquisa %}
+
+
+{% block modals %}
+{% include 'produtos/modals/categorias.html' %}
+{% include 'produtos/modals/marcas.html' %}
+{% endblock modals %}
+
+
+{% block cabecalho %}
+<ol class="breadcrumb">
+    <li><a href="/home/">Home</a></li>
+    <li><strong><a href="#">produtos</a></strong></li>
+</ol>
+{% endblock cabecalho %}
+
+
+{% block script%}
+<script src="{% static 'js/produtos/produtos.js' %}"></script>
+<script src="{% static 'js/produtos/tabela_precos.js' %}"></script>
+<script src="{% static 'js/produtos/precos_promocionais.js' %}"></script>
+{% endblock script%}
+
+
+{% block estilo%} {% endblock estilo%}
+
+
+{% block loading %} {% endblock loading %}
+
+
+{% block javascript %}
+<script type="text/javascript">
+		$(document).ready(function() {
+            $('[data-toggle="popover"]').popover();
+            $("#form :input").prop("disabled", true);
+            $("#id_categoria_produto").addClass("form-control");
+            $("#id_marca_produto").addClass("form-control");
+            $("#id_produto_promocao").addClass("form-control");
+            $("#id_cliente").addClass("form-control");
+            $("#id_produto").addClass("form-control");
+            $("#id_produto").prop("disabled", true);
+            $("#id_produto_promocao").prop("disabled", true);
+            $("#id_cliente").prop("disabled", true);
+
+			 //CONVERT DIALOG TITLE TO HTML
+			 //REF: http://stackoverflow.com/questions/14488774/using-html-in-a-dialogs-title-in-jquery-ui-1-10
+
+			$.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
+				_title : function(title) {
+					if (!this.options.title) {
+						title.html("&#160;");
+					} else {
+						title.html(this.options.title);
+					}
+				}
+			}));
+
+			 //Remove focus from buttons
+
+			$('.ui-dialog :button').blur();
+
+			// modal dialog init: custom buttons and a "close" callback reseting the form inside
+			var dialog = $("#addtab").dialog({
+				autoOpen : false,
+				width : 900,
+				height: 600,
+				resizable : true,
+				modal : true,
+				buttons : [
+
+                {html : "<i class='fa fa-plus'></i>&nbsp; Novo registro",
+					"class" : "btn btn-info",
+					click : function() {
+					    $('#form input').val("");
+					    $('#form select').val("");
+					    $('#form input[type=number]').val("0");
+					    $('#form input[type=submit]').val("Salvar registro");
+					    $("#form :input").prop("disabled", false);
+					    $("#formPesquisa :input").prop("disabled", true);
+					    $('.form-group').removeClass('has-error').removeClass('has-success');
+					}},
+
+                {html : "<i class='fa fa-edit'></i>&nbsp; Editar registro",
+					"class" : "btn btn-warning",
+					click : function() {
+					var id = $('#id_id').val();
+					if (id == '0') {
+
+					$.smallBox({
+                        title : "<i>EDITAR REGISTRO . . .</i>",
+                        content : "<i class='fa fa-clock-o'></i> <i>Antes, você deve fazer a busca do registro que deseja editar. . .</i>",
+                        color : "#5384AF",
+                        iconSmall : "fa fa-thumbs-up bounce animated",
+                        timeout : 5000
+				    });
+
+				    } else {
+                        $("#form :input").prop("disabled", false);
+                        $("#formPesquisa :input").prop("disabled", true);
+					}
+
+					}},
+
+                {html : "<i class='fa fa-times danger'></i>&nbsp; Cancelar",
+					"class" : "btn btn-danger",
+					click : function() {
+					    $('#form input').val("");
+					    $('#form select').val("");
+					    $('#form input[type=number]').val("0");
+					    $('#form input[type=submit]').val("Salvar registro");
+					    $("#form :input").prop("disabled", true);
+					    $("#formPesquisa :input").prop("disabled", false);
+					    $('.form-group').removeClass('has-error').removeClass('has-success');
+	                }},
+
+                {html : "<i class='fa fa-times danger'></i>&nbsp; Sair",
+					"class" : "btn btn-danger",
+					click : function() {
+					    $('#form input').val("");
+					    $('#form select').val("");
+					    $('#form input[type=number]').val("0");
+					    $('#form input[type=submit]').val("Salvar registro");
+					    $("#form :input").prop("disabled", true);
+					    $(this).dialog("close");
+	                }},
+			]}
+		);
+
+			// addTab form: calls addTab function on submit and closes the dialog
+			var form = dialog.find("form").submit(function(event) {
+				//dialog.dialog("close");
+				event.preventDefault();
+			});
+
+
+			// addTab button: just opens the dialog
+			$("#produtos_novo").button().click(function() {
+			    $('#form input').val("");
+                $('#form select').val("");
+                $('#form input[type=number]').val("0");
+                $('#form input[type=submit]').val("Salvar registro");
+                $("#form :input").prop("disabled", false);
+                $("#formPesquisa :input").prop("disabled", true);
+                $("#formPesquisa :input").val("");
+                $('#formPesquisa input[type=submit]').val("Buscar");
+                $('.form-group').removeClass('has-error').removeClass('has-success');
+                dialog.dialog("open");
+                $('#DescricaoProduto').focus();
+			});
+
+			$("#corpo").on('click', 'a[id^=buscar-produto-]', function(){
+			    $("#form :input").prop("disabled", false);
+                $("#formPesquisa :input").prop("disabled", true);
+                dialog.dialog("open");
+            });
+
+            pageSetUp();
+
+
+               /* BASIC ;*/
+				 var responsiveHelper_tb_registros = undefined;
+                var breakpointDefinition = {
+                    tablet : 1024,
+                    phone : 480
+                };
+
+
+
+				$('#tb_registros').dataTable({
+					"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>"+
+						"t"+
+						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+					"autoWidth" : true,
+					"scrollX": true,
+                    //"scrollY":"400px",
+                    scrollY: '50vh',
+                    //"scrollCollapse": true,
+                    //"paging": false,
+                    "stateSave": true,
+			        "oLanguage": {
+					    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+					},
+					"preDrawCallback" : function() {
+						// Initialize the responsive datatables helper once.
+						if (!responsiveHelper_tb_registros) {
+							responsiveHelper_tb_registros = new ResponsiveDatatablesHelper($('#tb_registros'), breakpointDefinition);
+						}
+					},
+					"rowCallback" : function(nRow) {
+						responsiveHelper_tb_registros.createExpandIcon(nRow);
+					},
+					"drawCallback" : function(oSettings) {
+						responsiveHelper_tb_registros.respond();
+					}
+				});
+
+			/* END BASIC */
+
+
+			/* BASIC ;*/
+				 var responsiveHelper_precos_promocionais = undefined;
+
+				$('#precos_promocionais').dataTable({
+					"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>"+
+						"t"+
+						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+					"autoWidth" : true,
+					"scrollX": true,
+                    //"scrollY":"400px",
+                    scrollY: '50vh',
+                    //"scrollCollapse": true,
+                    //"paging": false,
+                    "stateSave": true,
+			        "oLanguage": {
+					    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+					},
+					"preDrawCallback" : function() {
+						// Initialize the responsive datatables helper once.
+						if (!responsiveHelper_precos_promocionais) {
+							responsiveHelper_precos_promocionais = new ResponsiveDatatablesHelper($('#precos_promocionais'), breakpointDefinition);
+						}
+					},
+					"rowCallback" : function(nRow) {
+						responsiveHelper_precos_promocionais.createExpandIcon(nRow);
+					},
+					"drawCallback" : function(oSettings) {
+						responsiveHelper_precos_promocionais.respond();
+					}
+				});
+
+			/* END BASIC */
+
+
+			/* BASIC ;*/
+				 var responsiveHelper_tabela_de_precos = undefined;
+
+				$('#tabela_de_precos').dataTable({
+					"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>"+
+						"t"+
+						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+					"autoWidth" : true,
+					"scrollX": true,
+                    //"scrollY":"400px",
+                    scrollY: '50vh',
+                    //"scrollCollapse": true,
+                    //"paging": false,
+                    "stateSave": true,
+			        "oLanguage": {
+					    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+					},
+					"preDrawCallback" : function() {
+						// Initialize the responsive datatables helper once.
+						if (!responsiveHelper_tabela_de_precos) {
+							responsiveHelper_tabela_de_precos = new ResponsiveDatatablesHelper($('#tabela_de_precos'), breakpointDefinition);
+						}
+					},
+					"rowCallback" : function(nRow) {
+						responsiveHelper_tabela_de_precos.createExpandIcon(nRow);
+					},
+					"drawCallback" : function(oSettings) {
+						responsiveHelper_tabela_de_precos.respond();
+					}
+				});
+
+			/* END BASIC */
+
+})
+
+
+		</script>
+{% endblock javascript %}

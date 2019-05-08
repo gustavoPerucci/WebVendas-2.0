@@ -1,0 +1,30 @@
+/*!
+|||||||||||||||||||||||||||||||||||||| 
+||||||||||||||||||||||||||||||||||||||
+
+F O R M S  S C S S
+
+||||||||||||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||
+*/
+.form-control {
+    border: none;
+    box-shadow: none;
+    background: none;
+    border-bottom: 2px solid $body-bg;
+    height: 36px;
+
+    &:focus {
+        box-shadow: none;
+        outline: 0 none;
+    }
+}
+legend {
+    font-weight: 700;
+    font-size: 12px;
+        line-height: inherit;
+    margin-bottom: 21px;
+    padding: 10px 0;
+    text-transform: uppercase;
+    width: 100%;
+}

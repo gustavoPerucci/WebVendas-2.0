@@ -1,0 +1,87 @@
+/*!
+|||||||||||||||||||||||||||||||||||||| 
+||||||||||||||||||||||||||||||||||||||
+
+M E G A  M E N U  S C S S
+
+||||||||||||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||
+*/
+.mega {
+    position: static !important;
+
+    @include smartphone {
+        width: 100%;
+    }
+    &-menu {
+        padding: 20px 0px;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+
+        @include desktop {
+            &.dropdown-menu {
+                max-height: 70vh;
+                overflow: auto;
+            }
+        }
+    }
+    &-menu > li > ul {
+        padding: 0;
+        margin: 0;
+    }
+    &-menu > li > ul > li {
+        list-style: none;
+        width: 100%;
+    }
+    &-menu > li > ul > li > a {
+        display: block;
+        padding: 3px 20px;
+        clear: both;
+        font-weight: normal;
+        line-height: 1.428571429;
+        color: #999;
+        white-space: normal;
+    }
+    &-menu > li ul > li > a:hover, &-menu > li ul > li > a:focus {
+        text-decoration: none;
+        color: #444;
+        background-color: #f5f5f5;
+    }
+    &-menu .dropdown-header {
+        color: $main-theme-color;
+        font-family: $main-font;
+        font-weight: 700;
+        padding: $padding-base !important;
+    }
+    &-menu.dropdown-menu {
+        background: $main-light-color !important;
+        border-top: 3px solid #E4E4E4;
+        margin-top: -1px !important;
+        box-shadow: 0 20px 35px -11px rgba(0, 0, 0, 0.15);
+
+        @include tablet {
+            padding: $padding-medium;
+        }
+        @include smartphone {
+            padding: $padding-base;
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+    &-menu-link-coloumn {
+        float: left;
+        width: 25%;
+
+        @include smartphone {
+            width: 100%;
+        }
+        @include medium-tablet {
+            width: 100%;
+        }
+        img {
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+    }
+}

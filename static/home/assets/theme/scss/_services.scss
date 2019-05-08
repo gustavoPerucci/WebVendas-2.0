@@ -1,0 +1,33 @@
+/*!
+|||||||||||||||||||||||||||||||||||||| 
+||||||||||||||||||||||||||||||||||||||
+
+S E R V I C E S  S C S S
+
+||||||||||||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||
+*/
+.services {
+	overflow: hidden;
+
+	&-box {
+		padding: $padding-large;
+
+		@include smartphone {
+			padding: $padding-large * 2 $padding-medium;
+		}
+	}
+	.btn {
+		margin-top: $margin-medium;
+		color: $main-dark-color;
+	}
+	.inverted {
+		background: $main-dark-color;
+		color: rgba($main-light-color, 0.7);
+
+		.btn {
+			border-color: $main-light-color;
+			color: $main-light-color;
+		}
+	}
+}

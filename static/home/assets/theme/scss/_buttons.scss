@@ -1,0 +1,40 @@
+/*!
+|||||||||||||||||||||||||||||||||||||| 
+||||||||||||||||||||||||||||||||||||||
+
+B U T T O N S  S C S S
+
+||||||||||||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||
+*/
+.btn {
+    box-shadow: none !important;
+    border-radius: 0px;
+    text-transform: uppercase;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    
+    [class^="ti-"], [class*=" ti-"] {
+        display: inline-block;
+        margin-right: 5px;
+    }
+}
+button.close, .close {
+    background: $main-light-color;
+    color: $main-theme-color;
+    cursor: pointer;
+    font-size: 20px !important;
+    font-weight: normal;
+    opacity: 1;
+    padding: $padding-base;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 10;
+}
+.alert .close {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    padding: 10px;
+    right: -36px;
+    top: -13px;
+}

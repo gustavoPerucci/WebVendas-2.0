@@ -1,0 +1,67 @@
+/*!
+|||||||||||||||||||||||||||||||||||||| 
+||||||||||||||||||||||||||||||||||||||
+
+P R O D U C T  I T E M  S C S S
+
+||||||||||||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||
+*/
+
+.product-item {
+	&-thumbnail {
+		position: relative;
+		//overflow: hidden;
+		border-radius: 5px;
+
+		&-link {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+		}
+		&-label {
+			position: absolute;
+			color: $main-light-color;
+			top: -30px;
+			left: -30px;
+			background: $main-theme-color;
+			padding: $padding-base / 3 $padding-base;
+			font-size: 12px;
+			// border-radius: 20px;
+			z-index: 3;
+		}
+		&-overlay {
+			position: absolute;
+			top: -50%;
+			left: 0;
+			right: 0;
+			height: 36px;
+			transform: translatey(-50%);
+			transition: all 300ms ease-in-out;
+			z-index: 2;
+		}
+		&:hover {
+			.product-item-thumbnail-overlay {
+				top: 50%;
+			}
+		}
+	}
+	margin-bottom: $margin-large;
+}
+// use it for container with more than one row with items.
+// for example - listings
+.flex-list {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	// -webkit-justify-content: space-around;
+	// -ms-flex-pack: distribute;
+	// justify-content: space-around;
+}

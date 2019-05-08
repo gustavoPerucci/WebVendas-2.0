@@ -1,0 +1,83 @@
+/*!
+|||||||||||||||||||||||||||||||||||||| 
+||||||||||||||||||||||||||||||||||||||
+
+C O N T A C T  S C S S
+
+||||||||||||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||
+*/
+.contact {
+	&-with-map {
+		padding-bottom: 0;
+	}
+	.btn {
+		margin-top: $margin-medium;
+	}
+	&-info {
+		float: left;
+		width: 100%;
+
+		div {
+			width: 100%;
+			float: left;
+		}
+		&-logo {
+			width: 60px;
+			height: 80px;
+			margin: $margin-base auto 0;
+
+			img {
+				width: 60px;
+				border-radius: 100%;
+			}
+		}
+		&-agent {
+			margin: 0;
+			opacity: 0.3;
+		}
+		span {
+			display: inline-block;
+			float: left;
+			width: 100%;
+		}
+	}
+	&-data {
+		ul {
+			width: 100%;
+			background: $main-light-gray;
+			float: left;
+			margin-bottom: $margin-large;
+
+			li {
+				display: inline-block;
+				width: 100%;
+				float: left;
+				text-align: left;
+				margin-bottom: 1px;
+
+				@include mobile {
+					width: 100%;
+				}
+			}
+		}
+		.icon {
+			display: inline-block;
+			text-align: center;
+			font-size: 22px;
+			height: 40px;
+			width: 40px;
+			position: relative;
+			top: 5px;
+			color: $main-theme-color;
+			line-height: 40px;
+		}
+	}
+	.google-maps > div {
+		width: 100%;
+		height: 500px;
+	}
+	.scrolloff {
+		pointer-events: none;
+	}
+}

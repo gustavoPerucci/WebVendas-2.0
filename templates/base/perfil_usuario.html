@@ -1,0 +1,38 @@
+<div class="modal fade" data-backdrop="static" id="modal-perfil-usuario" role="dialog">
+    <div class="modal-dialog" style="z-index: 0;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center text-primary"><strong>MEUS DADOS DE USUÁRIO</strong></h4>
+            </div>
+            <div class="modal-body">
+                <form enctype="multipart/form-data" method="post" role="form"  id="form_perfil_usuario">{% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+
+                            <div id="div_perfil_nome" class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <label for="id_perfil_nome">Nome: </label>
+                                <input id="id_perfil_nome" name="perfil_nome" type="text" value="{{usuario.nome}}" placeholder="{{usuario.nome}}" class="form-control" autocomplete="off" autofocus = "autofocus">
+                            </div>
+
+                            <div id="div_perfil_email" class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <label for="id_perfil_email">E-mail: <span id="id_validar_email" class="txt-color-red"></span></label>
+                                <input id="id_perfil_email" name="perfil_email" type="text" value="{{usuario.email}}" placeholder="{{usuario.email}}" class="form-control" autocomplete="off">
+                            </div>
+
+                            <div class="form-group  col-lg-12 col-md-12 col-sm-12 col-xs-12" style="">
+                                <button id="btn_salvar" class=" btn btn-success text-left" type="submit">Salvar alterações</button>
+                                <a href="{% url 'alterarsenha' %}" class=" btn btn-primary text-left" type="button">Alterar senha</a>
+                                <a type="button" class="btn btn-danger text-left" data-dismiss="modal">Cancelar</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,57 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% block titulo %} Senha alterada com sucesso!!! {% endblock %}
+
+{% block head_link %}
+
+{% endblock head_link %}
+
+{% block head_style %}
+
+{% endblock head_style %}
+
+{% block cabecalho %}
+
+{% endblock cabecalho %}
+
+{% block modal %}
+
+{% endblock modal %}
+
+{% block navegacao %}
+<li class=""><a href="/">Página inicial</a></li>
+<li class="">Cadastros</li>
+<li class="active"><a href="{% url 'colaboradores' %}"> Colaboradores</a></li>
+<li class="active"><a href="{% url 'alterarsenha' %}"> Alterar senha</a></li>
+
+{% endblock navegacao %}
+
+{% block conteudo %}
+<div>
+  <div class="alert alert-success" style="boder: 200px;">
+	  <h2 class="text-center">Senha alterada com sucesso!!!</h2>
+    <h4 class="text-center">Sua conta de usuário acaba de ganhar mais segurança, e você mais tranquilidade,
+		afinal, tudo que acontece na sua conta é de sua inteira responsabilidade.</h4>
+	  <h4 class="text-center">Sua senha é a maior segurança de sua conta,
+		antes de executar qualquer operação, o sistema verifica seu nome de usuário, sua senha, e suas permissões, para ter certeza de que é você
+		  mesmo que está logado e que tem permissão para tal, aí, então, atribui a você todas as ações realizadas.</h4>
+	  <h3 class="text-center">Para sua maior segurança, troque a sua senha periodicamenbte...</h3>
+  </div>
+	<h2 class="text-center"><a href="/" class="alert-link">Voltar para tela inicial...</a></h2>
+</div>
+{% endblock conteudo %}
+
+
+{% block link_script %}
+
+{% endblock link_script %}
+
+{% block script %}
+<script type="text/javascript">
+
+</script>
+{% endblock script %}
+
+
+

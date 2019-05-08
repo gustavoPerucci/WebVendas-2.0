@@ -1,0 +1,126 @@
+/*!
+|||||||||||||||||||||||||||||||||||||| 
+||||||||||||||||||||||||||||||||||||||
+
+H E L P E R S  S C S S
+
+||||||||||||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||
+*/
+// generate helepers classes for margins and paddings
+// output:
+// .mb-5 {
+//   margin-bottom: 5px; }
+
+// .mb-10 {
+//   margin-bottom: 10px; }
+
+// .mb-15 {
+//   margin-bottom: 15px; }
+
+
+$spaceamounts: (0, 5, 10, 15, 20, 25, 30, 45, 60);
+
+@mixin generate-margin-bottom() {
+  @each $space in $spaceamounts {
+    .mb-#{$space} {
+      margin-bottom: #{$space}px!important;
+    }
+  }
+}
+@mixin generate-margin-left() {
+  @each $space in $spaceamounts {
+    .ml-#{$space} {
+      margin-left: #{$space}px!important;
+    }
+  }
+}
+@mixin generate-margin-right() {
+  @each $space in $spaceamounts {
+    .mr-#{$space} {
+      margin-right: #{$space}px!important;
+    }
+  }
+}
+@mixin generate-margin-top() {
+  @each $space in $spaceamounts {
+    .mt-#{$space} {
+      margin-top: #{$space}px!important;
+    }
+  }
+}
+@mixin generate-padding-top() {
+  @each $space in $spaceamounts {
+    .pt-#{$space} {
+      padding-top: #{$space}px!important;
+    }
+  }
+}
+@mixin generate-padding-bottom() {
+  @each $space in $spaceamounts {
+    .pb-#{$space} {
+      padding-bottom: #{$space}px!important;
+    }
+  }
+}
+
+@mixin generate-padding-left() {
+  @each $space in $spaceamounts {
+    .pl-#{$space} {
+      padding-left: #{$space}px!important;
+    }
+  }
+}
+@mixin generate-padding-right() {
+  @each $space in $spaceamounts {
+    .pr-#{$space} {
+      padding-right: #{$space}px!important;
+    }
+  }
+}
+
+@mixin generate-padding() {
+  @each $space in $spaceamounts {
+    .p-#{$space} {
+      padding: #{$space}px!important;
+    }
+  }
+}
+
+@include generate-margin-bottom();
+@include generate-margin-left();
+@include generate-margin-right();
+@include generate-margin-top();
+@include generate-padding-bottom();
+@include generate-padding-top();
+@include generate-padding-left();
+@include generate-padding-right();
+@include generate-padding();
+
+$widthamounts: (0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95 ,100);
+
+@mixin generate-width() {
+  @each $space in $widthamounts {
+    .width-#{$space} {
+      width: #{$space}%!important;
+      // float: left;
+    }
+  }
+}
+
+@include generate-width();
+.width-33 {
+  width: 33.333333%;
+  // float: left;
+}
+
+.no-padding {
+  padding: 0!important;
+}
+
+.no-margin{
+ margin: 0!important;
+}
+.no-border {
+  border: none!important
+}

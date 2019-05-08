@@ -1,0 +1,63 @@
+/*!
+|||||||||||||||||||||||||||||||||||||| 
+||||||||||||||||||||||||||||||||||||||
+
+P R I C I N G   S C S S
+
+||||||||||||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||
+*/
+
+.pricing {
+ 
+	&-box {
+		background: $main-light-color;
+		transition: all 400ms ease-in-out;
+		transform: scale(1);
+
+		&-featured {
+			@include desktop {
+				position: relative;
+				transform: scale(1.2);
+				z-index: 10;
+			}
+		}
+		.icon {
+			margin: $margin-medium 0;
+			color: $main-theme-color;
+			font-size: 30px;
+			display: block;
+			float: left;
+			width: 100%;
+		}
+		&-price {
+			display: block;
+			text-align: center;
+			font-size: 45px;
+
+			&-small {
+				font-size: 16px;
+				color: $main-gray;
+			}
+			span {
+				display: block;
+			}
+		}
+		ul {
+			margin-top: $margin-medium;
+			margin-bottom: $margin-medium;
+
+			li {
+				padding: $padding-base 0;
+				border-bottom: 1px solid $main-light-gray;
+
+				&:first-child {
+					border-top: 1px solid $main-light-gray;
+				}
+			}
+		}
+		.btn {
+			margin-bottom: $margin-medium;
+		}
+	}
+}

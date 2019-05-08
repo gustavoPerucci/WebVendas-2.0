@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zxx">
+    <head>
+        <meta charset="utf-8">
+        <title>Electro - ecommerce</title>
+        <meta name="description" content="">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="assets/theme/css/theme.css">
+    </head>
+	<body>
+		<header class="header header-fixed nav-down">
+			<div class="box mb-0">
+				<div class="">
+					<nav class="navbar navbar-default">
+						<div class="container-fluid no-padding">
+							<div class="navbar-header width-100 pull-left">
+								<div class="row">
+									<div class="col-md-6">
+										<a href="#" class="header-logo-small pull-left">
+											<img src="assets/img/logo.png" alt="store logo">
+										</a>
+
+										<div class="header-languages pull-left mt-10">
+											<ul>
+												<li><span>EN</span></li>
+												<li><a href="#">DE</a></li>
+												<li><a href="#">FR</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="header-search-container pull-left width-100">
+											<form class="navbar-form pull-right mt-15 width-100">
+												<fieldset class="width-100">
+													<div class="form-group width-100">
+														<input class="form-control width-100" placeholder="Search" type="text">
+													</div>
+													<button type="submit" class="btn btn-link small"> search <span class="ti-angle-right"></span></button>
+												</fieldset>
+											</form>
+										</div>
+									</div>
+								</div>
+
+								<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
+									<span class="sr-only">Toggle navigation</span>
+									<span class="ti-menu"></span>
+									<span>Navigation</span>
+								</button>
+							</div>
+
+							<div class="collapse navbar-collapse js-navbar-collapse width-100 pull-left navbar-inverse">
+								<ul class="nav navbar-nav">
+									<li class="header-link"><a href="#">Home</a></li>
+									<li class="header-link"><a href="#">Specials</a></li>
+									<li class="header-link dropdown mega">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <span class="ti-angle-down"></span></a>
+
+										<ul class="dropdown-menu mega-menu row">
+											<li class="col-sm-3">
+												<ul>
+													<li>
+													<a href="#" class="p-0"><img class="img-responsive  width-100 mb-15" src="assets/img/categories/01.jpg" alt="category image"></a>
+													<a href="#" class="p-0"><img class="img-responsive width-100" src="assets/img/categories/02.jpg" alt="category image"></a></li>
+												</ul>
+											</li>
+
+											<li class="col-sm-3 col-xs-12 smartphone-fw">
+												<ul>
+													<li class="dropdown-header">Excepteur s cupidatat </li>
+													<li><a href="#">lorem ipsum dolor </a></li>
+													<li><a href="#">laboris nisi ut aliquip</a></li>
+													<li><a href="#">int occaecat</a></li>
+													<li><a href="#">Newsletter Form</a></li>
+													<li><a href="#">fugiat nulla pariatur</a></li>
+													<li class="divider"></li>
+													<li class="dropdown-header">Reprehenderit </li>
+													<li><a href="#">ullamco  ex ea commodo</a></li>
+													<li><a href="#">incididunt ut labore </a></li>
+													<li><a href="#">fugiat nulla pariatur</a></li>
+												</ul>
+											</li>
+
+											<li class="col-sm-3 col-xs-12 smartphone-fw">
+												<ul>
+													<li class="dropdown-header">Culpa qui officia deserunt</li>
+													<li><a href="#">laboris nisi ut aliquip</a></li>
+													<li><a href="#">int occaecat</a></li>
+													<li><a href="#">nostrud exercitation </a></li>
+													<li><a href="#">fugiat nulla pariatur</a></li>
+													<li class="divider"></li>
+
+													<li class="dropdown-header">Consectetur adipisicing </li>
+													<li><a href="#">enim ad minim veniam</a></li>
+													<li><a href="#">dolore magna aliqua</a></li>
+													<li><a href="#"> aute irure dolor</a></li>
+												</ul>
+											</li>
+
+											<li class="col-sm-3 col-xs-12 smartphone-fw">
+												<h3 class="mb-30">Lorem ipsum dolor sit amet</h3>
+												<p>					
+													<span class="small">consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+													cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+													proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+												</p>
+											</li>
+										</ul>
+									</li>
+									<li class="header-link"><a href="#">New products</a></li>
+								</ul>
+				
+								<div class="">
+									<ul class="header-helpful-link">			
+										<li>
+											<a href="#"><span class="ti-mobile"></span></a>
+										</li>
+
+										<li>
+											<a href="#"><span class="ti-user"></span></a>
+										</li>
+
+										<li>
+											<a href="#"><span class="ti-shopping-cart"><span class="header-cart-counter">3</span></span></a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</header>
+
+		<div class="container main-container">
+			<div class="row mt-30">
+				<div class="col-md-12">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-12 mt-0 mb-30 width-100 pull-left width-100">
+								<h3 class="pull-left">category name <span class="text-muted small">showing: 32 products</span>
+								</h3>		
+
+						        <div class="dropdown pull-right mt-15 pr-15 smartphone-inline-fw">
+						            <button aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" id="dropdownMenu1" type="button" class="btn btn-default btn-sm dropdown-toggle">
+						            sort by name A-Z
+						            <span class="ti-angle-down"></span>
+						            </button>
+						            <ul aria-labelledby="dropdownMenu1" class="dropdown-menu">
+						                <li><a href="#">name A-Z</a></li>
+						                <li><a href="#">name Z-A</a></li>
+						                <li><a href="#">price <span class="ti-arrow-up"></span></a></li>
+						                <li><a href="#">price <span class="ti-arrow-down"></span></a></li>
+						                <li><a href="#">date <span class="ti-arrow-up"></span></a></li>
+						                <li><a href="#">date <span class="ti-arrow-down"></span></a></li>
+						                <li class="divider" role="separator"></li>
+						                <li><a href="#">show only specials</a></li>
+						            </ul>
+						        </div>	    
+							</div>
+
+							<div class="clearfix"></div>
+
+							<div class="col-md-12 flex-list">
+								<div class="row">
+								<!-- PRODUCT SINGLE -->
+									<div class="col-md-3 col-sm-6">
+										<div class="product-item mb-30 border pt-30 pl-30 pr-30 pb-20">
+											<div class="product-item-thumbnail text-center mb-15">
+												<a class="product-item-thumbnail-link" href="#"></a>
+												<span class="product-item-thumbnail-label">new</span>
+												<img src="assets/img/products/product-01.jpg" class="img-responsive" alt="product image">
+											</div>
+											<div class="row">
+												<div class="col-xs-12 width-100 pull-left">
+													<a class="h4" href="#">Product name </a>
+													<ul class="product-item-description text-muted small mt-15 mb-15">
+														<li>Model: A1534 (EMC 2991)</li>
+														<li>Family: Early 2016</li>
+														<li>RAM: 16 GB </li>	
+														<li>Storage: 256, 512 GB SSD</li>
+													</ul>
+												</div>
+
+												<div class="col-xs-12 width-100 pull-left">
+													<del class="h5 text-muted product-item-price-old">$1999.00</del><br>
+													<span class="h3 product-item-price mb-15">$1049.00</span>
+													<a href="#" class="btn btn-link pl-0">add to cart <span class="ti-plus"></span></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								<!-- / PRODUCT SINGLE-->
+								<!-- PRODUCT SINGLE -->
+									<div class="col-md-3 col-sm-6">
+										<div class="product-item mb-30 border pt-30 pl-30 pr-30 pb-20">
+											<div class="product-item-thumbnail text-center mb-15">
+												<a class="product-item-thumbnail-link" href="#"></a>
+												<span class="product-item-thumbnail-label">new</span>
+												<img src="assets/img/products/product-01.jpg" class="img-responsive" alt="product image">
+											</div>
+											<div class="row">
+												<div class="col-xs-12 width-100 pull-left">
+													<a class="h4" href="#">Product name </a>
+													<ul class="product-item-description text-muted small mt-15 mb-15">
+														<li>Model: A1534 (EMC 2991)</li>
+														<li>Family: Early 2016</li>
+														<li>RAM: 16 GB </li>	
+														<li>Storage: 256, 512 GB SSD</li>
+													</ul>
+												</div>
+
+												<div class="col-xs-12 width-100 pull-left">
+													<del class="h5 text-muted product-item-price-old">$1999.00</del><br>
+													<span class="h3 product-item-price mb-15">$1049.00</span>
+													<a href="#" class="btn btn-link pl-0">add to cart <span class="ti-plus"></span></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								<!-- / PRODUCT SINGLE-->
+								<!-- PRODUCT SINGLE -->
+									<div class="col-md-3 col-sm-6">
+										<div class="product-item mb-30 border pt-30 pl-30 pr-30 pb-20">
+											<div class="product-item-thumbnail text-center mb-15">
+												<a class="product-item-thumbnail-link" href="#"></a>
+												<span class="product-item-thumbnail-label">new</span>
+												<img src="assets/img/products/product-01.jpg" class="img-responsive" alt="product image">
+											</div>
+											<div class="row">
+												<div class="col-xs-12 width-100 pull-left">
+													<a class="h4" href="#">Product name </a>
+													<ul class="product-item-description text-muted small mt-15 mb-15">
+														<li>Model: A1534 (EMC 2991)</li>
+														<li>Family: Early 2016</li>
+														<li>RAM: 16 GB </li>	
+														<li>Storage: 256, 512 GB SSD</li>
+													</ul>
+												</div>
+
+												<div class="col-xs-12 width-100 pull-left">
+													<del class="h5 text-muted product-item-price-old">$1999.00</del><br>
+													<span class="h3 product-item-price mb-15">$1049.00</span>
+													<a href="#" class="btn btn-link pl-0">add to cart <span class="ti-plus"></span></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								<!-- / PRODUCT SINGLE-->
+								<!-- PRODUCT SINGLE -->
+									<div class="col-md-3 col-sm-6">
+										<div class="product-item mb-30 border pt-30 pl-30 pr-30 pb-20">
+											<div class="product-item-thumbnail text-center mb-15">
+												<a class="product-item-thumbnail-link" href="#"></a>
+												<span class="product-item-thumbnail-label">new</span>
+												<img src="assets/img/products/product-01.jpg" class="img-responsive" alt="product image">
+											</div>
+											<div class="row">
+												<div class="col-xs-12 width-100 pull-left">
+													<a class="h4" href="#">Product name </a>
+													<ul class="product-item-description text-muted small mt-15 mb-15">
+														<li>Model: A1534 (EMC 2991)</li>
+														<li>Family: Early 2016</li>
+														<li>RAM: 16 GB </li>	
+														<li>Storage: 256, 512 GB SSD</li>
+													</ul>
+												</div>
+
+												<div class="col-xs-12 width-100 pull-left">
+													<del class="h5 text-muted product-item-price-old">$1999.00</del><br>
+													<span class="h3 product-item-price mb-15">$1049.00</span>
+													<a href="#" class="btn btn-link pl-0">add to cart <span class="ti-plus"></span></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								<!-- / PRODUCT SINGLE-->
+								<!-- PRODUCT SINGLE -->
+									<div class="col-md-3 col-sm-6">
+										<div class="product-item mb-30 border pt-30 pl-30 pr-30 pb-20">
+											<div class="product-item-thumbnail text-center mb-15">
+												<a class="product-item-thumbnail-link" href="#"></a>
+												<span class="product-item-thumbnail-label">new</span>
+												<img src="assets/img/products/product-01.jpg" class="img-responsive" alt="product image">
+											</div>
+											<div class="row">
+												<div class="col-xs-12 width-100 pull-left">
+													<a class="h4" href="#">Product name </a>
+													<ul class="product-item-description text-muted small mt-15 mb-15">
+														<li>Model: A1534 (EMC 2991)</li>
+														<li>Family: Early 2016</li>
+														<li>RAM: 16 GB </li>	
+														<li>Storage: 256, 512 GB SSD</li>
+													</ul>
+												</div>
+
+												<div class="col-xs-12 width-100 pull-left">
+													<del class="h5 text-muted product-item-price-old">$1999.00</del><br>
+													<span class="h3 product-item-price mb-15">$1049.00</span>
+													<a href="#" class="btn btn-link pl-0">add to cart <span class="ti-plus"></span></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								<!-- / PRODUCT SINGLE-->
+								<!-- PRODUCT SINGLE -->
+									<div class="col-md-3 col-sm-6">
+										<div class="product-item mb-30 border pt-30 pl-30 pr-30 pb-20">
+											<div class="product-item-thumbnail text-center mb-15">
+												<a class="product-item-thumbnail-link" href="#"></a>
+												<span class="product-item-thumbnail-label">new</span>
+												<img src="assets/img/products/product-01.jpg" class="img-responsive" alt="product image">
+											</div>
+											<div class="row">
+												<div class="col-xs-12 width-100 pull-left">
+													<a class="h4" href="#">Product name </a>
+													<ul class="product-item-description text-muted small mt-15 mb-15">
+														<li>Model: A1534 (EMC 2991)</li>
+														<li>Family: Early 2016</li>
+														<li>RAM: 16 GB </li>	
+														<li>Storage: 256, 512 GB SSD</li>
+													</ul>
+												</div>
+
+												<div class="col-xs-12 width-100 pull-left">
+													<del class="h5 text-muted product-item-price-old">$1999.00</del><br>
+													<span class="h3 product-item-price mb-15">$1049.00</span>
+													<a href="#" class="btn btn-link pl-0">add to cart <span class="ti-plus"></span></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								<!-- / PRODUCT SINGLE-->
+								<!-- PRODUCT SINGLE -->
+									<div class="col-md-3 col-sm-6">
+										<div class="product-item mb-30 border pt-30 pl-30 pr-30 pb-20">
+											<div class="product-item-thumbnail text-center mb-15">
+												<a class="product-item-thumbnail-link" href="#"></a>
+												<span class="product-item-thumbnail-label">new</span>
+												<img src="assets/img/products/product-01.jpg" class="img-responsive" alt="product image">
+											</div>
+											<div class="row">
+												<div class="col-xs-12 width-100 pull-left">
+													<a class="h4" href="#">Product name </a>
+													<ul class="product-item-description text-muted small mt-15 mb-15">
+														<li>Model: A1534 (EMC 2991)</li>
+														<li>Family: Early 2016</li>
+														<li>RAM: 16 GB </li>	
+														<li>Storage: 256, 512 GB SSD</li>
+													</ul>
+												</div>
+
+												<div class="col-xs-12 width-100 pull-left">
+													<del class="h5 text-muted product-item-price-old">$1999.00</del><br>
+													<span class="h3 product-item-price mb-15">$1049.00</span>
+													<a href="#" class="btn btn-link pl-0">add to cart <span class="ti-plus"></span></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								<!-- / PRODUCT SINGLE-->
+								<!-- PRODUCT SINGLE -->
+									<div class="col-md-3 col-sm-6">
+										<div class="product-item mb-30 border pt-30 pl-30 pr-30 pb-20">
+											<div class="product-item-thumbnail text-center mb-15">
+												<a class="product-item-thumbnail-link" href="#"></a>
+												<span class="product-item-thumbnail-label">new</span>
+												<img src="assets/img/products/product-01.jpg" class="img-responsive" alt="product image">
+											</div>
+											<div class="row">
+												<div class="col-xs-12 width-100 pull-left">
+													<a class="h4" href="#">Product name </a>
+													<ul class="product-item-description text-muted small mt-15 mb-15">
+														<li>Model: A1534 (EMC 2991)</li>
+														<li>Family: Early 2016</li>
+														<li>RAM: 16 GB </li>	
+														<li>Storage: 256, 512 GB SSD</li>
+													</ul>
+												</div>
+
+												<div class="col-xs-12 width-100 pull-left">
+													<del class="h5 text-muted product-item-price-old">$1999.00</del><br>
+													<span class="h3 product-item-price mb-15">$1049.00</span>
+													<a href="#" class="btn btn-link pl-0">add to cart <span class="ti-plus"></span></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								<!-- / PRODUCT SINGLE-->
+								<!-- PRODUCT SINGLE -->
+									<div class="col-md-3 col-sm-6">
+										<div class="product-item mb-30 border pt-30 pl-30 pr-30 pb-20">
+											<div class="product-item-thumbnail text-center mb-15">
+												<a class="product-item-thumbnail-link" href="#"></a>
+												<span class="product-item-thumbnail-label">new</span>
+												<img src="assets/img/products/product-01.jpg" class="img-responsive" alt="product image">
+											</div>
+											<div class="row">
+												<div class="col-xs-12 width-100 pull-left">
+													<a class="h4" href="#">Product name </a>
+													<ul class="product-item-description text-muted small mt-15 mb-15">
+														<li>Model: A1534 (EMC 2991)</li>
+														<li>Family: Early 2016</li>
+														<li>RAM: 16 GB </li>	
+														<li>Storage: 256, 512 GB SSD</li>
+													</ul>
+												</div>
+
+												<div class="col-xs-12 width-100 pull-left">
+													<del class="h5 text-muted product-item-price-old">$1999.00</del><br>
+													<span class="h3 product-item-price mb-15">$1049.00</span>
+													<a href="#" class="btn btn-link pl-0">add to cart <span class="ti-plus"></span></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								<!-- / PRODUCT SINGLE-->
+								<!-- PRODUCT SINGLE -->
+									<div class="col-md-3 col-sm-6">
+										<div class="product-item mb-30 border pt-30 pl-30 pr-30 pb-20">
+											<div class="product-item-thumbnail text-center mb-15">
+												<a class="product-item-thumbnail-link" href="#"></a>
+												<span class="product-item-thumbnail-label">new</span>
+												<img src="assets/img/products/product-01.jpg" class="img-responsive" alt="product image">
+											</div>
+											<div class="row">
+												<div class="col-xs-12 width-100 pull-left">
+													<a class="h4" href="#">Product name </a>
+													<ul class="product-item-description text-muted small mt-15 mb-15">
+														<li>Model: A1534 (EMC 2991)</li>
+														<li>Family: Early 2016</li>
+														<li>RAM: 16 GB </li>	
+														<li>Storage: 256, 512 GB SSD</li>
+													</ul>
+												</div>
+
+												<div class="col-xs-12 width-100 pull-left">
+													<del class="h5 text-muted product-item-price-old">$1999.00</del><br>
+													<span class="h3 product-item-price mb-15">$1049.00</span>
+													<a href="#" class="btn btn-link pl-0">add to cart <span class="ti-plus"></span></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								<!-- / PRODUCT SINGLE-->
+								<!-- PRODUCT SINGLE -->
+									<div class="col-md-3 col-sm-6">
+										<div class="product-item mb-30 border pt-30 pl-30 pr-30 pb-20">
+											<div class="product-item-thumbnail text-center mb-15">
+												<a class="product-item-thumbnail-link" href="#"></a>
+												<span class="product-item-thumbnail-label">new</span>
+												<img src="assets/img/products/product-01.jpg" class="img-responsive" alt="product image">
+											</div>
+											<div class="row">
+												<div class="col-xs-12 width-100 pull-left">
+													<a class="h4" href="#">Product name </a>
+													<ul class="product-item-description text-muted small mt-15 mb-15">
+														<li>Model: A1534 (EMC 2991)</li>
+														<li>Family: Early 2016</li>
+														<li>RAM: 16 GB </li>	
+														<li>Storage: 256, 512 GB SSD</li>
+													</ul>
+												</div>
+
+												<div class="col-xs-12 width-100 pull-left">
+													<del class="h5 text-muted product-item-price-old">$1999.00</del><br>
+													<span class="h3 product-item-price mb-15">$1049.00</span>
+													<a href="#" class="btn btn-link pl-0">add to cart <span class="ti-plus"></span></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								<!-- / PRODUCT SINGLE-->
+								<!-- PRODUCT SINGLE -->
+									<div class="col-md-3 col-sm-6">
+										<div class="product-item mb-30 border pt-30 pl-30 pr-30 pb-20">
+											<div class="product-item-thumbnail text-center mb-15">
+												<a class="product-item-thumbnail-link" href="#"></a>
+												<span class="product-item-thumbnail-label">new</span>
+												<img src="assets/img/products/product-01.jpg" class="img-responsive" alt="product image">
+											</div>
+											<div class="row">
+												<div class="col-xs-12 width-100 pull-left">
+													<a class="h4" href="#">Product name </a>
+													<ul class="product-item-description text-muted small mt-15 mb-15">
+														<li>Model: A1534 (EMC 2991)</li>
+														<li>Family: Early 2016</li>
+														<li>RAM: 16 GB </li>	
+														<li>Storage: 256, 512 GB SSD</li>
+													</ul>
+												</div>
+
+												<div class="col-xs-12 width-100 pull-left">
+													<del class="h5 text-muted product-item-price-old">$1999.00</del><br>
+													<span class="h3 product-item-price mb-15">$1049.00</span>
+													<a href="#" class="btn btn-link pl-0">add to cart <span class="ti-plus"></span></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								<!-- / PRODUCT SINGLE-->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	 
+			<div class="row">
+				<div class="col-md-12">
+					<!-- FOOTER -->
+				    <footer class="">
+				        <div class="footer pt-60 pb-60" id="footer">
+				            <div class="container-fluid">
+				                <div class="row">
+						            <!-- HORIZONTAL SEPARATE -->
+									<div class="col-md-12">
+										<div class="separate mb-60"></div>
+									</div>
+									<!-- / HORIZONTAL SEPARATE -->
+
+				                     <div class="smartphone-fw col-sm-3 mb-30">
+				                     <h6 class="heading mt-0">CONTACT DATA</h6>
+				                            <address class="small">
+				                                <img src="assets/img/logo.png" alt="store logo" height="20" class="mb-15"><br>
+				                                1355 Market Street, Suite 900<br>
+				                                San Francisco, CA 94103<br>
+				                                (123) 456-7890
+				                            </address>
+				                        </div>
+				                    <div class="smartphone-fw col-xs-4 col-sm-3 col-md-2 mb-30">
+				                        <h6 class="heading mt-0">INFORMATION</h6>
+				                        <ul>
+				                            <li> <a href="#"> Lorem Ipsum </a> </li>
+				                            <li> <a href="#"> Lorem Ipsum </a> </li>
+				                            <li> <a href="#"> Lorem Ipsum </a> </li>
+				                            <li> <a href="#"> Lorem Ipsum </a> </li>
+				                        </ul>
+				                    </div>
+
+				                    <div class="smartphone-fw col-xs-4 col-sm-3 col-md-2 mb-30">
+				                        <h6 class="heading mt-0">TOP CATEGORIES</h6>
+				                        <ul>
+				                            <li> <a href="#"> Lorem Ipsum </a> </li>
+				                            <li> <a href="#"> Lorem Ipsum </a> </li>
+				                            <li> <a href="#"> Lorem Ipsum </a> </li>
+				                            <li> <a href="#"> Lorem Ipsum </a> </li>
+				                        </ul>
+				                    </div>
+
+				                    <div class="smartphone-fw col-xs-4 col-sm-3 col-md-2 mb-30">
+				                        <h6 class="heading mt-0">ACCOUNT</h6>
+				                        <ul>
+				                            <li> <a href="#"> Lorem Ipsum </a> </li>
+				                            <li> <a href="#"> Lorem Ipsum </a> </li>
+				                            <li> <a href="#"> Lorem Ipsum </a> </li>
+				                            <li> <a href="#"> Lorem Ipsum </a> </li>
+				                        </ul>
+				                    </div>
+				     
+				                    <div class="col-xs-12 col-sm-12 col-md-3">
+				                        <h6 class="heading mt-0">STAY IN TOUCH</h6>
+
+				                        <form>
+				                            <fieldset>
+												<div class="form-group">
+													<div class="footer-newsletter">
+														<input class="form-control" id="firstName" placeholder="your e-mail" type="text">
+														<button class="btn btn-link" type="button"><span class="ti-plus"></span></button>
+													</div>
+												</div>
+											</fieldset>
+				                        </form>
+
+				                        <ul class="footer-social" data-wow-delay="0.6s">
+				                            <li><a href="#" class="pull-left"><span class="ti-facebook"></span></a></li>
+				                            <li><a href="#" class="pull-left"><span class="ti-twitter"></span></a></li>
+				                            <li><a href="#" class="pull-left"><span class="ti-instagram"></span></a></li>
+				                            <li><a href="#" class="pull-left"><span class="ti-youtube"></span></a></li>
+				                        </ul>
+				                    </div>
+				                </div>
+				            </div>
+				            <img src="assets/img/footer-promo.png" alt="footer promo" class="mt-30 width-100">
+				        </div>
+				    </footer>
+					<!-- / FOOTER -->
+				</div>
+			</div>
+		</div>
+
+		<script src="assets/js/wow.js"></script>
+		<script>
+		window.jQuery || document.write('<script src="assets/js/jquery-1.11.2.min.js"><\/script>')
+		</script>
+		<script src="assets/js/swiper.min.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+		<script src="assets/js/jquery.countTo.js"></script>
+		<script src="assets/js/jquery.inview.js"></script>
+		<script src="assets/js/jquery.countdown.js"></script>
+			<script src="assets/js/bootstrap-select.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>

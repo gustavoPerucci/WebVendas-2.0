@@ -1,0 +1,66 @@
+    <form method='post' id='formPesquisa' style="margin-left:12px;">
+        <div class="row">
+            <div class=" form-group col-sm-3" >
+                <label for="id_Pesquisa">Busca por ID</label>
+                <input id='id_Pesquisa' type='number' class='form-control' name='Pesquisa' placeholder='ID compra' required>
+            </div>
+            <div class=" form-group col-sm-1">
+                <label for="buscar">Buscar</label>
+                <input id='buscar' class='btn btn-info text-left form-control' type='submit' value='Buscar' style='width:100px'>
+            </div>
+            </div>
+    </form>
+    <hr>
+    <form enctype="multipart/form-data" method="post" role="form"  id="form">{% csrf_token %}
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                <div id="div_id" class="form-group col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                    <label for="id_id">ID</label>
+                    <input id="id_id" name="id_id" type="number" value="0" class="form-control" disabled>
+                </div>
+
+                <div id="div_fornecedor" class="form-group col-lg-6 col-md-6 col-sm-8 col-xs-8">
+                    <label for="id_fornecedor">Nome ou razão social</label>
+                    {{form_compras.fornecedor}}
+                </div>
+
+                <div id="div_solicitante" class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                    <label for="id_solicitante">Solicitante</label>
+                    <input id="id_solicitante" name="solicitante" type="text" class="form-control" disabled>
+                </div>
+
+                <div id="div_data_compra" class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                    <label for="id_data_compra">Data da compra</label>
+                    <input id="id_data_compra" name="data_compra" type="date" class="form-control" disabled>
+                </div>
+
+                <div id="div_nota_fiscal" class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                    <label for="id_nota_fiscal">Nota fiscal</label>
+                    <input id="id_nota_fiscal" name="nota_fiscal" type="text" class="form-control" disabled>
+                </div>
+
+                <div id="div_valor_total" class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                    <label for="id_valor_total">Valor Total</label>
+                    <input id="id_valor_total" name="valor_total" type="number" class="form-control" step = "any" min="0" value="0.00"  disabled>
+                </div>
+
+                <div id="div_observacoes" class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label for="id_observacoes">Observações</label>
+                    <textarea id="id_observacoes" name="observacoes" class="form-control" disabled></textarea>
+                </div>
+
+                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <button id="btn_registrar_compra" class=" btn btn-success text-left" type="submit" disabled>Registrar</button>
+                    {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.registra_compra %}
+                    <button id="btn_nova_compra" onclick="novaCompra()" type="button" class="btn btn-info">Nova</button>
+                    {% endif %}
+                     {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.edita_compra %}
+                    <button id="btn_alterar_compra" onclick="alterarCompra()" type="button" class="btn btn-warning" disabled>Alterar</button>
+                    {% endif %}
+                    <button id="btn_cancelar_operacao_compra" onclick="cancelarOperacaoCompra()" type="button" class="btn btn-danger" disabled>Cancelar</button>
+                    <button id="btn_sair_compra" onclick="sairCompra()" type="button" class="btn btn-danger">Sair</button>
+                </div>
+            </div>
+        </div>
+    </form>

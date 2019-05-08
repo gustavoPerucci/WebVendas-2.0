@@ -1,0 +1,245 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% block titulo %} Colaboradores {% endblock %}
+
+{% block header %}
+    <ul id="registros-colaboradores" class="nav nav-tabs pull-left">
+        {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.acessa_cadastro_colaboradores %}
+        <li id="li-tb-colaboradores" class="active">
+            <a data-toggle="tab" href="#tb-colaboradores"> <i class="fa fa-lg fa-user"></i> <span class="hidden-mobile hidden-tablet">Colaboradores</span> </a>
+        </li>
+        {% endif %}
+    </ul>
+{% endblock header %}
+
+{% block conteudo%}
+<div class="tab-content padding-10">
+    <div class="tab-pane fade in active animated fadeInDown " id="tb-colaboradores">
+        {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.acessa_cadastro_colaboradores %}
+        {% include 'colaboradores/tables/colaboradores.html' %}
+        {% endif %}
+
+        {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.cadastra_colaborador or usuario.permissoes.edita_colaborador %}
+        {% include 'colaboradores/modals/cadastro.html' %}
+        {% endif %}
+    </div>
+    </div>
+{% endblock conteudo%}
+
+{% block menu_colaboradores %}
+<li id="colaboradores" class="active">
+    <a href="#"><i class="fa fa-lg fa-fw fa-user"></i><span class="menu-item-parent">Colaboradores</span></a>
+	{% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.acessa_cadastro_colaboradores %}
+    <ul>
+        <li id="colaboradores_ativos" class="active">
+            <a  href="#"> Ativos</a>
+        </li>
+        <li  id="colaboradores_inativos">
+            <a href="#"> Inativos</a>
+        </li>
+        <li  id="colaboradores_afastados">
+            <a href="#"> Afastados</a>
+        </li>
+        <li  id="colaboradores_demitidos">
+            <a href="#"> Demitidos</a>
+        </li>
+        <li  id="colaboradores_aposentados">
+            <a href="#"> Aposentados</a>
+        </li>
+        <li  id="colaboradores_excluidos">
+            <a href="#"> Excluídos</a>
+        </li>
+        {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.cadastra_colaborador %}
+        <li  id="colaboradores_novo">
+            <a href="#"> Cadastrar novo</a>
+        </li>
+        {% endif %}
+    </ul>
+    {% endif %}
+</li>
+{% endblock menu_colaboradores %}
+{% block pesquisa %}
+{% include 'colaboradores/forms/pesquisas.html' %}
+{% endblock pesquisa %}
+
+{% block modals %}
+
+{% endblock modals %}
+
+{% block cabecalho %}
+<ol class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li><strong><a href="#">colaboradores</a></strong></li>
+</ol>
+{% endblock cabecalho %}
+
+{% block script%}
+<script src="{% static 'js/colaboradores/colaboradores.js' %}"></script>
+{% endblock script%}
+
+{% block estilo%} {% endblock estilo%}
+
+{% block loading %} {% endblock loading %}
+
+{% block javascript %}
+<script type="text/javascript">
+		$(document).ready(function() {
+
+		$("#form :input").prop("disabled", true);
+
+			 //CONVERT DIALOG TITLE TO HTML
+			 //REF: https://stackoverflow.com/questions/14488774/using-html-in-a-dialogs-title-in-jquery-ui-1-10
+
+			$.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
+				_title : function(title) {
+					if (!this.options.title) {
+						title.html("&#160;");
+					} else {
+						title.html(this.options.title);
+					}
+				}
+			}));
+
+			 //Remove focus from buttons
+
+			$('.ui-dialog :button').blur();
+
+			// modal dialog init: custom buttons and a "close" callback reseting the form inside
+			var dialog = $("#addtab").dialog({
+				autoOpen : false,
+				width : 900,
+				height: 600,
+				resizable : true,
+				modal : true,
+				buttons : [
+
+                {html : "<i class='fa fa-plus'></i>&nbsp; Novo registro",
+					"class" : "btn btn-info",
+					click : function() {
+					    $('#form input').val("");
+					    $('#form select').val("");
+					    $('#form input[type=number]').val("0");
+					    $('#form input[type=submit]').val("Salvar registro");
+					    $("#form :input").prop("disabled", false);
+					    $("#formPesquisa :input").prop("disabled", true);
+					    $('.form-group').removeClass('has-error').removeClass('has-success');
+					}},
+
+                {html : "<i class='fa fa-edit'></i>&nbsp; Editar registro",
+					"class" : "btn btn-warning",
+					click : function() {
+					var id = $('#id_id').val();
+					if (id == '0') {
+
+					$.smallBox({
+                        title : "<i>EDITAR REGISTRO . . .</i>",
+                        content : "<i class='fa fa-clock-o'></i> <i>Antes, você deve fazer a busca do registro que deseja editar. . .</i>",
+                        color : "#5384AF",
+                        iconSmall : "fa fa-thumbs-up bounce animated",
+                        timeout : 5000
+				    });
+
+				    } else {
+                        $("#form :input").prop("disabled", false);
+                        $("#formPesquisa :input").prop("disabled", true);
+					}
+
+					}},
+
+                {html : "<i class='fa fa-times danger'></i>&nbsp; Cancelar",
+					"class" : "btn btn-danger",
+					click : function() {
+					    $('#form input').val("");
+					    $('#form select').val("");
+					    $('#form input[type=number]').val("0");
+					    $('#form input[type=submit]').val("Salvar registro");
+					    $("#form :input").prop("disabled", true);
+					    $("#formPesquisa :input").prop("disabled", false);
+					    $('.form-group').removeClass('has-error').removeClass('has-success');
+	                }},
+
+                {html : "<i class='fa fa-times danger'></i>&nbsp; Sair",
+					"class" : "btn btn-danger",
+					click : function() {
+					    $('#form input').val("");
+					    $('#form select').val("");
+					    $('#form input[type=number]').val("0");
+					    $('#form input[type=submit]').val("Salvar registro");
+					    $("#form :input").prop("disabled", true);
+					    $(this).dialog("close");
+	                }},
+			]}
+		);
+
+			// addTab form: calls addTab function on submit and closes the dialog
+			var form = dialog.find("form").submit(function(event) {
+				//dialog.dialog("close");
+				event.preventDefault();
+			});
+
+
+			// addTab button: just opens the dialog
+			$("#colaboradores_novo").button().click(function() {
+			    $('#form input').val("");
+                $('#form select').val("");
+                $('#form input[type=number]').val("0");
+                $('#form input[type=submit]').val("Salvar registro");
+                $("#form :input").prop("disabled", false);
+                $("#formPesquisa :input").prop("disabled", true);
+                $("#formPesquisa :input").val("");
+                $('#formPesquisa input[type=submit]').val("Buscar");
+                $('.form-group').removeClass('has-error').removeClass('has-success');
+                dialog.dialog("open");
+			});
+
+			$("#corpo").on('click', 'a[id^=buscar-colaborador-]', function(){
+			    $("#form :input").prop("disabled", false);
+                $("#formPesquisa :input").prop("disabled", true);
+                dialog.dialog("open");
+
+            });
+
+
+            //PERSONALIZANDO A TABELA
+            pageSetUp();
+
+                var responsiveHelper_tb_registros = undefined;
+                var breakpointDefinition = {
+                    tablet : 1024,
+                    phone : 480
+                };
+
+                /* COLUMN SHOW - HIDE */
+			$('#tb_registros').dataTable({
+				"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-6 hidden-xs'C>r>"+
+						"t"+
+						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-sm-6 col-xs-12'p>>",
+				"autoWidth" : true,
+				"scrollX": true,
+                //"scrollY":"400px",
+                scrollY:        '50vh',
+                //"scrollCollapse": true,
+                //"paging": false,
+                "stateSave": true,
+				"oLanguage": {
+					"sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+				},
+				"preDrawCallback" : function() {
+					// Initialize the responsive datatables helper once.
+					if (!responsiveHelper_tb_registros) {
+						responsiveHelper_tb_registros = new ResponsiveDatatablesHelper($('#tb_registros'), breakpointDefinition);
+					}
+				},
+				"rowCallback" : function(nRow) {
+					responsiveHelper_tb_registros.createExpandIcon(nRow);
+				},
+				"drawCallback" : function(oSettings) {
+					responsiveHelper_tb_registros.respond();
+				}
+			});
+
+
+})
+		</script>
+{% endblock javascript %}

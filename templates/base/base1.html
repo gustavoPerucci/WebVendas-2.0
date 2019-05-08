@@ -1,0 +1,465 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8">
+
+		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+
+		<title> Web Vendas 2.0 </title>
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<!-- Basic Styles -->
+		<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/bootstrap.min.css' %}">
+		<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/font-awesome.min.css' %}">
+
+		<!-- Styles : Caution! DO NOT change the order -->
+		<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/smartadmin-production-plugins.min.css' %}">
+		<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/smartadmin-production.min.css' %}">
+		<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/smartadmin-skins.min.css' %}">
+
+		<!-- RTL Support  -->
+		<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/smartadmin-rtl.min.css' %}">
+
+		<!-- We recommend you use "your_style.css" to override SmartAdmin
+		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
+		<link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
+
+		<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+		<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/demo.min.css' %}">
+
+		<!-- FAVICONS -->
+		<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
+
+		<!-- GOOGLE FONT -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+
+		<!-- Specifying a Webpage Icon for Web Clip
+			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
+		<link rel="apple-touch-icon" href="{% static 'img/splash/sptouch-icon-iphone.png' %}">
+		<link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/splash/touch-icon-ipad.png' %}">
+		<link rel="apple-touch-icon" sizes="120x120" href="{% static 'img/splash/touch-icon-iphone-retina.png' %}">
+		<link rel="apple-touch-icon" sizes="152x152" href="{% static 'img/splash/touch-icon-ipad-retina.png' %}">
+
+		<!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!-- Startup image for web apps -->
+		<link rel="apple-touch-startup-image" href="{% static 'img/splash/ipad-landscape.png' %}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+		<link rel="apple-touch-startup-image" href="{% static 'img/splash/ipad-portrait.png' %}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+		<link rel="apple-touch-startup-image" href="{% static 'img/splash/iphone.png' %}" media="screen and (max-device-width: 320px)">
+	{% block head %}{% endblock head %}
+
+</head>
+	<body id="pagina" class="fixed-header fixed-navigation fixed-footer {{usuario.model_template}}">
+		{% include 'base/perfil_usuario.html' %}
+		{% block modals %}{% endblock modals %}
+		<header id="header">
+			<div id="logo-group">
+				<span class="hidden-xs" style="width:180px;" id="logo1">
+                    <!--<a href="#" class="dropdown-toggle no-margin userdropdown" data-toggle="dropdown">
+							<img src="{% static 'img/avatars/sunny.png' %}" alt="{{usuario.nome}}" class="online"/>
+                        </a>-->
+                </span>
+				<span style="" id="activity" class="activity-dropdown"> <i class="fa fa-user"></i> <b class="badge"> 0 </b> </span>
+				<div class="ajax-dropdown">
+					<div class="btn-group btn-group-justified" data-toggle="buttons">
+						<label class="btn btn-default">
+							<input type="radio" name="activity" id="{% static 'ajax/notify/mail.html' %}">
+							Menságens (0) </label>
+						<label class="btn btn-default">
+							<input type="radio" name="activity" id="{% static 'ajax/notify/notifications.html' %}">
+							Alertas (0) </label>
+						<label class="btn btn-default">
+							<input type="radio" name="activity" id="{% static 'ajax/notify/tasks.html' %}">
+							Notificações (0) </label>
+					</div>
+					<div class="ajax-notifications custom-scroll">
+						<div class="alert alert-transparent">
+							<h5>Clique nos botões acima para ver se há menságens para você.</h5>
+							Disse JESUS: <br>
+							Eu sou o caminho a verdade e a vida e ninguém vem ao pai a não ser por mim.
+						</div>
+						<i class="fa fa-lock fa-4x fa-border"></i>
+					</div>
+					<span> Gustavo Perucci
+						<button type="button" data-loading-text="<i class='fa fa-refresh fa-spin '></i> Por favor aguarde..." class="btn btn-xs btn-default pull-right">
+							<i class="fa fa-refresh"></i>
+						</button>
+					</span>
+				</div>
+			</div>
+			<div class="project-context hidden-xs">
+				<span class="label">Atualizações:</span>
+				<span class="project-selector dropdown-toggle" data-toggle="dropdown">Atualizações recentes <i class="fa fa-angle-down"></i></span>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="javascript:void(0);"> Atualização no banco de dados do sistema em 05/01/2018. </a>
+					</li>
+					<li class="divider"></li>
+					<li>
+						<a href="javascript:void(0);"> Atualização do cadastro de colaboradores em 02/02/2018. </a>
+					</li>
+					<li class="divider"></li>
+					<li>
+						<a href="javascript:void(0);"> Inclusão de permissões para usuarios em 08/03/2018. </a>
+					</li>
+					<li class="divider"></li>
+					<li>
+						<a href="javascript:void(0);"><i class="fa fa-power-off"></i> Fechar </a>
+					</li>
+				</ul>
+			</div>
+			<div class="pull-right">
+				<div id="hide-menu" class="btn-header pull-right">
+					<span> <a href="javascript:void(0);" data-action="toggleMenu" title="Recolher menu"><i class="fa fa-reorder"></i></a> </span>
+				</div>
+				<ul id="mobile-profile-img" class="header-dropdown-list hidden-xs padding-5">
+					<li class="">
+						<a href="#" class="dropdown-toggle no-margin userdropdown" data-toggle="dropdown">
+							<img src="{% static 'img/avatars/sunny.png' %}" alt="{{usuario.nome}}" class="online"/>
+                        </a>
+						<ul class="dropdown-menu pull-right">
+							<li class="divider"></li>
+							<li>
+								<a href="{% url 'alterarsenha' %}"><i class="fa fa-key"></i> Alterar senha</a>
+							</li>
+							<li>
+								<a href="/logout/" title="Sair do sistema" data-action="userLogout" data-logout-msg="Para garantir ainda mais a sua segurança, lembre-se nunca permita que o navegador salve seu login e senha."><i class="fa fa-sign-out"></i>Sair</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<div id="logout" class="btn-header transparent pull-right">
+					<span> <a href="/logout/" title="Sair do sistema" data-action="userLogout" data-logout-msg="Para garantir ainda mais a sua segurança, lembre-se nunca permita que o navegador salve seu login e senha."><i class="fa fa-sign-out"></i></a> </span>
+				</div>
+				<div id="search-mobile" class="btn-header transparent pull-right">
+					<span> <a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a> </span>
+				</div>
+                <form action="#" class="header-search pull-right">
+                    <input id="search-fld"  type="text" name="pesquisa" placeholder="Pesquisa">
+                    <button type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <a href="javascript:void(0);" id="cancel-search-js" title="Pesquisa"><i class="fa fa-times"></i></a>
+                </form>
+				<div id="fullscreen" class="btn-header transparent pull-right">
+					<span> <a href="javascript:void(0);" data-action="launchFullscreen" title="Tela Cheia"><i class="fa fa-arrows-alt"></i></a> </span>
+				</div>
+				<!-- #Voice Command: Start Speech -->
+				<div id="speech-btn" class="btn-header transparent pull-right hidden-sm hidden-xs">
+					<div>
+						<a href="javascript:void(0)" title="Voice Command" data-action="voiceCommand"><i class="fa fa-microphone"></i></a>
+						<div class="popover bottom"><div class="arrow"></div>
+							<div class="popover-content">
+								<h4 class="vc-title">Voice command activated <br><small>Please speak clearly into the mic</small></h4>
+								<h4 class="vc-title-error text-center">
+									<i class="fa fa-microphone-slash"></i> Voice command failed
+									<br><small class="txt-color-red">Must <strong>"Allow"</strong> Microphone</small>
+									<br><small class="txt-color-red">Must have <strong>Internet Connection</strong></small>
+								</h4>
+								<a href="javascript:void(0);" class="btn btn-success" onclick="commands.help()">See Commands</a>
+								<a href="javascript:void(0);" class="btn bg-color-purple txt-color-white" onclick="$('#speech-btn .popover').fadeOut(50);">Close Popup</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end voice command -->
+			</div>
+		</header>
+			<aside id="left-panel">
+			<nav>
+				<ul>
+					<li class="">
+                        <a href="#"> <i class="fa-2x" style="color:darkorange"> {{usuario.nome}}</i> </a>
+
+						<ul>
+                            <li id="perfil-usuario">
+                                <a href="#"><i class="fa fa-user fa-4x"></i> Alterar Perfil </a>
+                            </li>
+							<li>
+								<a href="{% url 'alterarsenha' %}"><i class="fa fa-key"></i> Alterar senha</a>
+							</li>
+							<li>
+								<a href="/logout/" title="Sair do sistema" data-action="userLogout" data-logout-msg="Para garantir ainda mais a sua segurança, lembre-se nunca permita que o navegador salve seu login e senha."><i class="fa fa-sign-out"></i>Sair</a>
+							</li>
+						</ul>
+					</li>
+					<li class="">
+						<a href="#"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Temas disponíveis</span></a>
+						<ul>
+							<li  id="padrao">
+								<a href="#"> Usar tema padrão</a>
+							</li>
+							<li id="Dark-Elegance">
+								<a href="#"> Dark Elegance</a>
+							</li>
+							<li id="Ultra-light">
+								<a href="#"> Ultra light</a>
+							</li>
+							<li id="Skin-do-google">
+								<a href="#"> Skin do google</a>
+							</li>
+							<li id="Smash-Pixel">
+								<a href="#">Smash Pixel</a>
+							</li>
+							<li id="Design-Glass">
+								<a href="#">Design Glass</a>
+							</li>
+							<li id="Design-beta">
+								<a href="#" >Design beta</a>
+							</li>
+						</ul>
+					</li>
+					{% block menu_colaboradores %}
+					<li>
+						<a href="{% url 'colaboradores' %}"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Colaboradores</span></a>
+					</li>
+					{% endblock menu_colaboradores %}
+					{% block menu_usuarios %}
+					<li>
+						<a href="{% url 'usuarios' %}"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Usuários</span></a>
+					</li>
+					{% endblock menu_usuarios %}
+					{% block menu_clientes %}
+					<li>
+						<a href="#"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Clientes</span></a>
+						<ul>
+							<li><a href="{% url 'clientes_pessoa_fisica' %}">Pessoa física</a></li>
+							<li><a href="{% url 'clientes_pessoa_juridica' %}">Pessoa jurídica</a></li>
+						</ul>
+					</li>
+					{% endblock menu_clientes %}
+					{% block menu_fornecedores %}
+					<li>
+						<a href="#"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Fornecedores</span></a>
+						<ul>
+							<li><a href="{% url 'fornecedores_pessoa_fisica' %}">Pessoa física</a></li>
+							<li><a href="{% url 'fornecedores_pessoa_juridica' %}">Pessoa jurídica</a></li>
+						</ul>
+					</li>
+					{% endblock menu_fornecedores %}
+					{% block menu_produtos %}
+					<li>
+						<a href="{% url 'produtos' %}"><i class="fa fa-lg fa-fw fa-cog"></i> <span class="menu-item-parent">Produtos</span></a>
+					</li>
+					{% endblock menu_produtos %}
+					{% block menu_vendas %}
+					<li>
+						<a href="{% url 'vendas' %}"><i class="fa fa-lg fa-fw fa-usd"></i> <span class="menu-item-parent">Vendas</span></a>
+					</li>
+					{% endblock menu_vendas %}
+					{% block menu_compras %}
+					<li>
+						<a href="{% url 'compras' %}"><i class="fa fa-lg fa-fw fa-money"></i> <span class="menu-item-parent">Compras</span></a>
+					</li>
+					{% endblock menu_compras %}
+
+					<li class="chat-users" id="pesquisa">
+						<a href="#"><i class="fa fa-lg fa-fw fa-search"></i> <span class="menu-item-parent">Pesquisas</span></a>
+						<ul>
+							<li>
+								<div class="display-users">
+									{% block pesquisa %}
+									<a> A página atual não possue pesquisas pre definidas.</a>
+									{% endblock pesquisa %}
+								</div>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<span class="minifyme" data-action="minifyMenu">
+				<i class="fa fa-arrow-circle-left hit"></i>
+			</span>
+		</aside>
+		<div id="main" role="main">
+			<div id="ribbon">
+				<span class="ribbon-button-alignment">
+					<span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Restaurar os padrões da página" data-html="true">
+						<i class="fa fa-refresh"></i>
+					</span>
+				</span>
+				{% block cabecalho %}
+				<ol class="breadcrumb">
+					<li><a href="/">Home</a></li>
+				</ol>
+				{% endblock cabecalho %}
+			</div>
+			<div id="content" class="table-responsive">
+				<section id="widget-grid" class="">
+					<div class="row">
+						<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="conteudo">
+
+                            {% if messages %}
+                            {% for message in messages %}
+                            <div class="panel-body">
+                                <div class="panel text-center alert alert-{{ message.tags }} {% if message.tags == 'error'%} alert-danger {% endif %}">
+                             <h5 style="color:white;" class="">{{ message }}</h5>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+
+							{% if mensagem %}
+                            {% if erro %}
+							<div class="alert alert-danger text-center">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <h4>{{ mensagem }}</h4>
+                            </div>
+                            {% else %}
+                            <div class="alert alert-info text-center">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <h4>{{ mensagem }}</h4>
+                            </div>
+                            {% endif %}
+                            {% endif %}
+							<div class="jarviswidget jarviswidget-color-blueDark animated fadeInDown" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" id="wid-id-0">
+								<header>
+									{% block header %}
+									 <span class="widget-icon"> <i class="fa fa-table" style="font-size:16px;white-space: nowrap;margin-left:10px;"> {{sub_titulo}}</i> </span>
+									{% endblock header %}
+								</header>
+								<div>
+									<div class="jarviswidget-editbox">
+									<h2 class="text-center">Reservado para alterções futuras...</h2>
+									</div>
+									<div id="corpo" class="widget-body no-padding" style="min-height:65vh;">
+										{% block conteudo %}
+
+										<div class=" table-responsive" style="width:100%;">
+										<iframe style="width:110%; height:75vh;" src="/"></iframe>
+										</div>
+										{% endblock conteudo %}
+									</div>
+								</div>
+							</div>
+						</article>
+					</div>
+				</section>
+			</div>
+		</div>
+		<div class="page-footer">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6">
+					<script language=javascript type="text/javascript">
+						now = new Date
+						document.write("<span style='color:white;'>Copyright &copy; Gustavo Perucci 2015-"+
+						now.getFullYear() +"</span>")
+                    </script>
+				</div>
+				<div class="col-xs-12 col-sm-6 text-right">
+					<script language=javascript type="text/javascript">
+                        dayName = new Array ("domingo", "segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado")
+                        monName = new Array ("janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro")
+                        now = new Date
+                        document.write ("<span style='color:white;'>" + dayName[now.getDay() ] + ", " +
+                        now.getDate () + " de " + monName [now.getMonth() ]   +  " de "  +     now.getFullYear () + "</span>")
+                    </script>
+				</div>
+			</div>
+		</div>
+		<script data-pace-options='{ "restartOnRequestAfter": true }' src="{% static 'js/plugin/pace/pace.min.js' %}"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script>
+			if (!window.jQuery) {
+				document.write('<script src="{% static 'js/libs/jquery-2.1.1.min.js' %}"><\/script>');
+			}
+		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<script>
+			if (!window.jQuery.ui) {S
+				document.write('<script src="{% static 'js/libs/jquery-ui-1.10.3.min.js' %}"><\/script>');
+			}
+		</script>
+        <script src="{% static 'js/app.config.js' %}"></script>
+		<script src="{% static 'js/base/mensagens.js' %}"></script>
+        <script src="{% static 'js/base/cep.js' %}"></script>
+		<script src="{% static 'js/base/base.js' %}"></script>
+		<script src="{% static 'js/plugin/select2/select2.min.js' %}"></script>
+		<script src="{% static 'js/app.config.js' %}"></script>
+		<script src="{% static 'js/plugin/jquery-touch/jquery.ui.touch-punch.min.js' %}"></script>
+		<script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
+		<script src="{% static 'js/notification/SmartNotification.min.js' %}"></script>
+		<script src="{% static 'js/smartwidgets/jarvis.widget.min.js' %}"></script>
+		<script src="{% static 'js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js' %}"></script>
+		<script src="{% static 'js/plugin/sparkline/jquery.sparkline.min.js' %}"></script>
+		<script src="{% static 'js/plugin/jquery-validate/jquery.validate.min.js' %}"></script>
+		<script src="{% static 'js/plugin/masked-input/jquery.maskedinput.min.js' %}"></script>
+		<script src="{% static 'js/plugin/select2/select2.min.js' %}"></script>
+		<script src="{% static 'js/plugin/bootstrap-slider/bootstrap-slider.min.js' %}"></script>
+		<script src="{% static 'js/plugin/msie-fix/jquery.mb.browser.min.js' %}"></script>
+		<script src="{% static 'js/plugin/fastclick/fastclick.min.js' %}"></script>
+		<script src="{% static 'js/demo.min.js' %}"></script>
+		<script src="{% static 'js/app.min.js' %}"></script>
+		<script src="{% static 'js/speech/voicecommand.min.js' %}"></script>
+		<script src="{% static 'js/smart-chat-ui/smart.chat.ui.min.js' %}"></script>
+		<script src="{% static 'js/smart-chat-ui/smart.chat.manager.min.js' %}"></script>
+		<script src="{% static 'js/plugin/flot/jquery.flot.cust.min.js' %}"></script>
+		<script src="{% static 'js/plugin/flot/jquery.flot.resize.min.js' %}"></script>
+		<script src="{% static 'js/plugin/flot/jquery.flot.time.min.js' %}"></script>
+		<script src="{% static 'js/plugin/flot/jquery.flot.tooltip.min.js' %}"></script>
+		<script src="{% static 'js/plugin/vectormap/jquery-jvectormap-1.2.2.min.js' %}"></script>
+		<script src="{% static 'js/plugin/vectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
+		<script src="{% static 'js/plugin/moment/moment.min.js' %}"></script>
+		<script src="{% static 'js/plugin/fullcalendar/jquery.fullcalendar.min.js' %}"></script>
+		<script src="{% static 'js/plugin/masked-input/jquery.maskedinput.min.js' %}"></script>
+		<script src="{% static 'js/plugin/datatables/jquery.dataTables.min.js' %}"></script>
+		<script src="{% static 'js/plugin/datatables/dataTables.colVis.min.js' %}"></script>
+		<script src="{% static 'js/plugin/datatables/dataTables.tableTools.min.js' %}"></script>
+		<script src="{% static 'js/plugin/datatables/dataTables.bootstrap.min.js' %}"></script>
+		<script src="{% static 'js/plugin/datatable-responsive/datatables.responsive.min.js' %}"></script>
+		{% block script %}{% endblock script %}
+		{% block javascript %}{% endblock javascript %}
+
+		<script type="text/javascript">
+		$(document).ready(function(){
+			data = new Date();
+			dia = data.getDate();
+			mes = data.getMonth();
+			ano = data.getFullYear();
+			meses = new Array(12);
+			meses[0] = "Janeiro";
+			meses[1] = "Fevereiro";
+			meses[2] = "Março";
+			meses[3] = "Abril";
+			meses[4] = "Maio";
+			meses[5] = "Junho";
+			meses[6] = "Julho";
+			meses[7] = "Agosto";
+			meses[8] = "Setembro";
+			meses[9] = "Outubro";
+			meses[10] = "Novembro";
+			meses[11] = "Dezembro";
+    		data_completa = ("Hoje é o dia " + dia + " de " + meses[mes] + " de " + ano);
+			data_atual = (ano + '-' +  (data.getMonth()+1) + '-' + dia );
+		});
+		</script>
+
+		<!-- GOOGLE ANALYTICS CODE -->
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script');
+				ga.type = 'text/javascript';
+				ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'https://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+		<!-- END GOOGLE ANALYTICS CODE -->
+	</body>
+</html>
+
+
+
+

@@ -1,0 +1,309 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% block titulo %} Usuarios {% endblock %}
+
+{% block header %}
+    <ul id="registros-usuarios" class="nav nav-tabs pull-left">
+        {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.acessa_cadastro_usuarios %}
+        <li id="li-tb-usuarios" class="active">
+            <a data-toggle="tab" href="#tb-usuarios"> <i class="fa fa-lg fa-user"></i> <span class="hidden-mobile hidden-tablet">Usuários</span> </a>
+        </li>
+        {% endif %}
+        {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.acessa_permissoes_usuarios %}
+         <li id="li-tb-permissoes">
+            <a data-toggle="tab" href="#tb-permissoes"> <i class="fa fa-lg fa-unlock"></i> <span class="hidden-mobile hidden-tablet"> Permissões</span></a>
+        </li>
+        {% endif %}
+        {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.cadastra_permissoes_usuario %}
+        <li id="li-form-permissoes">
+            <a data-toggle="tab" href="#form-permissoes"> <i class="fa fa-lg fa-key"></i> <span class="hidden-mobile hidden-tablet"> Registro permissões</span></a>
+        </li>
+        {% endif %}
+    </ul>
+{% endblock header %}
+
+{% block conteudo%}
+<div class="tab-content padding-10">
+    <div class="tab-pane fade in active animated fadeInDown " id="tb-usuarios">
+        {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.acessa_cadastro_usuarios %}
+        {% include 'usuarios/tables/usuarios.html' %}
+        {% endif %}
+
+        {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.cadastra_usuario or usuario.permissoes.edita_usuario %}
+        {% include 'usuarios/modals/cadastro.html' %}
+        {% endif %}
+    </div>
+    {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.acessa_permissoes_usuarios %}
+    <div class="tab-pane fade animated fadeInDown" id="tb-permissoes">
+        {% include 'permissoes/tables/permissoes.html' %}
+    </div>
+    {% endif %}
+    {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.cadastra_permissoes_usuario %}
+    <div class="tab-pane fade animated fadeInDown" id="form-permissoes">
+        {% include 'permissoes/forms/cadastro.html' %}
+    </div>
+    {% endif %}
+</div>
+{% endblock conteudo%}
+
+{% block menu_usuarios %}
+<li id="usuarios" class="active">
+    <a href="#"><i class="fa fa-lg fa-fw fa-user"></i><span class="menu-item-parent">Usuários</span></a>
+	{% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.acessa_cadastro_usuarios %}
+    <ul>
+        <li id="usuarios_ativos" class="active">
+            <a  href="#"> Ativos</a>
+        </li>
+        <li  id="usuarios_inativos">
+            <a href="#"> Inativos</a>
+        </li>
+        <li  id="usuarios_bloqueados">
+            <a href="#"> Bloqueados</a>
+        </li>
+         <li  id="usuarios_excluidos">
+            <a href="#"> Excluídos</a>
+        </li>
+        {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.cadastra_usuario %}
+        <li  id="usuarios_novo">
+            <a href="#"> Cadastrar novo</a>
+        </li>
+        {% endif %}
+        {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.acessa_permissoes_usuarios %}
+        <li id="permissoes">
+            <a href="#"> Permissões</a>
+            <ul>
+                <li id="permissoes_todas">
+                    <a href="#"> Ver todas</a>
+                </li>
+                {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.cadastra_permissoes_usuario %}
+                <li id="permissoes_nova">
+                    <a href="#"> Criar nova</a>
+                </li>
+                {% endif %}
+            </ul>
+            {% endif %}
+        </li>
+    </ul>
+    {% endif %}
+</li>
+{% endblock menu_usuarios %}
+{% block pesquisa %}
+{% include 'usuarios/forms/pesquisas.html' %}
+{% endblock pesquisa %}
+
+{% block modals %}
+
+{% endblock modals %}
+
+{% block cabecalho %}
+<ol class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li><strong><a href="#">usuarios</a></strong></li>
+</ol>
+{% endblock cabecalho %}
+
+{% block script%}
+<script src="{% static 'js/usuarios/usuarios.js' %}"></script>
+<script src="{% static 'js/usuarios/permissoes.js' %}"></script>
+{% endblock script%}
+
+{% block estilo%} {% endblock estilo%}
+
+{% block loading %} {% endblock loading %}
+
+{% block javascript %}
+<script type="text/javascript">
+		$(document).ready(function(){
+
+		$("#form :input").prop("disabled", true);
+		$("#formPermissoes :input").prop("disabled", true);
+        $("#btn_nova_permissao").prop("disabled", false);
+        $("#btn_sair_permissao").prop("disabled", false);
+        $('#id_permissoes').addClass('form-control');
+        $('#id_colaborador').addClass('form-control');
+
+
+			 //CONVERT DIALOG TITLE TO HTML
+			 //REF: http://stackoverflow.com/questions/14488774/using-html-in-a-dialogs-title-in-jquery-ui-1-10
+
+			$.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
+				_title : function(title) {
+					if (!this.options.title) {
+						title.html("&#160;");
+					} else {
+						title.html(this.options.title);
+					}
+				}
+			}));
+
+			 //Remove focus from buttons
+
+			$('.ui-dialog :button').blur();
+
+			// modal dialog init: custom buttons and a "close" callback reseting the form inside
+			var dialog = $("#addtab").dialog({
+				autoOpen : false,
+				width : 900,
+				height: 600,
+				resizable : true,
+				modal : true,
+				buttons : [
+
+                {html : "<i class='fa fa-plus'></i>&nbsp; Novo registro",
+					"class" : "btn btn-info",
+					click : function() {
+					    $('#form input').val("");
+					    $('#form select').val("");
+					    $('#form input[type=number]').val("0");
+					    $('#form input[type=submit]').val("Salvar registro");
+					    $("#form :input").prop("disabled", false);
+					    $("#formPesquisa :input").prop("disabled", true);
+					    $('.form-group').removeClass('has-error').removeClass('has-success');
+					}},
+
+                {html : "<i class='fa fa-edit'></i>&nbsp; Editar registro",
+					"class" : "btn btn-warning",
+					click : function() {
+					var id = $('#id_id').val();
+					if (id == '0') {
+
+					$.smallBox({
+                        title : "<i>EDITAR REGISTRO . . .</i>",
+                        content : "<i class='fa fa-clock-o'></i> <i>Antes, você deve fazer a busca do registro que deseja editar. . .</i>",
+                        color : "#5384AF",
+                        iconSmall : "fa fa-thumbs-up bounce animated",
+                        timeout : 5000
+				    });
+
+				    } else {
+                        $("#form :input").prop("disabled", false);
+                        $("#formPesquisa :input").prop("disabled", true);
+					}
+
+					}},
+
+                {html : "<i class='fa fa-times danger'></i>&nbsp; Cancelar",
+					"class" : "btn btn-danger",
+					click : function() {
+					    $('#form input').val("");
+					    $('#form select').val("");
+					    $('#form input[type=number]').val("0");
+					    $('#form input[type=submit]').val("Salvar registro");
+					    $("#form :input").prop("disabled", true);
+					    $("#formPesquisa :input").prop("disabled", false);
+					    $('.form-group').removeClass('has-error').removeClass('has-success');
+	                }},
+
+                {html : "<i class='fa fa-times danger'></i>&nbsp; Sair",
+					"class" : "btn btn-danger",
+					click : function() {
+					    $('#form input').val("");
+					    $('#form select').val("");
+					    $('#form input[type=number]').val("0");
+					    $('#form input[type=submit]').val("Salvar registro");
+					    $("#form :input").prop("disabled", true);
+					    $(this).dialog("close");
+	                }},
+			]}
+		);
+
+			// addTab form: calls addTab function on submit and closes the dialog
+			var form = dialog.find("form").submit(function(event) {
+				//dialog.dialog("close");
+				event.preventDefault();
+			});
+
+
+			// addTab button: just opens the dialog
+			$("#usuarios_novo").button().click(function() {
+			    $('#form input').val("");
+                $('#form select').val("");
+                $('#form input[type=number]').val("0");
+                $('#form input[type=submit]').val("Salvar registro");
+                $("#form :input").prop("disabled", false);
+                $("#formPesquisa :input").prop("disabled", true);
+                $("#formPesquisa :input").val("");
+                $('#formPesquisa input[type=submit]').val("Buscar");
+                $('.form-group').removeClass('has-error').removeClass('has-success');
+                dialog.dialog("open");
+			});
+
+			$("#corpo").on('click', 'a[id^=buscar-usuario-]', function(){
+			    $("#form :input").prop("disabled", false);
+                $("#formPesquisa :input").prop("disabled", true);
+                dialog.dialog("open");
+
+            });
+
+
+            //PERSONALIZANDO A TABELA
+            pageSetUp();
+
+                var responsiveHelper_tb_registros = undefined;
+                 var responsiveHelper_tb_permissoes = undefined;
+                var breakpointDefinition = {
+                    tablet : 1024,
+                    phone : 480
+                };
+
+                /* COLUMN SHOW - HIDE */
+			$('#tb_registros').dataTable({
+				"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-6 hidden-xs'C>r>"+
+						"t"+
+						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-sm-6 col-xs-12'p>>",
+				"autoWidth" : true,
+				"scrollX": true,
+                //"scrollY":"400px",
+                scrollY:        '50vh',
+                //"scrollCollapse": true,
+                //"paging": false,
+                "stateSave": true,
+				"oLanguage": {
+					"sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+				},
+				"preDrawCallback" : function() {
+					// Initialize the responsive datatables helper once.
+					if (!responsiveHelper_tb_registros) {
+						responsiveHelper_tb_registros = new ResponsiveDatatablesHelper($('#tb_registros'), breakpointDefinition);
+					}
+				},
+				"rowCallback" : function(nRow) {
+					responsiveHelper_tb_registros.createExpandIcon(nRow);
+				},
+				"drawCallback" : function(oSettings) {
+					responsiveHelper_tb_registros.respond();
+				}
+			});
+
+			$('#tb_permissoes').dataTable({
+				"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-6 hidden-xs'C>r>"+
+						"t"+
+						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-sm-6 col-xs-12'p>>",
+				"autoWidth" : true,
+				"scrollX": true,
+                //"scrollY":"400px",
+                scrollY:        '50vh',
+                //"scrollCollapse": true,
+                //"paging": false,
+                "stateSave": true,
+				"oLanguage": {
+					"sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+				},
+				"preDrawCallback" : function() {
+					// Initialize the responsive datatables helper once.
+					if (!responsiveHelper_tb_permissoes) {
+						responsiveHelper_tb_permissoes = new ResponsiveDatatablesHelper($('#tb_permissoes'), breakpointDefinition);
+					}
+				},
+				"rowCallback" : function(nRow) {
+					responsiveHelper_tb_permissoes.createExpandIcon(nRow);
+				},
+				"drawCallback" : function(oSettings) {
+					responsiveHelper_tb_permissoes.respond();
+				}
+			});
+             //FIM DE PERSONALIZANDO A TABELA
+})
+		</script>
+{% endblock javascript %}

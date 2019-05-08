@@ -1,0 +1,21 @@
+<div id="div-marcas">
+    <table id="table-marcas" class="table table-bordered table-hover" width="100%">
+        <thead>
+        <tr>
+            <th data-class="expand">ID</th>
+            <th data-hide="phone">Descrição</th>
+            <th data-hide="phone">Observações</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for index in marcas %}
+            <tr id="marca-{{index.pk}}">
+                <td style="cursor:pointer">{{index.pk}}</td>
+                <td style="cursor:pointer">{{index.descricao}}</td>
+                <td style="cursor:pointer">{{index.obs}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+    </table>
+</div>
+

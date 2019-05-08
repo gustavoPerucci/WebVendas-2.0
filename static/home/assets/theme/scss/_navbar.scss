@@ -1,0 +1,73 @@
+/*!
+|||||||||||||||||||||||||||||||||||||| 
+||||||||||||||||||||||||||||||||||||||
+
+N A V B A R  S C S S
+
+||||||||||||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||
+*/
+
+.navbar {
+	&-collapse {
+		background: $main-theme-color;
+		padding: 0 $padding-medium;
+
+		.header-link > a {
+			color: rgba($main-light-color, 0.8)
+		}
+	}
+	border:none;
+
+	a {
+		padding: $padding-base;
+		font-family: $main-font;
+		font-weight: 400;
+	}
+	&-brand {
+		color: white;
+		font-family: $main-font;
+
+		span {
+			color: $main-theme-color;
+		}
+	}
+	&-nav {
+		padding: 0;
+
+		& > .active > a, & > .active > a:hover, & > .active > a:focus {
+			background: $main-theme-color;
+			opacity: 1;
+			color: white;
+		}
+		> li > .dropdown-menu {
+			margin-top: 1px;
+		}
+	}
+	&-inverse {
+		border: none;
+
+		.navbar-nav {
+			& > .active > a, & > .active > a:hover, & > .active > a:focus {
+				background: $main-theme-color;
+				// opacity: 1;
+				color: rgba($main-light-color, 1);
+			}
+		}
+		.navbar-nav > li > a {
+			color: rgba($main-light-color, 0.7);
+		}
+	}
+	&-fixed-top {
+		// to prevent scroll issue on mobile devices, when top is fixed to top
+		@include mobile{
+			position: static;
+			max-height: auto;
+		}
+ 
+	}
+}
+
+.container > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-header, .container-fluid > .navbar-collapse {
+	margin: 0!important;
+}

@@ -1,0 +1,5 @@
+RewriteOptions inherit
+AddHandler fcgid-script .fcgi
+DirectoryIndex index.html
+
+

@@ -1,0 +1,48 @@
+/*!
+|||||||||||||||||||||||||||||||||||||| 
+||||||||||||||||||||||||||||||||||||||
+
+P R O M O  B O X  S C S S
+
+||||||||||||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||
+*/
+.promo-box {
+	position: relative;
+	overflow: hidden;
+	border-radius: 5px;
+
+	&-content {
+		align-items: flex-end;
+		bottom: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		left: 0;
+		position: absolute;
+		right: 0;
+		text-align: center;
+		top: 0;
+
+		@include smartphone {
+			h3 {
+				font-size: 20px;
+			}
+		}
+		span {
+			animation: focusButton 2s infinite;
+
+			@keyframes focusButton {
+				0% {
+					transform: translateX(10px);
+				}
+				50% {
+					transform: translateX(20px);
+				}
+				100% {
+					transform: translateX(10px);
+				}
+			}
+		}
+	}
+}

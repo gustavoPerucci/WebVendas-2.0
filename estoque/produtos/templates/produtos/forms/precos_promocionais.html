@@ -1,0 +1,55 @@
+<form enctype="multipart/form-data" method="post" role="form" id="form3">{% csrf_token %}
+    <div class="row">
+
+        <div id="div_id_preco_promocao" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-4">
+            <label for="id_id_preco_promocao">ID</label>
+            <input id="id_id_preco_promocao" name="id_id_preco_promocao" type="number" value="0" class="form-control" disabled>
+        </div>
+
+        <div id="div_produto" class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-8">
+            <label for="id_produto">Selecione um produto</label>
+            {{form_precos_promocao.produto_promocao}}
+        </div>
+
+        <div id="div_id_codigo_de_barras" class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-6">
+            <label for="id_codigo_de_barras">Código de barras</label>
+            <input id="id_codigo_de_barras" name="id_codigo_de_barras" type="text" class="form-control" disabled style="font-size:20px;">
+        </div>
+
+        <div id="div_valor_compra_promocao" class="form-group col-lg-2 col-md-2 col-sm-4 col-xs-6">
+            <label for="id_valor_compra_promocao">Compra</label>
+            <input id="id_valor_compra_promocao" name="valor_compra_promocao" type="number" step="any" value="0.000" min="0" class="form-control" disabled>
+        </div>
+
+        <div id="div_percentual_descontoo" class="form-group col-lg-2 col-md-2 col-sm-4 col-xs-6">
+            <label for="id_percentual_desconto">Desconto%</label>
+            <input id="id_percentual_desconto" name="percentual_desconto" type="number" step="any" value="0.000" min="0" class="form-control" disabled>
+        </div>
+
+        <div id="div_preco_venda_promocao" class="form-group col-lg-2 col-md-2 col-sm-4 col-xs-6">
+            <label for="id_preco_venda_promocao">Preco venda</label>
+            <input id="id_preco_venda_promocao" name="preco_venda_promocao" type="number" step="any" value="0.000" min="0" class="form-control" disabled>
+        </div>
+        <div id="div_inicio_promocao" class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-6">
+            <label for="id_inicio_promocao">Inicio promoção</label>
+            <input id="id_inicio_promocao" name="inicio_promocao" type="date" class="form-control" disabled>
+        </div>
+        <div id="div_fim_promocao" class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-6">
+            <label for="id_fim_promocao">Fim promocao</label>
+            <input id="id_fim_promocao" name="fim_promocao" type="date" class="form-control" disabled>
+        </div>
+
+        <div id="div_observacoes_promocao" class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <label for="id_observacoes_promocao">Observações</label>
+            <textarea id="id_observacoes_promocao" name="observacoes_promocao" class="form-control" disabled></textarea>
+        </div>
+
+        <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <button id="btn_salvar_promocao" class=" btn btn-success text-center" type="submit" disabled>Salvar</button>
+            <button id="btn_nova_promocao" class=" btn btn-info text-center">Novo</button>
+            <button id="btn_alterar_promocao" class=" btn btn-warning text-center" disabled>Editar</button>
+            <button id="btn_cancelar_promocao" class=" btn btn-danger text-center" disabled>Cancelar</button>
+        </div>
+    </div>
+</form>
+

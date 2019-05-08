@@ -1,0 +1,232 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% block titulo %} Fornecedores {% endblock %}
+
+{% block conteudo%}
+<div>{% include 'fornecedores/modals/cadastro_pessoa_fisica.html' %}</div>
+<div>{% include 'fornecedores/tables/fornecedores_pessoa_fisica.html' %}</div>
+{% endblock conteudo%}
+
+{% block menu_fornecedores %}
+<li id="fornecedores" class="active">
+    <a href="#"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent"> Fornecedores</span></a>
+    <ul>
+        <li id="fornecedores_pessoa_fisica" class="active">
+            <a href="#">Pessoa física</a>
+            <ul>
+        <li id="fornecedores_ativos"  class="active">
+        <a  href="#"> Ativos</a>
+        </li>
+        <li  id="fornecedores_inativos">
+            <a href="#"> Inativos</a>
+        </li>
+        <li  id="fornecedores_bloqueados">
+            <a href="#"> Bloqueados</a>
+        </li>
+        <li  id="fornecedores_excluidos">
+            <a href="#"> Excluídos</a>
+        </li>
+        <li  id="fornecedores_novo">
+            <a href="#"> Cadastrar novo</a>
+        </li>
+         </ul>
+        </li>
+        <li>
+            <a href="{% url 'fornecedores_pessoa_juridica' %}"> Pessoa juridica</a>
+        </li>
+    </ul>
+</li>
+{% endblock menu_fornecedores %}
+
+
+{% block pesquisa %}
+{% include 'fornecedores/forms/pesquisas_pessoa_fisica.html' %}
+{% endblock pesquisa %}
+
+
+{% block modals %}
+
+{% endblock modals %}
+
+
+{% block cabecalho %}
+<ol class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li><strong><a href="#">fornecedores pessoa física</a></strong></li>
+</ol>
+{% endblock cabecalho %}
+
+
+{% block script %}
+<script src="{% static 'js/fornecedores/fornecedores_pessoa_fisica.js' %}"></script>
+<script src="{% static 'js/fornecedores/fornecedores.js' %}"></script>
+{% endblock script %}
+
+
+{% block estilo%} {% endblock estilo%}
+
+
+{% block loading %} {% endblock loading %}
+
+
+{% block javascript %}
+<script type="text/javascript">
+		$(document).ready(function() {
+
+		$("#form-pessoa-FISICA :input").prop("disabled", true);
+        $('#id_permissoes').addClass('form-control');
+			 //CONVERT DIALOG TITLE TO HTML
+			 //REF: http://stackoverflow.com/questions/14488774/using-html-in-a-dialogs-title-in-jquery-ui-1-10
+
+			$.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
+				_title : function(title) {
+					if (!this.options.title) {
+						title.html("&#160;");
+					} else {
+						title.html(this.options.title);
+					}
+				}
+			}));
+
+			 //Remove focus from buttons
+
+			$('.ui-dialog :button').blur();
+
+			// modal dialog init: custom buttons and a "close" callback reseting the form inside
+			var dialog = $("#modal_cadastro").dialog({
+				autoOpen : false,
+				width : 900,
+				height: 600,
+				resizable : true,
+				modal : true,
+				buttons : [
+
+                {html : "<i class='fa fa-plus'></i>&nbsp; Novo registro",
+					"class" : "btn btn-info",
+					click : function() {
+					    $('#form-pessoa-FISICA input').val("");
+					    $('#form-pessoa-FISICA select').val("");
+					    $('#form-pessoa-FISICA input[type=number]').val("0");
+					    $('#form-pessoa-FISICA input[type=submit]').val("Salvar registro");
+					    $("#form-pessoa-FISICA :input").prop("disabled", false);
+					    $("#formPesquisa :input").prop("disabled", true);
+					    $('.form-group').removeClass('has-error').removeClass('has-success');
+					}},
+
+                {html : "<i class='fa fa-edit'></i>&nbsp; Editar registro",
+					"class" : "btn btn-warning",
+					click : function() {
+					var id = $('#id_id').val();
+					if (id == '0') {
+
+					$.smallBox({
+                        title : "<i>EDITAR REGISTRO . . .</i>",
+                        content : "<i class='fa fa-clock-o'></i> <i>Primeiro você deve fazer a busca pelo registro, para então pder editá-lo . . .</i>",
+                        color : "#5384AF",
+                        iconSmall : "fa fa-thumbs-down bounce animated",
+                        timeout : 10000
+				    });
+
+				    } else {
+                        $("#form-pessoa-FISICA :input").prop("disabled", false);
+                        $("#formPesquisa :input").prop("disabled", true);
+					}
+
+					}},
+
+                {html : "<i class='fa fa-times danger'></i>&nbsp; Cancelar",
+					"class" : "btn btn-danger",
+					click : function() {
+					    $('#form-pessoa-FISICA input').val("");
+					    $('#form-pessoa-FISICA select').val("");
+					    $('#form-pessoa-FISICA input[type=number]').val("0");
+					    $('#form-pessoa-FISICA input[type=submit]').val("Salvar registro");
+					    $("#form-pessoa-FISICA :input").prop("disabled", true);
+					    $("#formPesquisa :input").prop("disabled", false);
+					    $('.form-group').removeClass('has-error').removeClass('has-success');
+	                }},
+
+                {html : "<i class='fa fa-times danger'></i>&nbsp; Sair",
+					"class" : "btn btn-danger",
+					click : function() {
+					    $('#form-pessoa-FISICA input').val("");
+					    $('#form-pessoa-FISICA select').val("");
+					    $('#form-pessoa-FISICA input[type=number]').val("0");
+					    $('#form-pessoa-FISICA input[type=submit]').val("Salvar registro");
+					    $("#form-pessoa-FISICA :input").prop("disabled", true);
+					    $(this).dialog("close");
+	                }},
+			]}
+		);
+
+			// modal_cadastro form: calls modal_cadastro function on submit and closes the dialog
+			var form = dialog.find("form").submit(function(event) {
+				//dialog.dialog("close");
+				event.preventDefault();
+			});
+
+
+			// modal_cadastro button: just opens the dialog
+			$("#fornecedores_novo").button().click(function() {
+			    $('#form-pessoa-FISICA input').val("");
+                $('#form-pessoa-FISICA select').val("");
+                $('#form-pessoa-FISICA input[type=number]').val("0");
+                $('#form-pessoa-FISICA input[type=submit]').val("Salvar registro");
+                $("#form-pessoa-FISICA :input").prop("disabled", false);
+                $("#formPesquisa :input").prop("disabled", true);
+                $("#formPesquisa :input").val("");
+                $('#formPesquisa input[type=submit]').val("Buscar");
+                $('.form-group').removeClass('has-error').removeClass('has-success');
+                dialog.dialog("open");
+			});
+
+			$("#corpo").on('click', 'a[id^=buscar-fornecedor-]', function(){
+			    $("#form :input").prop("disabled", false);
+                $("#formPesquisa :input").prop("disabled", true);
+                dialog.dialog("open");
+
+            });
+
+
+            //PERSONALIZANDO A TABELA
+            pageSetUp();
+
+                var responsiveHelper_tb_registros = undefined;
+                var breakpointDefinition = {
+                    tablet : 1024,
+                    phone : 480
+                };
+
+                /* COLUMN SHOW - HIDE */
+			$('#tb_registros').dataTable({
+				"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-6 hidden-xs'C>r>"+
+						"t"+
+						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-sm-6 col-xs-12'p>>",
+				"autoWidth" : true,
+				"scrollX": true,
+                //"scrollY":"400px",
+                scrollY: '50vh',
+                //"scrollCollapse": true,
+                //"paging": false,
+                "stateSave": true,
+				"oLanguage": {
+					"sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+				},
+				"preDrawCallback" : function() {
+					// Initialize the responsive datatables helper once.
+					if (!responsiveHelper_tb_registros) {
+						responsiveHelper_tb_registros = new ResponsiveDatatablesHelper($('#tb_registros'), breakpointDefinition);
+					}
+				},
+				"rowCallback" : function(nRow) {
+					responsiveHelper_tb_registros.createExpandIcon(nRow);
+				},
+				"drawCallback" : function(oSettings) {
+					responsiveHelper_tb_registros.respond();
+				}
+			});
+             //FIM DE PERSONALIZANDO A TABELA
+})
+		</script>
+{% endblock javascript %}

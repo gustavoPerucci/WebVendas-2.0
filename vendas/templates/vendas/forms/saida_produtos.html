@@ -1,0 +1,81 @@
+<form enctype="multipart/form-data" method="post" role="form"  id="form_saida">{% csrf_token %}
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+
+                <div id="div_id_saida" class="form-group col-lg-2 col-md-2">
+                    <label for="id_id_saida">ID saída</label>
+                    <input id="id_id_saida" name="id_id_saida" type="number" value="0" class="form-control" disabled>
+                </div>
+
+                <div id="div_venda" class="form-group col-lg-5 col-md-5">
+                    <label for="id_venda">Selecione um pedido</label>
+                    {{form_saida.venda}}
+                </div>
+
+                <div id="div_produto" class="form-group col-lg-5 col-md-5">
+                    <label for="id_produto">Todos os produtos</label>
+                    {{form_saida.produto}}
+                </div>
+
+                <div id="div_produtos_tabelados" class="form-group col-lg-6 col-md-6">
+                    <label for="id_produtos_tabelados">Produtos tabelados</label>
+                    <select id="id_produtos_tabelados" name="produtos_tabelados" class="form-control">
+                    </select>
+                </div>
+
+                <div id="div_quantidade" class="form-group col-lg-3 col-md-3">
+                    <label for="id_quantidade">Quantidade</label>
+                    <input id="id_quantidade" name="quantidade" type="number" step = "any" value="0.00" min="0.001" class="form-control" style="font-size:20px;" disabled>
+                </div>
+
+                <div id="div_valor_unitario" class="form-group col-lg-3 col-md-3">
+                    <label for="id_valor_unitario">Preço unitário</label>
+                    <input id="id_valor_unitario" name="valor_unitario" type="number" class="form-control" step = "any" min="0" value="0.00"  disabled>
+                </div>
+
+                <div id="div_percentual_desconto" class="form-group col-lg-3 col-md-3">
+                    <label for="id_percentual_desconto">Desconto %</label>
+                    <input id="id_percentual_desconto" name="percentual_desconto" type="number" step = "any" min="0" value="0.00" class="form-control" disabled>
+                </div>
+
+                <div id="div_total_desconto" class="form-group col-lg-3 col-md-3">
+                    <label for="id_total_desconto">Total desconto $</label>
+                    <input id="id_total_desconto" name="total_desconto" type="number" step = "any" value="0.00" class="form-control" disabled>
+                </div>
+
+                <div id="div_valor_total" class="form-group col-lg-3 col-md-3">
+                    <label for="id_valor_total">Valor total $</label>
+                    <input id="id_valor_total" name="valor_total" type="number" step = "any" min="0" value="0.00" class="form-control" disabled>
+                </div>
+
+                <div id="div_saldo_final" class="form-group col-lg-3 col-md-3">
+                    <label for="id_saldo_final">Saldo final $</label>
+                    <input id="id_saldo_final" name="saldo_final" type="number" step = "any" min="0" value="0.00" class="form-control" disabled>
+                </div>
+
+                <div id="div_id_produto" class="form-group col-lg-3 col-md-3">
+                    <label for="id_id_produto">Código produto</label>
+                    <input id="id_id_produto" name="id_id_produto" type="number" step = "1" value="0" min="0" class="form-control" disabled>
+                </div>
+
+                <div id="div_codigo_barras" class="form-group col-lg-9 col-md-9">
+                    <label for="id_codigo_barras">Código de barras</label>
+                    <input id="id_codigo_barras" name="codigo_barras" type="text" class="form-control" disabled style="font-size:20px;">
+                </div>
+
+                <div id="div_observacoes_saida" class="form-group col-lg-12 col-md-12">
+                    <label for="id_observacoes_saida">Observações referente ao pedido</label>
+                    <textarea id="id_observacoes_saida" name="observacoes_saida" disabled class="form-control"></textarea>
+                </div>
+
+                <div class="form-group col-lg-12 col-md-12">
+                    <button id="btn_registrar_saida" class=" btn btn-success text-left" type="submit" disabled> Incluir produto</button>
+                    <button id="btn_novo_item" type="button" class="btn btn-info" disabled> Novo ítem </button>
+                    <button id="btn_alterar_pedido" type="button" class="btn btn-warning" disabled> Alterar pedido </button>
+                    <button id="btn_cancelar_pedido" type="button" class="btn btn-danger" disabled>Cancelar operação </button>
+                    <button id="btn_sair_pedido" type="button" class="btn btn-danger"> Sair </button>
+                    <a onclick="$('#modal-cupom-nao-fiscal').modal()" type="button" class="btn btn-primary">CUPOM</a>
+                </div>
+            </div>
+        </div>
+    </form>

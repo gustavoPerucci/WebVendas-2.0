@@ -1,0 +1,180 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Web Vendas</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/bootstrap-4.0.0/bootstrap.css' %}">
+    <script src="{% static 'js/plugin/jquery-3.3.1/jquery.min.js' %}"></script>
+     <script src="{% static 'js/bootstrap/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap-4.0.0.min.js' %}"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+    <a class="navbar-brand" href="/">{% if user.is_authenticated %}{{usuario.empresa.nome_fantasia}} | <span style="color:darkorange;">{{usuario.nome}}</span>{% else %}Web Vendas{% endif %}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li>
+                <form class="navbar-form" action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Buscar por produtos" name="pesquisa">
+                        <div class="input-group-btn">
+                            <button class="btn btn-success" type="submit">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    <strong>Olá {% if user.is_authenticated %}{{usuario.nome}}{% else %}Visitante{% endif %}!!!</strong>
+                </a>
+                <div class="dropdown-menu">
+                    {% if user.is_authenticated %}
+                    <a class="dropdown-item" href="/administracao/" target="_blank">Acessar área administrativa do sistema</a>
+                    <a class="dropdown-item" href="/admin/" target="_blank">Acessar o Admin do Django</a>
+                    <a class="dropdown-item" href="/logout/">Sair do sistema</a>
+                     {% else %}
+                    <a class="dropdown-item" href="/login/">Fazer Login</a>
+                    {% endif %}
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+<br>
+
+<div class="container" style="margin-top:60px;margin-bottom:60px">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="text-center alert alert-{{ message.tags }} {% if message.tags == 'error'%} alert-danger {% endif %}">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <h5 class="">{{ message }}</h5>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+  <div class="row">
+      {% for produto in produtos %}
+      <div class="col-sm-12 col-md-6 col-lg-6">
+          <!-- product -->
+          <div class="product-content product-wrap clearfix list-group-item">
+              <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                      <div class="product-image shadow-lg p-4 mb-4 bg-white" style="overflow: auto;overflow: hidden;">
+                          <div id="demo{{produto.pk}}" class="carousel slide" data-ride="carousel">
+                              <div class="carousel-inner">
+                                <div class="carousel-item active" style="height:240px;">
+                                    <img src="/media/{{produto.imagem}}" alt="{{produto.descriao_simplificada}}" height="200" class="img-responsive">
+                                    {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.edita_produto %}
+                                    {% if produto.imagem %}
+                                    <div class="dropdown dropup">
+                                        <button type="button" class="btn btn-link" data-toggle="dropdown"><span class="badge badge-secondary">Menu Imagem principal</span></button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#" onclick="window.open('/produtos/alterar-imagem-produto/{{produto.pk}}/', 'Pagina', 'STATUS=NO, TOOLBAR=NO, LOCATION=NO, DIRECTORIES=NO, RESISABLE=NO, SCROLLBARS=NO, TOP=0, LEFT=200, WIDTH=840, HEIGHT=600');">Alterar Imagem principal</a>
+                                            <a class="dropdown-item" href="#" style="color:red;" onclick="window.open('/produtos/apagar-imagem-principal-produto/{{produto.pk}}/', 'Pagina', 'STATUS=NO, TOOLBAR=NO, LOCATION=NO, DIRECTORIES=NO, RESISABLE=NO, SCROLLBARS=NO, TOP=0, LEFT=200, WIDTH=840, HEIGHT=600');">Apagar Imagem principal</a>
+                                            <a class="dropdown-item" href="#" onclick="window.open('/produtos/adicionar-imagem-produto/{{produto.pk}}/', 'Pagina', 'STATUS=NO, TOOLBAR=NO, LOCATION=NO, DIRECTORIES=NO, RESISABLE=NO, SCROLLBARS=NO, TOP=0, LEFT=200, WIDTH=840, HEIGHT=650');">Adicionar Imagem aleatória</a>
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                    <div class="dropdown">
+                                        <button type="button" class="btn btn-link" data-toggle="dropdown"><span class="badge badge-secondary">Menu Imagem principal</span></button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#" onclick="window.open('/produtos/alterar-imagem-produto/{{produto.pk}}/', 'Pagina', 'STATUS=NO, TOOLBAR=NO, LOCATION=NO, DIRECTORIES=NO, RESISABLE=NO, SCROLLBARS=NO, TOP=0, LEFT=200, WIDTH=840, HEIGHT=600');">Adidionar Imagem principal</a>
+                                            <a class="dropdown-item" href="#" onclick="window.open('/produtos/adicionar-imagem-produto/{{produto.pk}}/', 'Pagina', 'STATUS=NO, TOOLBAR=NO, LOCATION=NO, DIRECTORIES=NO, RESISABLE=NO, SCROLLBARS=NO, TOP=0, LEFT=200, WIDTH=840, HEIGHT=650');">Adicionar Imagem aleatória</a>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% endif %}
+                                </div>
+                                  {% for imagem in imagens %}
+                                  {% if imagem.produto.pk == produto.pk%}
+                                <div class="carousel-item" style="height:240px;">
+                                    <img src="/media/{{imagem.imagem}}" alt="{{produto.descriao_simplificada}}" height="200" class="img-responsive">
+                                    {% if usuario.permissoes.administrador or usuario.permissoes.administrador_super or usuario.permissoes.edita_produto %}
+                                    <div class="dropdown dropup">
+                                        <button type="button" class="btn btn-link" data-toggle="dropdown">
+                                            <span class="badge badge-secondary">menu imagens aleatórias</span>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#" style="color:red;" onclick="window.open('/produtos/apagar-imagem-produto/{{imagem.pk}}/', 'Pagina', 'STATUS=NO, TOOLBAR=NO, LOCATION=NO, DIRECTORIES=NO, RESISABLE=NO, SCROLLBARS=NO, TOP=50, LEFT=200, WIDTH=840, HEIGHT=500');">Apagar Imagem aleatória</a>
+                                            <a class="dropdown-item" href="#" onclick="window.open('/produtos/adicionar-imagem-produto/{{produto.pk}}/', 'Pagina', 'STATUS=NO, TOOLBAR=NO, LOCATION=NO, DIRECTORIES=NO, RESISABLE=NO, SCROLLBARS=NO, TOP=0, LEFT=200, WIDTH=840, HEIGHT=650');">Adicionar Imagem aleatória</a>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                  {% endif %}
+                                  {% endfor %}
+                              </div>
+                          </div>
+                          <a class="carousel-control-prev" href="#demo{{produto.pk}}" data-slide="prev">
+                                  <span style="color:black"></span>
+                              </a>
+                              <a class="carousel-control-next" href="#demo{{produto.pk}}" data-slide="next">
+                                  <span style="color:black"></span>
+                              </a>
+                      </div>
+                  </div>
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="product-deatil">
+                          <h5 style="white-space:nowrap;overflow:hidden;" class="text-center">
+                              <a href="#">
+                                  {{produto.descricao_simplificada}}
+                              </a>
+                          </h5>
+                          <h4 class="price-container text-center"><strong class="badge badge-dark">R$ {{produto.preco_venda}}</strong></h4>
+                          <h6 class="text-center" style="margin-top:-10px;color:silver;"><strong>{{produto.unidade_medida}} {% if produto.quantidade_embalagem_fechada %} com {{produto.quantidade_embalagem_fechada|floatformat:2}}{% endif%}</strong></h6>
+                          <h6 class="text-center"><mark>{% if produto.atacado_desconto %}<span style="color:darkgreen;">Comprando apartir de <strong>{{produto.atacado_apartir|floatformat:2}}</strong> ganhe <strong>{{produto.atacado_desconto|floatformat:1}}<span>%</span></strong> de desconto</span> {% else %} Praticamos os melhores preços da região. Aproveite...</mark>{% endif %}</h6>
+                          <span class="tag1"></span>
+                      </div>
+                      <div class="description">
+                          <p><strong> Informações sobre o produto.</strong></p>
+                          <div class="table-responsive" style="height:100px">
+                              <p>{{produto.marketing}}</p>
+                          </div>
+                          {% if produto.estoque_atual %}
+                          <p style="color:green;">({{produto.estoque_atual}}  em estoque )</p>
+                          {% else %}
+                          <p style="color:red;">Estoque esgotatdo</p>
+                          {% endif %}
+                      </div>
+                      <div class="product-info smart-form">
+                          <div class="row">
+                              <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                                  {% if produto.estoque_atual %}
+                                  <p style="color:silver;">Aproveite e compre antes que acabe...</p>
+                                  <a href="javascript:void(0);" class="btn btn-success">Adicionar ao carrinho</a>
+                                  {% else %}
+                                  <p style="color:red;"><strong>Ops!!! Já vendemos todo o estoque...</strong> </p>
+                                  <a href="javascript:void(0);" class="btn btn-info">Avise-me quando chegar</a>
+                                  {% endif %}
+                              </div>
+                              <div class="col-md-6 col-sm-6 col-xs-6">
+
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- end product -->
+      </div>
+      {% endfor %}
+  </div>
+    {% if not produtos %}
+    <div class="col-sm-12 col-md-12 col-lg-12 text-center alert alert-info text-center">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <h1 class="" style="color:silver;">Nenhum produto está sendo anunciado neste site <br> <small>{{site}}</small></h1>
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>
+
+

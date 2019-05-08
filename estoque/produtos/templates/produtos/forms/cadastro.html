@@ -1,0 +1,117 @@
+<form method='post' id='formPesquisa' style="margin-left:12px;">
+        <div class="row">
+            <div class=" form-group col-sm-3" >
+                <label for="id_Pesquisa">Busca por ID<span id="label_Pesquisa"></span></label>
+                <input id='id_Pesquisa' type='number' class='form-control' name='Pesquisa' placeholder='ID produto' required>
+            </div>
+            <div class=" form-group col-sm-1">
+                <label for="buscar">Buscar<span id="label_buscar"></span></label>
+                <input id='buscar' class='btn btn-info text-left form-control' type='submit' value='Buscar' style='width:100px'>
+            </div>
+        </div>
+    </form>
+    <hr>
+    <form enctype="multipart/form-data" method="post" role="form"  id="form">{% csrf_token %}
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+
+                <div id="div_id" class="form-group col-lg-2 col-md-2">
+                    <label for="id_id">ID</label>
+                    <input id="id_id" name="id" type="number" value="0" class="form-control" readonly>
+                </div>
+
+                <div id="div_descricao_simplificada" class="form-group col-lg-10 col-md-10">
+                    <label for="id_descricao_simplificada">Descrição simplificada do produto</label>
+                    <input id="id_descricao_simplificada" name="descricao_simplificada" type="text" max="32" class="form-control" autofocus = "autofocus">
+                </div>
+
+                <div id="div_descricao_completa" class="form-group col-lg-9 col-md-9">
+                    <label for="id_descricao_completa">Descrição completa do produto</label>
+                    <input id="id_descricao_completa" name="descricao_completa" type="text" class="form-control">
+                </div>
+
+                <div id="div_unidade_medida" class="form-group col-lg-3 col-md-3">
+                    <label for="id_unidade_medida">Unidade medida</label>
+                    <input id="id_unidade_medida" name="unidade_medida" type="text" class="form-control">
+                </div>
+
+                <div id="div_categoria" class="form-group col-lg-3 col-md-3">
+                    <label for="id_categoria_produto">Categoria</label>
+                    {{form_produtos.categoria_produto}}
+                </div>
+
+                <div id="div_marca" class="form-group col-lg-3 col-md-3">
+                    <label for="id_marca_produto">Marca</label>
+                    {{form_produtos.marca_produto}}
+                </div>
+
+                <div id="div_estoque_minimo" class="form-group col-lg-3 col-md-3">
+                    <label for="id_estoque_minimo">Estoque mínimo</label>
+                    <input id="id_estoque_minimo" name="estoque_minimo" type="number" step = "any" min="0" value="0" class="form-control">
+                </div>
+
+                <div id="div_estoque_maximo" class="form-group col-lg-3 col-md-3">
+                    <label for="id_estoque_maximo">Estoque máximo</label>
+                    <input id="id_estoque_maximo" name="estoque_maximo" type="number" step = "any" min="0" value="0" class="form-control">
+                </div>
+
+                <div id="div_fracionar_produto" class="form-group col-lg-3 col-md-3">
+                    <label for="id_fracionar_produto">Fracionar</label>
+                    <select id="id_fracionar_produto" name="fracionar_produto" class="form-control">
+                        <option value="NAO">NÃO</option>
+                        <option value="SIM">SIM</option>
+                    </select>
+                </div>
+
+                <div id="div_id_embalagem_fechada" class="form-group col-lg-3 col-md-3">
+                    <label for="id_id_embalagem_fechada">ID emb. fechada</label>
+                    <input id="id_id_embalagem_fechada" name="id_embalagem_fechada" type="number" step = "1" value="0" min="0" class="form-control">
+                </div>
+
+                <div id="div_quantidade_embalagem_fechada" class="form-group col-lg-3 col-md-3">
+                    <label for="id_quantidade_embalagem_fechada">Quant. emb. fechada</label>
+                    <input id="id_quantidade_embalagem_fechada" name="quantidade_embalagem_fechada" type="number" step = "any" value="0" min="0" class="form-control">
+                </div>
+
+
+                <div id="div_percentual_lucro" class="form-group col-lg-3 col-md-3">
+                    <label for="id_percentual_lucro">Percent. lucro</label>
+                   <input id="id_percentual_lucro" name="percentual_lucro" type="number" step = "any" value="0" min="0" class="form-control">
+                </div>
+
+                <div id="div_desconto_maximo" class="form-group col-lg-3 col-md-3">
+                    <label for="id_desconto_maximo">Desc. máximo</label>
+                    <input id="id_desconto_maximo" name="desconto_maximo" type="number" step = "any" value="0" min="0" class="form-control">
+                </div>
+
+                <div id="div_atacado_apartir" class="form-group col-lg-3 col-md-3">
+                    <label for="id_atacado_apartir">Atac. apartir</label>
+                    <input id="id_atacado_apartir" name="atacado_apartir" type="number" value="0" step = "any" min="0" class="form-control">
+                </div>
+
+                <div id="div_atacado_desconto" class="form-group col-lg-3 col-md-3">
+                    <label for="id_atacado_desconto">Atac. desconto</label>
+                    <input id="id_atacado_desconto" name="atacado_desconto" type="number" value="0" step = "any" min="0" class="form-control">
+                </div>
+
+                <div id="div_codigo_barras" class="form-group col-lg-3 col-md-3">
+                    <label for="id_codigo_barras">Código de barras</label>
+                    <input id="id_codigo_barras" name="codigo_barras" type="text" class="form-control">
+                </div>
+
+                <div id="div_marketing" class="form-group col-lg-12 col-md-12">
+                    <label for="id_marketing">Marketing</label>
+                    <textarea id="id_marketing" name="marketing" class="form-control"></textarea>
+                </div>
+
+                <div id="div_observacoes" class="form-group col-lg-12 col-md-12">
+                    <label for="id_observacoes">Observações</label>
+                    <textarea id="id_observacoes" name="observacoes" class="form-control"></textarea>
+                </div>
+
+                <div class="form-group col-lg-12 col-md-12">
+                    <button class=" btn btn-success text-left" type="submit">Salvar registro </button>
+                </div>
+            </div>
+        </div>
+    </form>

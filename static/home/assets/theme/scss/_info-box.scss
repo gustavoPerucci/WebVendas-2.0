@@ -1,0 +1,24 @@
+/*!
+|||||||||||||||||||||||||||||||||||||| 
+||||||||||||||||||||||||||||||||||||||
+
+I N F O  B O X  S C S S
+
+||||||||||||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||
+*/
+
+.info-box {
+
+	text-align: center;
+
+	&-icon, &-text {
+		display: inline-block;
+		float: left;
+		width: 100%;
+	}
+ &-icon {
+ 	font-size: 30px;
+ 	margin-bottom: $margin-base;
+ }
+}

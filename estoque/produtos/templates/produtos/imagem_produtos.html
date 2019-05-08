@@ -1,0 +1,173 @@
+{% load staticfiles %}
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Web Vendas - {{ titulo }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/bootstrap-4.0.0/bootstrap.css' %}">
+    <script src="{% static 'js/plugin/jquery-3.3.1/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap-4.0.0.min.js' %}"></script>
+    <style type="text/css">
+        body{
+            margin-top:10px;
+            margin-bottom:10px;
+            background: none repeat scroll 0 0 white;
+            }
+
+        .list-group-item{background: none repeat scroll 0 0 azure;border-color:black;}
+        .titulo{color:black;}
+        .errorlist li{color:red;list-style-type:none;text-align:left;}
+
+        input[type=text],[type=email]{
+            text-indent: 10px;
+            border-radius:4px;
+            -moz-border-radius:4px;
+            -webkit-border-radius:4px;
+            box-shadow: 1px 1px 2px #333333;
+            -moz-box-shadow: 1px 1px 2px #333333;
+            -webkit-box-shadow: 1px 1px 2px #333333;
+            background: white;
+            border:1px solid #000000;
+            width:100%
+        }
+
+        input[type=number],[type=date]{
+            text-indent: 10px;
+            border-radius:4px;
+            -moz-border-radius:4px;
+            -webkit-border-radius:4px;
+            box-shadow: 1px 1px 2px #333333;
+            -moz-box-shadow: 1px 1px 2px #333333;
+            -webkit-box-shadow: 1px 1px 2px #333333;
+            background: white;
+            border:1px solid #000000;
+            width:100%;
+        }
+
+        select{
+            text-indent: 10px;
+            border-radius:4px;
+            -moz-border-radius:4px;
+            -webkit-border-radius:4px;
+            box-shadow: 1px 1px 2px #333333;
+            -moz-box-shadow: 1px 1px 2px #333333;
+            -webkit-box-shadow: 1px 1px 2px #333333;
+            background: white;
+            border:1px solid #000000;
+            width:100%
+        }
+
+        textarea{
+            text-indent: 0px;
+            border: 1px solid #000000;
+            background:white;
+            width:100%;
+            height:100px;
+            border-radius:4px;
+            -moz-border-radius:4px;
+            -webkit-border-radius:4px;
+            box-shadow: 1px 1px 2px #333333;
+            -moz-box-shadow: 1px 1px 2px #333333;
+            -webkit-box-shadow: 1px 1px 2px #333333;
+        }
+
+        input[type=text]:hover,[type=number]:hover, textarea:hover, select:hover,[type=date]:hover{
+            background: #ffffff;
+            border:1px solid #990000;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+            white-space: nowrap;
+            border-bottom: 1px solid #ddd;
+            text-transform: uppercase;
+        }
+
+        th {
+            background-color: grey;
+            color:white;
+        }
+    </style>
+    {% if fechar %}
+    <script>
+        window.opener.location.reload();
+        window.opener = window;
+        window.close();
+    </script>
+    {% endif %}
+</head>
+
+<body>
+<div class="container">
+
+<div class="list-group-item" style="border-radius:20px;">
+    <h3 class="text-center titulo" style="background-color:black;margin-bottom:0px;color:white;border-top-left-radius:5px;border-top-right-radius:5px;margin-top:5px;background-image: linear-gradient(to right, rgba(0, 0, 0, 0.4), azure);"> <strong> {{ titulo }} </strong> </h3>
+   {% if mensagem %}
+    {% if erro %}
+    <h4 class="text-center titulo" style="margin-top:0px;background-color:darkred;border-bottom-right-radius:5px;black;border-bottom-left-radius:5px;background-image: linear-gradient(to right, rgba(0, 0, 0, 0.4), azure);font-size:20px;color:red;"><marquee behavior=scroll><stong>{{ mensagem }}</stong></marquee></h4>
+    {% else %}
+    <h4 class="text-center titulo" style="margin-top:0px;background-color:darkgreen;border-bottom-right-radius:5px;black;border-bottom-left-radius:5px;;background-image: linear-gradient(to right, rgba(0, 0, 0, 0.4), azure);font-size:20px;color:green;"><marquee behavior=scroll><stong>{{ mensagem }}</stong></marquee></h4>
+    {% endif %}
+    {% endif %}
+    <form id="form-imagem" enctype="multipart/form-data" method="post">{% csrf_token %}
+        <p><strong>Adicionar uma nova imagem.</strong></p>
+
+            {{ form.as_p }}
+
+
+        {% if imagens %}
+        <hr>
+        <p><strong>Adicione uma imagem já salva.</strong></p>
+        <div class="row">
+            <input id="input-imagem" type="hidden" value="" class="input" name="caminho_imagem"/>
+            <input id="input-id-imagem" type="hidden" class="input" value="" name="id_imagem"/>
+            {% for imagem in imagens %}
+            <div id="div-imagem-{{imagem.pk}}" class="col-lg-4 col-md-6 col-sm-6 col-xs-12 div-imagem form-group">
+                <div class="product-image text-center" style="overflow: auto;">
+                    <img id="imagem-{{imagem.pk}}" src="/media/{{imagem.imagem}}" title="{{imagem.imagem}}" alt="{{produto.descriao_simplificada}}" height="200" class="img-responsive">
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <hr>
+        {% endif %}
+
+        <div class="">
+            <button class=" btn btn-success text-left" type="submit">Salvar</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal" onClick="Fechar()">Cancelar</button>
+        </div>
+    </form>
+</div>
+    </div>
+
+
+<script>
+$(document).ready(function(){
+    $("img").click(function(){
+        var img_id = $(this).attr('id');
+        var caminho = $(this).attr('title');
+        var id = $(this).attr('id').split('-')[1];
+        $("#id_imagem").prop("disabled", true);
+        $('.div-imagem').removeClass('shadow-lg p-4 mb-4 bg-white list-group-item');
+        $('#div-' + img_id).addClass('shadow-lg p-4 mb-4 bg-white list-group-item');
+        $('.input').val("");
+        $('#input-imagem').val(caminho);
+        $('#input-id-imagem').val(id);
+    });
+
+});
+</script>
+
+<script>
+
+function Fechar() {
+window.opener = window;
+window.close();
+}
+</script>
+</body>

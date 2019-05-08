@@ -1,0 +1,23 @@
+<div class="modal fade" data-backdrop="static" id="modal-categorias" role="dialog">
+    <div class="modal-dialog" style="z-index: 0;">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="modal-title text-center text-nuted"><strong>CATEGORIAS PRODUTOS</strong></h1>
+            </div>
+            <div class="modal-body table-responsive" style="height:75vh;overflow:auto">
+                <div class="collapse">
+                    {% include 'produtos/forms/categorias.html' %}
+                    <hr>
+                </div>
+                {% include 'produtos/tables/categorias.html' %}
+            </div>
+            <div class="modal-footer">
+                <button id="salvar_categoria" type="button" class="btn btn-success">Salvar</button>
+                <button id="nova_categoria" type="button" class="btn btn-primary">Novo</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<form enctype="multipart/form-data" method="post" role="form"  id="form2">{% csrf_token %}
+    <div class="row">
+
+        <div id="div_id_preco" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-4">
+            <label for="id_id_preco">ID</label>
+            <input id="id_id_preco" name="id_id_preco" type="number" value="0" class="form-control" disabled>
+        </div>
+
+        <div id="div_cliente" class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            <label for="id_cliente">Selecione um cliente</label>
+            {{form_tabela_precos.cliente}}
+        </div>
+
+        <div id="div_valor_compra" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-4">
+            <label for="id_valor_compra">Compra</label>
+            <input id="id_valor_compra" name="valor_compra" type="number" step="any" value="0.000" min="0" class="form-control" disabled>
+        </div>
+
+        <div id="div_id_codigo_de_barras_produto" class="form-group col-lg-3 col-md-3 col-sm-12 col-xs-8">
+            <label for="id_codigo_de_barras_produto">Código de barras</label>
+            <input id="id_codigo_de_barras_produto" name="id_codigo_de_barras_produto" type="text" class="form-control" disabled style="font-size:20px;">
+        </div>
+
+        <div id="div_produto" class="form-group col-lg-5 col-md-5 col-sm-8 col-xs-12">
+            <label for="id_produto">Selecione um produto</label>
+            {{form_tabela_precos.produto}}
+        </div>
+
+        <div id="div_percentual" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-6">
+            <label for="id_percentual">Percentual</label>
+            <input id="id_percentual" name="percentual" type="number" step="any" value="0.000" min="0" class="form-control" disabled>
+        </div>
+
+        <div id="div_preco_venda" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-6">
+            <label for="id_preco_venda">Preco venda</label>
+            <input id="id_preco_venda" name="preco_venda" type="number" step="any" value="0.000" min="0" class="form-control" disabled>
+        </div>
+
+        <div id="div_observacoes_preco" class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <label for="id_observacoes_preco">Observações</label>
+            <textarea id="id_observacoes_preco" name="observacoes_preco" class="form-control" disabled></textarea>
+        </div>
+
+        <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <button id="btn_salvar_preco" class=" btn btn-success text-center" type="submit" disabled>Salvar</button>
+            <button id="btn_novo_preco" class=" btn btn-primary text-center">Novo</button>
+            <button id="btn_alterar_preco" class=" btn btn-warning text-center" disabled>Editar</button>
+            <button id="btn_cancelar_preco" class=" btn btn-danger text-center" disabled>Cancelar</button>
+        </div>
+
+    </div>
+</form>
+

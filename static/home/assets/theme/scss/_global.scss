@@ -1,0 +1,124 @@
+/*!
+|||||||||||||||||||||||||||||||||||||| 
+||||||||||||||||||||||||||||||||||||||
+
+G L O B A L  S C S S
+
+||||||||||||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||
+*/
+
+// sass --watch assets/theme/scss/theme.scss:assets/theme/css/theme.css
+// sass --watch assets/bootstrap/scss/bootstrap.scss:assets/bootstrap/css/bootstrap.css  
+body {
+	width: 100%;
+	overflow-x: hidden;
+	background: $main-light-color;
+}
+ul, li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+p {
+	color: $main-gray;
+}
+.heading {
+	position: relative;
+	margin-bottom: $margin-base;
+	font-size: 14px;
+	padding-bottom: $padding-base;
+}
+.light {
+	color: $main-light-color !important;
+
+	&-with-shadow {
+		color: $main-light-color !important;
+		text-shadow: 1px 1px 45px rgba(0, 0, 0, 0.2);
+	}
+}
+.dark {
+	color: $main-dark-color;
+
+	&-with-shadow {
+		color: $main-dark-color !important;
+		text-shadow: 1px 1px 45px rgba(255, 255, 255, 0.2);
+	}
+}
+.light-bg {
+	background-color: $border-color;
+}
+.dark-bg {
+	background-color: $main-dark-color;
+}
+.theme-color {
+	color: $main-theme-color;
+}
+.theme-color-secondary {
+	color: $main-theme-color-secondary;
+}
+.theme-color-bg {
+	background-color: $main-theme-color;
+}
+//smartphone full width
+.smartphone-fw {
+	@include smartphone {
+		width: 100% !important;
+	}
+}
+.smartphone-inline-fw {
+	@include smartphone {
+		display: inline-block;
+		width: 100% !important;
+	}
+}
+.relative {
+	position: relative;
+}
+.border {
+	border: 1px solid $border-color;
+}
+.no-border {
+	border: none !important;
+
+	&:before, &:after {
+		border: none !important;
+	}
+}
+.bold {
+	font-weight: 700;
+}
+.small {
+	font-size: 80%;
+}
+.x-small {
+	font-size: 60%;
+}
+.large {
+	font-size: 120%;
+}
+.text-muted {
+	opacity: 0.7;
+}
+.separate {
+	background: $border-color;
+	height: 1px;
+	width: 100%;
+}
+.main-container {
+	@include desktop {
+		padding-top: 120px;
+	}
+}
+.no-background {
+	background: none !important;
+	box-shadow: none;
+	border: none;
+}
+.text-container {
+	max-width: 800px;
+}
+.container {
+	max-width: 1380px;
+	width: auto;
+}

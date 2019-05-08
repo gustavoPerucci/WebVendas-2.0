@@ -1,0 +1,14 @@
+Provided is the SQLite ODBC driver 0.65 linked to SQLite version 3.3.5.
+To build this yourself, obtain the sqliteodbc source code from
+http://www.ch-werner.de/sqliteodbc/ and unpack it. Then obtain the sqlite
+sources or check out the cvs repository as a subdirectory called sqlite3.
+Then copy the files files from the src/ subdirectory in this archive
+into the sqliteodbc directory, replacing any already present.
+You will need to get a Win32 version of awk (GNU awk can be obtained easily).
+
+Now you can use MSVC++ 6.0 to build everything using
+ nmake -f sqlite3odbc.mak
+
+All the release executables will end up in Release.
+
+Pat Thoyts <patthoyts@users.sourceforge.net>

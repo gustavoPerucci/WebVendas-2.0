@@ -1,0 +1,34 @@
+%box {
+	display: block;
+	float: left;
+	width: 100%;
+}
+%ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+%transition {
+	transition: all 300ms ease-in-out;
+}
+%transition-long {
+	transition: all 600ms ease-in-out;
+}
+%transition-short {
+	transition: all 150ms ease-in-out;
+}
+%icon-animation {
+	animation: focusButton 2s infinite;
+
+	@keyframes focusButton {
+		0% {
+			transform: translateX(0px);
+		}
+		50% {
+			transform: translateX(10px);
+		}
+		100% {
+			transform: translateX(0px);
+		}
+	}
+}

@@ -1,0 +1,57 @@
+/*!
+|||||||||||||||||||||||||||||||||||||| 
+||||||||||||||||||||||||||||||||||||||
+
+F O O T E R  S C S S
+
+||||||||||||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||
+*/
+.footer {
+	a {
+		font-size: 12px;
+		color: $main-gray;
+	}
+	h6 {
+		color: $main-theme-color;
+	}
+	&-social {
+		margin: $margin-medium 0;
+
+		li {
+			padding: 0;
+
+			&:after {
+				display: none;
+			}
+			a {
+				display: block;
+				width: 30px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				border: 1px solid $main-gray;
+				margin-right: 5px;
+				border-radius: 5px;
+				transition: all 300ms ease-in-out;
+
+				&:hover {
+					color: $main-dark-color;
+					border-color: $main-dark-color;
+				}
+			}
+		}
+	}
+	&-newsletter {
+		position: relative;
+
+		input {
+			padding-right: 80px;
+		}
+		button {
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+	}
+}

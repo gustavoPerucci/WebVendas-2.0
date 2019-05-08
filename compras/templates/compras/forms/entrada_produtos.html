@@ -1,0 +1,97 @@
+<form enctype="multipart/form-data" method="post" role="form"  id="form_entrada">{% csrf_token %}
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                <div id="div_id_entrada" class="form-group col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    <label for="id_id_entrada">ID entrada</label>
+                    <input id="id_id_entrada" name="id_id_entrada" type="number" value="0" class="form-control" disabled>
+                </div>
+
+                <div id="div_compra" class="form-group col-lg-10 col-md-10 col-sm-9 col-xs-9">
+                    <label for="id_compra">Selecione uma compra</label>
+                    {{form_entrada.compra}}
+                </div>
+
+                <div id="div_produto" class="form-group col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                    <label for="id_produto">Selecione um produto</label>
+                    {{form_entrada.produto}}
+                </div>
+
+                <div id="div_quantidade" class="form-group col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                    <label for="id_quantidade">Quantidade</label>
+                    <input id="id_quantidade" name="quantidade" type="number" step = "any" value="0.00" min="0.001" class="form-control" style="font-size:20px;" disabled>
+                </div>
+
+                <div id="div_preco_compra" class="form-group col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                    <label for="id_preco_compra">Preço unitário</label>
+                    <input id="id_preco_compra" name="preco_compra" type="number" class="form-control" step = "any" min="0" value="0.00"  disabled>
+                </div>
+
+                <div id="div_total" class="form-group col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                    <label for="id_total">Valor total</label>
+                    <input id="id_total" name="total" type="number" step = "any" min="0" value="0.00" class="form-control" disabled>
+                </div>
+
+                <div id="div_codigo_barras" class="form-group col-lg-4 col-md-4 col-sm-8 col-xs-8">
+                    <label for="id_codigo_barras">Código de barras</label>
+                    <input id="id_codigo_barras" name="codigo_barras" type="text" class="form-control" disabled style="font-size:20px;">
+                </div>
+
+                <div id="div_data_entrada" class="form-group col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                    <label for="id_data_entrada">Data compra</label>
+                    <input id="id_data_entrada" name="data_entrada" type="date" class="form-control" disabled required>
+                </div>
+
+                <div id="div_data_fabricacao" class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                    <label for="id_data_fabricacao">Fabricação</label>
+                    <input id="id_data_fabricacao" name="data_fabricacao" type="date" class="form-control" disabled>
+                </div>
+
+                <div id="div_data_validade" class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                    <label for="id_data_validade">Validade</label>
+                    <input id="id_data_validade" name="data_validade" type="date" class="form-control" disabled>
+                </div>
+
+                <div id="div_numero_lote" class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                    <label for="id_numero_lote">Lote</label>
+                    <input id="id_numero_lote" name="numero_lote" type="text" class="form-control" disabled>
+                </div>
+
+                <div id="div_marca" class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                    <label for="id_marca">Marca do produto</label>
+                    <input id="id_marca" name="marca" type="text" class="form-control" disabled>
+                </div>
+
+                <div id="div_atualizar_preco" class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <label for="atualizar_preco">Atualizar preço de venda???</label>
+                    <select id="atualizar_preco" name="atualizar_preco" class="form-control" required>
+                        <option value=''></option>
+                        <option value='NAO'>NÃO</option>
+                        <option value='SIM'>SIM</option>
+                    </select>
+                </div>
+
+                <div id="div_atualizar_preco_tabelado" class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <label for="atualizar_preco_tabelado">Atualizar preços tabelados???</label>
+                    <select id="atualizar_preco_tabelado" name="atualizar_preco_tabelado" class="form-control" required>
+                        <option value=''></option>
+                        <option value='NAO'>NÃO</option>
+                        <option value='SIM'>SIM</option>
+                    </select>
+                </div>
+
+                <div id="div_observacoes_entrada" class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label for="id_observacoes_entrada">Observações</label>
+                    <textarea id="id_observacoes_entrada" name="observacoes_entrada" disabled class="form-control"></textarea>
+                </div>
+
+                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <button id="btn_registrar_entrada" class=" btn btn-success text-left" type="submit" disabled>Registrar</button>
+                    <button id="btn_nova_entrada" type="button" class="btn btn-info" disabled>Novo</button>
+                    <button id="btn_alterar_entrada" type="button" class="btn btn-warning" disabled>Alterar</button>
+                    <button id="btn_cancelar_entrada" type="button" class="btn btn-danger" disabled>Cancelar</button>
+                    <button id="btn_sair_entrada" type="button" class="btn btn-danger">Sair</button>
+                </div>
+            </div>
+        </div>
+    </form>

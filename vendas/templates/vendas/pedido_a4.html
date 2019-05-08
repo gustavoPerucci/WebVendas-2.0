@@ -1,0 +1,93 @@
+{% load staticfiles %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gustavo Perucci - SalesSystem -  Imprimir Pedido</title>
+     <link href="{% static 'css/atpcsistemas.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <style>
+
+@media print {
+    table {page-break-before: always;}
+}
+
+table, td, th {
+    border: 0px solid silver;
+
+}
+
+th, td {
+    padding: 2px;
+}
+table{
+    width:100%;
+    text-transform: uppercase;
+}
+    </style>
+</head>
+<body onLoad="javascript:print()">
+
+
+<div class="container-fluid">
+    <nav class="navbar navbar-nav"><h3 onclick="print()"><a href="#" class="glyphicon glyphicon-print"></a></h3></nav>
+
+    {% for venda in vendas %}
+    <table style="font-size:11px;">
+      <thead>
+<tr>
+<td  colspan="5"  style="line-height:10px;text-transform: capitalize;">
+  <p style="font-size:16px;margin-top:5px;"><strong>Cliente: </strong> {{ venda.Cliente.NomeRazao }} <strong> Telefone: </strong> {{ venda.Cliente.Telefone }} / {{ venda.Cliente.Celular }} </p>
+ <p><strong>Endereço: </strong> {{ venda.Cliente.Endereco }} -  {{ venda.Cliente.Bairro }} - {{ venda.Cliente.Cidade }} - {{ venda.Cliente.Estado }} </p>
+
+    <p><strong> Data: </strong> {{ venda.DataVenda|date:"d/M/Y" }} <strong> Entregar ate: </strong> {{ venda.DataEntrega|date:"d/M/Y" }} <strong>Pedido impresso em: </strong>  {{ data|date:"d/M/Y" }} </p>
+    <p><strong>Pedido: </strong>  000{{ venda.id }} - <strong>Fornecedor: </strong> {{ venda.Usuario.first_name }} {{ venda.Usuario.last_name }}</p>
+</td>
+</tr>
+</thead>
+<tbody>
+<th style="border: 1px solid silver;">Código</th>
+<th style="border: 1px solid silver;">Descrição do produto</th>
+<th style="border: 1px solid silver;">Un</th>
+<th style="border: 1px solid silver;padding: 5px;" class="text-right">Quant</th>
+<th style="border: 1px solid silver;padding: 5px;" class="text-right">Vl. Un</th>
+<th style="border: 1px solid silver;padding: 5px;" class="text-right">Valor total</th>
+
+{% for item in itens %}
+{% if venda.id == item.Venda.id %}
+    <tr style="border: 1px solid silver;">
+        <td style="border: 0.1px solid silver;">000.{{ item.Produto.id  }}</td>
+        <td style="border: 0.1px solid silver;">{{ item.Produto.DescricaoProduto  }}</td>
+        <td style="border: 0.1px solid silver;">{{ item.Produto.UnidadeMedida  }}</td>
+        <td class="text-right" style="border: 0.1px solid silver;">{{ item.Quantidade|floatformat:2  }}</td>
+        <td class="text-right" style="border: 0.1px solid silver;"> {{ item.PrecoVenda|floatformat:2 }}</td>
+        <td class="text-right" style="border: 0.1px solid silver;">{{ item.ValorTotal|floatformat:2 }}</td>
+        </tr>
+{% endif %}
+{% endfor %}
+<tr>
+    <td colspan="3">
+        <p style="font-size:10px;text-transform: capitalize;">Declaro que recebi os produtos constantes no pedido acima informado.</p>
+    </td>
+    <td class="text-right" colspan="2" style="line-height:5px;font-size:14px;text-transform: capitalize;">Valor Total:</td>
+<td class="text-right" style="font-size:14px;"><strong>{{ item.Venda.SaldoFinal|floatformat:2 }}</strong></td>
+</tr>
+<tr>
+    <td colspan="4" style="line-height:20px;text-transform: initial;">
+    <p>Local e Data: ____________________________________  ______ de ______________________ de ________</p>
+        <p>Ass:_____________________________________________________________ Rg: _____________________</p>
+    </td>
+</tr>
+
+</tbody>
+</table>
+    </div>
+{% endfor %}
+<script src="{% static 'js/jquery-1.12.0.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/atpcsistemas.js' %}"></script>
+<script src="{% static 'js/estoque.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+/*!
+|||||||||||||||||||||||||||||||||||||| 
+||||||||||||||||||||||||||||||||||||||
+
+C O U N T D O W N  S C S S
+
+||||||||||||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||
+*/
+.countdown {
+	&-counter {
+		display: block;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		margin-bottom: $margin-medium;
+		float: left;
+
+		li {
+			display: inline-block;
+			font-size: 14px;
+			text-align: center;
+			padding: $padding-base;
+			width: 25%;
+			float: left;
+
+			span {
+				display: block;
+				font-size: 36px;
+				font-family: $main-font;
+			}
+		}
+		&-small {
+			span {
+				font-size: 24px !important;
+			}
+		}
+		&-white {
+			li {
+				background: $main-light-color;
+			}
+		}
+	}
+	&-container {
+		padding: $padding-medium;
+		display: block;
+		float: left;
+
+		h3 {
+			margin-top: 0;
+			margin-bottom: $margin-medium;
+		}
+		p {
+			color: $main-gray;
+			margin: 0 0 $margin-medium 0;
+		}
+	}
+	&-price {
+		display: block;
+		width: 100%;
+		float: left;
+		margin-top: 0;
+		margin-bottom: $margin-medium;
+		text-align: center;
+	}
+}

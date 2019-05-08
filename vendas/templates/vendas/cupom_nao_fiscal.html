@@ -1,0 +1,77 @@
+
+        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 well no-padding" style="margin-top:10px;line-height:10px;width:450px;margin-left:0px;font-size:16px;background-color:#FFF8DC;">
+            <p style="border:2px dashed;margin-top:30px;line-height:30px;text-align:center"><strong> CUPOM NAO FISCAL *** PEDIDO 000{{ venda.id }}</strong><br>
+                <strong style="text-align:left">Data do pedido: </strong> {{ venda.data_registro }}<br>
+                <strong style="text-align:left"> Data da entrega: </strong>{{ venda.data_entrega }} ate 18:00<br>
+            </p>
+            <p style="line-height:20px;"> <strong>Fornecedor: </strong>{{ venda.empresa.nome_fantasia }}</p>
+            <p><strong>CNPJ: </strong>{{ venda.empresa.cnpj }}</p>
+            <p><strong>IE: </strong>{{ venda.empresa.inscricao_estadual }}</p>
+            <p><strong>IM: </strong>{{ venda.empresa.inscricao_municipal }}</p>
+            <p><strong>Fone: </strong>{{ venda.empresa.telefone }}</p>
+            <p style="border:0px dashed;margin-top:20px"></p>
+            <p style="line-height:20px;"><strong>Cliente: </strong>{{ venda.cliente.nome_razao_social }}</p>
+            <p><strong>CNPJ: </strong>{{ venda.cliente.cpf_cnpj }}</p>
+            <p><strong>IE: </strong>{{ venda.cliente.rg_inscricao_estadual }}</p>
+            <p><strong>IM: </strong>{{ venda.cliente.inscricao_municipal }}</p>
+            <p><strong>Telefone: </strong>{{ venda.cliente.telefone }}</p>
+            <p><strong>Comprador: </strong>{{ venda.solicitante }}</p>
+           <p style="border:1px dashed;margin-top:20px"></p>
+            <p style="width:410px;display:block;"><strong style="float:left;width:150px;">DESCRICAO </strong> <span style="float:left;width:150px;"><strong>QTDE</strong>  X <strong> VL UNIT </strong> </span> <strong style="float:right;"> TOTAL </strong></p>
+            <p style="border:1px dashed ;margin-top:25px"></p>
+            {% for item in itens %}
+            <p style="line-height:20px;"> {{ item.produto.descricao_simplificada  }}</p>
+            <p style="display:block;float:right;width:380px;margin-top:2px;"><span style="display:block;float:left;"><strong>{{ item.quantidade|floatformat:2  }} </strong> <span style="text-transform:capitalize;">({{ item.produto.unidade_medida }})</span> X <strong> {{ item.valor_unitario }} </strong> {% if item.total_desconto != '0,00' %} <small> (desc {{item.total_desconto}}) </small> {% endif %}</span>  <strong style="display:block;float:right;">{{ item.saldo_final }} </strong></p>
+            {% endfor %}
+            <p style="border:1px dashed ;margin-top:30px"></p>
+            <p style=""><strong style="display:block;float:left;">Valor total dos produtos:</strong> <strong style="display:block;float:right;">{{ valor_total_sem_desconto }}</strong> </p>
+            <p style="border:0px dashed;margin-top:30px"><span style="display:block;float:left;">Valor total dos descontos:</span> <span style="display:block;float:right;">{{ desconto }}</span> </p>
+            <p style="border:0px dashed;margin-top:50px"><strong style="display:block;float:left;">Valor total a pagar:</strong> <strong style="display:block;float:right;">{{ saldo_final }}</strong> </p>
+            <p style="border:0px dashed;margin-top:70px;"><span style="display:block;float:left;">Meio de pagamento:</span> <span style="display:block;float:right;text-transform:capitalize;">{{ venda.pagamento.meio_de_pagamento }}</span> </p>
+            <p style="border:1px dashed ;margin-top:90px"></p>
+            <p style="border:0px dashed;margin-top:20px">Impresso em: {{ data }}</p>
+            <br>
+            <p>Recebimento: ______/______/________ as _____:_____</p>
+            <br>
+            <p >Ass: ______________________________________________</p>
+        </div>
+         <div class="col-sm-4 col-md-4 col-lg-4 hidden-xs">
+        </div>
+        {% if vias == '2' %}
+        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 well no-padding" style="margin-top:10px;line-height:10px;width:450px;margin-left:0px;font-size:16px;background-color:#FFF8DC;">
+            <p style="border:2px dashed;margin-top:30px;line-height:30px;text-align:center"><strong> CUPOM NAO FISCAL *** PEDIDO 000{{ venda.id }}</strong><br>
+                <strong style="text-align:left">Data do pedido: </strong> {{ venda.data_registro }}<br>
+                <strong style="text-align:left"> Data da entrega: </strong>{{ venda.data_entrega }} ate 18:00<br>
+            </p>
+            <p style="line-height:20px;"> <strong>Fornecedor: </strong>{{ venda.empresa.nome_fantasia }}</p>
+            <p><strong>CNPJ: </strong>{{ venda.empresa.cnpj }}</p>
+            <p><strong>IE: </strong>{{ venda.empresa.inscricao_estadual }}</p>
+            <p><strong>IM: </strong>{{ venda.empresa.inscricao_municipal }}</p>
+            <p><strong>Fone: </strong>{{ venda.empresa.telefone }}</p>
+            <p style="border:0px dashed;margin-top:20px"></p>
+            <p style="line-height:20px;"><strong>Cliente: </strong>{{ venda.cliente.nome_razao_social }}</p>
+            <p><strong>Telefone: </strong>{{ venda.cliente.telefone }}</p>
+            <p><strong>Comprador: </strong>{{ venda.solicitante }}</p>
+           <p style="border:1px dashed;margin-top:20px"></p>
+            <p style="width:410px;display:block;"><strong style="float:left;width:150px;">DESCRICAO </strong> <span style="float:left;width:150px;"><strong>QTDE</strong>  X <strong> VL UNIT </strong> </span> <strong style="float:right;"> TOTAL </strong></p>
+            <p style="border:1px dashed ;margin-top:25px"></p>
+            {% for item in itens %}
+            <p style="line-height:20px;"> {{ item.produto.descricao_simplificada  }}</p>
+            <p style="display:block;float:right;width:380px;margin-top:2px;"><span style="display:block;float:left;"><strong>{{ item.quantidade|floatformat:2  }} </strong> <span style="text-transform:capitalize;">({{ item.produto.unidade_medida }})</span> X <strong> {{ item.valor_unitario }} </strong> {% if item.total_desconto != '0,00' %} <small> (desc {{item.total_desconto}}) </small> {% endif %}</span>  <strong style="display:block;float:right;">{{ item.saldo_final }} </strong></p>
+            {% endfor %}
+            <p style="border:1px dashed ;margin-top:30px"></p>
+            <p style=""><strong style="display:block;float:left;">Valor total dos produtos:</strong> <strong style="display:block;float:right;">{{ valor_total_sem_desconto }}</strong> </p>
+            <p style="border:0px dashed;margin-top:30px"><span style="display:block;float:left;">Valor total dos descontos:</span> <span style="display:block;float:right;">{{ desconto }}</span> </p>
+            <p style="border:0px dashed;margin-top:50px"><strong style="display:block;float:left;">Valor total a pagar:</strong> <strong style="display:block;float:right;">{{ saldo_final }}</strong> </p>
+            <p style="border:0px dashed;margin-top:70px;"><span style="display:block;float:left;">Meio de pagamento:</span> <span style="display:block;float:right;text-transform:capitalize;">{{ venda.pagamento.meio_de_pagamento }}</span> </p>
+            <p style="border:1px dashed ;margin-top:90px"></p>
+            <p style="border:0px dashed;margin-top:20px">Impresso em: {{ data }}</p>
+            <br>
+            <p>Recebimento: ______/______/________ as _____:_____</p>
+            <br>
+            <p >Ass: ______________________________________________</p>
+        </div>
+        {% endif %}
+
+
+

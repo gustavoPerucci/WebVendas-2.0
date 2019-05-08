@@ -1,0 +1,62 @@
+/*!
+|||||||||||||||||||||||||||||||||||||| 
+||||||||||||||||||||||||||||||||||||||
+
+W I D G E T  S C S S
+
+||||||||||||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||
+*/
+.widget {
+	width: 100%;
+	float: left;
+	margin-bottom: $margin-medium;
+	padding: 0 $padding-base;
+
+	h5 {
+		margin-top: 0;
+		border-bottom: 1px solid $border-color;
+		padding: $padding-base 0;
+	}
+	a {
+		color: $gray-base;
+		font-size: 12px;
+		display: inline-block;
+		padding: $padding-base /2 0;
+		width: 100%;
+		float: left;
+		border-bottom: 1px solid $border-color;
+		transition: all 300ms ease-in-out;
+
+		&:hover {
+			color: $main-theme-color-secondary;
+		}
+	}
+	.ti-close {
+		opacity: 0;
+		transition: opacity 300ms ease-in-out;
+	}
+	&-active {
+		color: $main-theme-color-secondary !important;
+
+		.ti-close {
+			opacity: 1;
+		}
+	}
+	&-color-dot {
+		display: inline-block;
+		width: 5px;
+		height: 5px;
+		margin-right: 5px;
+		border-radius: 50%;
+		position: relative;
+		top: -2px;
+	}
+	&-category {
+		&-number {
+			display: inline-block;
+			float: right;
+			opacity: 0.5;
+		}
+	}
+}

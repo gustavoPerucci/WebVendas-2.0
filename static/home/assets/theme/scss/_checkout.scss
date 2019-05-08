@@ -1,0 +1,128 @@
+/*!
+|||||||||||||||||||||||||||||||||||||| 
+||||||||||||||||||||||||||||||||||||||
+
+C H E C K O U T  S C S S
+
+||||||||||||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||
+*/
+.checkout {
+	&-container {
+		background: $main-light-color;
+		float: left;
+		width: 100%;
+		padding: $padding-base;
+	}
+	&-step {
+		background: $main-light-color;
+		float: left;
+		width: 100%;
+		margin: $margin-medium 0;
+		padding: 0 $padding-base;
+
+		li {
+			display: block;
+			float: left;
+			width: 25%;
+			position: relative;
+			color: #ddd;
+
+			@include mobile {
+				width: 100%;
+				margin-bottom: $margin-base;
+
+				&:after {
+					display: none;
+				}
+			}
+			.icon {
+				width: 30px;
+				height: 30px;
+				border: 1px solid;
+				border-radius: 100px;
+				display: block;
+				text-align: center;
+				line-height: 25px;
+				float: left;
+				position: relative;
+			}
+			&:after {
+				background: #ddd;
+				content: "";
+				height: 1px;
+				left: 30px;
+				position: absolute;
+				right: 0;
+				top: 14px;
+			}
+			&.active, &.checked {
+				color: $main-theme-color;
+				opacity: 1;
+
+				.icon {
+					border-color: $main-theme-color;
+				}
+				&:after {
+					background: $main-theme-color none repeat scroll 0 0;
+				}
+			}
+		}
+	}
+	&-label {
+		background: $main-light-color;
+		display: block;
+		float: left;
+		margin-left: $margin-base;
+		margin-top: 5px;
+		font-size: 12px;
+		padding: 0 $padding-base/3;
+		position: relative;
+		z-index: 2;
+	}
+	&-buttons {
+		display: block;
+		width: 100%;
+		float: left;
+		margin-top: $margin-medium;
+		padding: $padding-base;
+		border: 1px solid $body-bg;
+
+		@include smartphone {
+			.btn {
+				width: 100%;
+				margin: $margin-base/ 2 0;
+			}
+		}
+	}
+	&-notice {
+		background: $main-light-gray;
+		padding: $padding-base;
+		margin-bottom: $margin-medium;
+
+		.custom-checkbox {
+			margin: 0;
+		}
+	}
+	form {
+		border: 1px solid $body-bg;
+		float: left;
+		padding: 15px;
+		width: 100%;
+	}
+	.cart-right {
+		background: $main-light-color;
+	}
+	fieldset {
+		margin-bottom: $margin-medium;
+	}
+	&-one-page {
+		.cart-right {
+			background: $body-bg !important;
+			margin: $margin-medium 0;
+		}
+		.cart-summary li {
+			border-bottom: 1px solid $main-light-color;
+		}
+	}
+}

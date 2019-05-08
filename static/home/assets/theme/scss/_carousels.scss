@@ -1,0 +1,124 @@
+/*!
+|||||||||||||||||||||||||||||||||||||| 
+||||||||||||||||||||||||||||||||||||||
+
+C A R O U S E L S  S C S S
+
+||||||||||||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||
+*/
+.swiper-pagination {
+	position: relative;
+
+	&-bullet {
+		height: 7px;
+		width: 7px;
+	}
+}
+.carousel-controls span {
+	transition: color 300ms ease-in-out;
+
+	&:hover {
+		cursor: pointer;
+		color: $main-theme-color;
+	}
+}
+section {
+	position: relative;
+}
+.swiper-container-horizontal > .swiper-pagination-progress {
+	bottom: 0;
+	top: auto;
+	height: 10px;
+	left: 0;
+	position: absolute;
+	right: 0;
+	width: 100%;
+	background: rgba(255, 255, 255, 0.4) none repeat scroll 0 0;
+	z-index: 99;
+}
+.swiper-pagination-progress .swiper-pagination-progressbar {
+	background: white none repeat scroll 0 0;
+}
+.swiper-pagination-bullet {
+	background: $main-gray;
+	opacity: .4;
+}
+.negative .swiper-pagination-bullet {
+	background: white;
+	opacity: .4;
+}
+.swiper-pagination-bullet-active {
+	background: $main-dark-color;
+	opacity: 1;
+}
+.negative .swiper-pagination-bullet-active {
+	background: white;
+	opacity: 1;
+}
+.product__pagination {
+	text-align: center;
+}
+.swiper-button-disabled {
+	opacity: 0;
+
+	&:hover {
+		cursor: default;
+		opacity: 0;
+	}
+}
+
+/* Main carousel style */
+.carousel {
+	width: 100%;
+	float: left;
+	background: $main-light-color;
+	text-align: center;
+	padding: $padding-base 0 0;
+
+	&-indicators {
+		position: relative;
+		margin: 0;
+		padding: $padding-medium 0 $padding-base 0;
+		float: left;
+		background: $main-light-color;
+		width: 100%;
+		text-align: center;
+		left: 0;
+		bottom: 10px;
+		font-size: 0;
+		z-index: 1499;
+	}
+}
+.carousel-inner > .item > img, .carousel-inner > .item > a > img {
+	margin: 0 auto;
+	max-width: auto !important;
+	width: 100%;
+}
+.carousel-fade {
+	.carousel-inner {
+		.item {
+			opacity: 0;
+			transition-property: opacity;
+		}
+		.active {
+			opacity: 1;
+		}
+		.active.left, .active.right {
+			left: 0;
+			opacity: 0;
+			z-index: 1;
+		}
+		.next.left, .prev.right {
+			opacity: 1;
+		}
+	}
+	.carousel-control {
+		z-index: 2;
+	}
+}
+.img-thumbnail {
+	background-color: $main-light-color;
+	border: 1px solid #f5f5f5;
+	padding: 7px;
+}

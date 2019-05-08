@@ -1,0 +1,19 @@
+
+<form enctype="multipart/form-data" method="post" role="form"  id="form-categorias">{% csrf_token %}
+    <div class="row">
+        <div id="div_id_categoria" class="form-group col-lg-2 col-md-2 col-xs-2">
+            <label for="id_categoria">ID</label>
+            <input id="id_categoria" name="id" type="number" value="0" step="1" class="form-control" readonly>
+        </div>
+
+        <div id="div_descricao" class="form-group col-lg-10 col-md-10 col-xs-10">
+            <label for="id_descricao">Descrição</label>
+            <input id="id_descricao" name="descricao" type="text" max="100" class="form-control" autofocus = "autofocus">
+        </div>
+
+        <div id="div_obs" class="form-group col-lg-12 col-md-12">
+            <label for="id_obs">Observações</label>
+            <textarea id="id_obs" name="obs" class="form-control"></textarea>
+        </div>
+    </div>
+</form>

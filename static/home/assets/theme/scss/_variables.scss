@@ -1,0 +1,67 @@
+$main-theme-color:#DC002E;
+$main-theme-color-secondary: #1C3869;
+$main-theme-color-tertiary:#E7ECEF;
+
+
+$body-bg: #ecebeb;
+$theme-gray-base: #111;
+$gray-base:#222;
+$gray-darker:#333;
+$gray-dark: 444;
+$gray: #555;
+$gray-light:#666;
+$gray-lighter:#aaa;
+$border-color: #E7ECEF;
+$brand-primary: $main-theme-color-secondary;
+$brand-success: #4ECDC4 !default;
+$brand-info: #4f6ce8 !default;
+$brand-warning:#e5f904 !default;
+$brand-danger: #FF6B6B !default;
+
+
+$button-text: #fff;
+$body-text-color: #121212;
+$main-light-color: #fff;
+$main-light-gray: #f5f5f5;
+// $main-gray: $gray-base;
+$main-gray: #aaa;
+$theme-gray-base: $gray-base;
+$main-dark-color: #111;
+$transparent: rgba(255,255,255,0);
+
+$theme-link-color: $main-theme-color;
+$theme-link-hover-color: $main-theme-color;
+
+// P A D D I N G S
+$padding-base: 15px;
+$padding-medium: 30px;
+$padding-large: 60px;
+$padding-x-large: 90px;
+
+// M A R G I N S 
+$margin-base: 15px;
+$margin-medium: 30px;
+$margin-large: 60px;
+$margin-x-large: 90px;
+
+
+// F O N T S
+// $main-font:'Cardo', serif;
+$main-font:'Montserrat', sans-serif;
+$main-font-secondary: 'Lato', sans-serif;
+$main-border-radius: 0;
+
+// B O O T S T R A P  S E L E C T
+$color-red-error: rgb(185, 74, 72) !default;
+$color-grey-arrow: $main-theme-color-secondary !default;
+$width-default: 100% !default; 
+$zindex-select-dropdown: 1060 !default; // must be higher than a modal background (1050)
+
+//** Placeholder text color
+$input-color-placeholder: $main-dark-color !default;
+$select-color-placeholder: $main-light-color !default;
+ 
+
+
+
+ 

@@ -1,0 +1,145 @@
+<form method='post' id='formPesquisa' style="margin-left:12px;">
+        <div class="row">
+            <div class=" form-group col-sm-3" >
+                <label for="id_Pesquisa">Busca por ID<span id="label_Pesquisa"></span></label>
+                <input id='id_Pesquisa' type='number' class='form-control' name='Pesquisa' placeholder='ID fornecedor' required>
+            </div>
+            <div class=" form-group col-sm-1">
+                <label for="buscar">Buscar<span id="label_buscar"></span></label>
+                <input id='buscar' class='btn btn-info text-left form-control' type='submit' value='Buscar' style='width:100px'>
+            </div>
+        </div>
+    </form>
+    <hr>
+    <form enctype="multipart/form-data" method="post" role="form"  id="form-pessoa-FISICA">{% csrf_token %}
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+
+                <div id="div_id" class="form-group col-lg-2 col-md-2">
+                    <label for="id_id">ID</label>
+                    <input id="id_id" name="id_id" type="number" value="0" class="form-control" readonly>
+                </div>
+
+                <div id="div_nome_razao_social" class="form-group col-lg-4 col-md-4">
+                    <label for="id_nome_razao_social">Nome</label>
+                    <input id="id_nome_razao_social" name="nome_razao_social" type="text" class="form-control" autofocus = "autofocus" required>
+                </div>
+
+                <div id="div_sobre_nome" class="form-group col-lg-6 col-md-6">
+                    <label for="id_sobre_nome">Sobre nome</label>
+                    <input id="id_sobre_nome" name="sobre_nome" type="text" class="form-control" required>
+                </div>
+
+                <div id="div_rg_inscricao_estadual" class="form-group col-lg-4 col-md-4">
+                    <label for="id_rg_inscricao_estadual">RG</label>
+                    <input id="id_rg_inscricao_estadual" name="rg_inscricao_estadual" type="text" class="form-control">
+                </div>
+
+                <div id="div_cpf_cnpj" class="form-group col-lg-4 col-md-4">
+                    <label for="id_cpf_cnpj">CPF</label>
+                    <input id="id_cpf_cnpj" name="cpf_cnpj" type="text" class="form-control">
+                </div>
+
+                <div id="div_telefone" class="form-group col-lg-4 col-md-4">
+                    <label for="id_telefone">Telefone</label>
+                    <input id="id_telefone" name="telefone" type="text" data-mask="(99) 9999-9999" data-mask-placeholder= "X" class="form-control">
+                </div>
+
+                <div id="div_celular" class="form-group col-lg-4 col-md-4">
+                    <label for="id_celular">Celular</label>
+                    <input id="id_celular" name="celular" type="text" class="form-control" data-mask="(99) 9 9999-9999" data-mask-placeholder= "X">
+                </div>
+
+                <div id="div_email" class="form-group col-lg-8 col-md-8">
+                    <label for="id_email">E-mail</label>
+                    <input id="id_email" name="email" type="text" class="form-control">
+                </div>
+
+                <div id="div_data_nascimento_fundacao" class="form-group col-lg-3 col-md-3">
+                    <label for="id_data_nascimento_fundacao">Data nascimento</label>
+                    <input id="id_data_nascimento_fundacao" name="data_nascimento_fundacao" type="date" class="form-control">
+                </div>
+
+                <div id="div_sexo" class="form-group col-lg-3 col-md-3">
+                    <label for="id_sexo">Sexo</label>
+                    <select id="id_sexo" name="sexo" class="form-control" data-max="20" required>
+                        <option value="MASCULINO">MASCULINO</option>
+                        <option value="FEMININO">FEMININO</option>
+                    </select>
+                </div>
+
+                <div id="div_estado_civil" class="form-group col-lg-3 col-md-3">
+                    <label for="id_estado_civil">Estado civil</label>
+                    <select id="id_estado_civil" name="estado_civil" class="form-control" data-max="20" required>
+                        <option value="SOLTEIRO">SOLTEIRO(A)</option>
+                        <option value="CASADO">CASADO(A)</option>
+                        <option value="UNIAO ESTAVEL">UNIÃO ESTÁVEL</option>
+                        <option value="DIVORCIADO">DIVORCIADO(A)</option>
+                        <option value="SEPARADO">SEPARADO(A)</option>
+                        <option value="OUTRO">OUTRO</option>
+                    </select>
+                </div>
+
+                <div id="div_status" class="form-group col-lg-3 col-md-3">
+                    <label for="id_status">Státus</label>
+                    <select id="id_status" name="status" class="form-control" data-max="20" required>
+                        <option value="ATIVO">ATIVO</option>
+                        <option value="INATIVO">INATIVO</option>
+                        <option value="AFASTADO">AFASTADO</option>
+                        <option value="DEMITIDO">DEMITIDO</option>
+                        <option value="APOSENTADO">APOSENTADO</option>
+                        <option value="EXCLUIDO">EXCLUIDO</option>
+                    </select>
+                </div>
+
+                <div id="div_cep" class="form-group col-lg-3 col-md-3">
+                    <label for="id_cep">Cep</label>
+                    <input id="id_cep" name="cep" type="text" class="form-control" data-mask="99999-999" data-mask-placeholder= "X">
+                </div>
+
+               <div id="div_endereco" class="form-group col-lg-9 col-md-9">
+                    <label for="id_endereco">Endereço</label>
+                    <input id="id_endereco" name="endereco" type="text" class="form-control">
+                </div>
+
+                <div id="div_numero" class="form-group col-lg-2 col-md-2">
+                    <label for="id_numero">N°</label>
+                    <input id="id_numero" name="numero" type="text" class="form-control">
+                </div>
+
+                <div id="div_complemento" class="form-group col-lg-4 col-md-4">
+                    <label for="id_complemento">Complemento</label>
+                    <input id="id_complemento" name="complemento" type="text" class="form-control">
+                </div>
+
+                <div id="div_bairro" class="form-group col-lg-6 col-md-6">
+                    <label for="id_bairro">Bairro</label>
+                    <input id="id_bairro" name="bairro" type="text" class="form-control">
+                </div>
+
+                <div id="div_cidade" class="form-group col-lg-10 col-md-10">
+                    <label for="id_cidade">Cidade</label>
+                    <input id="id_cidade" name="cidade" type="text" class="form-control" required>
+                </div>
+
+                <div id="div_estado" class="form-group col-lg-2 col-md-2">
+                    <label for="id_estado">UF</label>
+                    <input id="id_estado" name="estado" type="text" max="2" class="form-control" required>
+                </div>
+
+                <div id="div_observacoes" class="form-group col-lg-12 col-md-12">
+                    <label for="id_observacoes">Observações</label>
+                    <textarea id="id_observacoes" name="observacoes" class="form-control"></textarea>
+                </div>
+
+                <div class="form-group col-lg-12 col-md-12">
+                    <input class=" btn btn-success text-left" type="submit" value="Salvar registro">
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+
+
+
